@@ -1,14 +1,4 @@
-# Bachelor / Master / Ph.D. Thesis template [![CI](https://github.com/ctu-mrs/thesis_template/actions/workflows/main.yml/badge.svg?branch=devel)](https://github.com/ctu-mrs/thesis_template/actions/workflows/main.yml)
-
-## Editing the templates
-
-**Please read this!!**
-Please, **edit the files in the devel branch** if you wish to edit the templates.
-The **devel** branch contains a more general structure with symlinks, which is not ideal for students.
-The CI job on Github takes care of repacking everything nicely into what you see in the **master** branch.
-The job takes approx. Five minutes to run after you push to **devel**, so be patient.
-**Any commits to the master branch will get lost**.
-See the CI script [.ci/build.sh](https://github.com/ctu-mrs/thesis_template/blob/devel/.ci/build.sh) for more details.
+# My Bachelor Thesis
 
 ## Linux dependencies for building LaTeX
 
