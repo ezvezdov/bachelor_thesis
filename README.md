@@ -10,18 +10,6 @@ The job takes approx. Five minutes to run after you push to **devel**, so be pat
 **Any commits to the master branch will get lost**.
 See the CI script [.ci/build.sh](https://github.com/ctu-mrs/thesis_template/blob/devel/.ci/build.sh) for more details.
 
-### Bachelor
-
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/bachelor_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/bachelor_thesis_template.pdf)
-
-### Master
-
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/master_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/master_thesis_template.pdf)
-
-### Dissertation
-
-[![This should be a thumbnail](https://github.com/ctu-mrs/thesis_template/raw/master/.fig/phd_thesis_thumbnail.jpg)](https://github.com/ctu-mrs/thesis_template/raw/master/phd_thesis_template.pdf)
-
 ## Linux dependencies for building LaTeX
 
 ```bash
