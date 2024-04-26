@@ -2,6 +2,32 @@
 
 \chapter{Literature Review\label{chap:literature_review}}
 
+There are several methods for word representation.
+% These methods can be splitted into traditional non-contextualized methods and 
+
+\section{Traditional word embedding methods}
+
+\subsection{Word2Vec \cite{word2vec}}  
+Word2Vec is algorithm that generates word embedding using information about target word (context).
+Word2Vec uses \ac{NN} and \ac{ML} techniques to generate word embedding for every word in vocabulary during training.
+As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
+
+\begin{figure}[h]
+    \centering
+    \input{src/fig/tikz/cbow_scheme.tex}
+    \input{/home/ezvezdov/Programming/NLP/BP/bachelor_thesis/src/fig/tikz/skip_gram_scheme.tex}
+    \caption{\ac{CBOW} and Skip-gram schemes respectively}
+    \label{fig:cbow_skipgram_scheme}
+\end{figure} 
+  
+
+\subsection{GloVe \cite{glove}}
+\subsection{FastText \cite{fasttext}}
+
+
+
+
+
 \begin{itemize}
     \item Discuss traditional word embedding methods like FastText and their limitations.
     \item Explain the concept of transformer-based models like BERT and their advantages for text representation.
