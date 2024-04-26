@@ -2,12 +2,12 @@
 
 \chapter{Literature Review\label{chap:literature_review}}
 
-There are several methods for word representation.
+% There are several methods for word representation.
 % These methods can be splitted into traditional non-contextualized methods and 
 
 \section{Traditional word embedding methods}
 
-\subsection{Word2Vec \cite{word2vec}}  
+\subsection{Word2Vec \cite{word2vec}}
 Word2Vec is algorithm that generates word embedding using information about target word (context).
 Word2Vec uses \ac{NN} and \ac{ML} techniques to generate word embedding for every word in vocabulary during training.
 As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
@@ -19,7 +19,12 @@ As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipg
     \caption{\ac{CBOW} and Skip-gram schemes respectively}
     \label{fig:cbow_skipgram_scheme}
 \end{figure} 
-  
+
+Due to its algorithmic simplicity and efficiency, Word2Vec has established itself as a strong baseline for numerous \ac{NLP} tasks.
+Compared to more recent and complex models, Word2Vec requires minimal hyperparameter tuning, making it a relatively straightforward approach.
+
+However, it is important to acknowledge that Word2Vec has limitations.
+These include its inability to capture \textbf{global information} within a document, its challenges in effectively handling \textbf{morphologically rich languages} (languages with many word variations), and its lack of awareness of the \textbf{broader context} beyond a limited window of surrounding words.
 
 \subsection{GloVe \cite{glove}}
 \subsection{FastText \cite{fasttext}}
