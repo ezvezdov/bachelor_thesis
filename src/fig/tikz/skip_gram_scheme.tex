@@ -1,0 +1,41 @@
+\begin{tikzpicture}[
+    framed,
+    squarednode/.style={rectangle, draw=black!60, very thick, minimum size=5mm},
+    emptysquare/.style={squarednode, draw=none},
+    largedrectangle/.style={squarednode, minimum width=10mm, minimum height=15mm},
+    emptyrectangle/.style={squarednode, draw=none,minimum width=10mm},
+    ]
+    %Nodes
+    \node[squarednode]     (input3)  []                 {};
+    \node[emptysquare]     (input2)  [above=of input3]  {};
+    \node[emptysquare]     (input1)  [above=of input2]  {};
+    \node[emptysquare]     (input4)  [below=of input3]  {};
+    \node[emptysquare]     (input5)  [below=of input4]  {};
+    \node[largedrectangle] (sum)     [right=of input3]  {};
+    \node[emptyrectangle]  (sum3)    [right=of input3]  {};
+    \node[emptyrectangle]  (sum2)    [above=of sum3]    {};
+    \node[emptyrectangle]  (sum1)    [above=of sum2]    {};
+    \node[emptysquare]     (output3) [right=of sum]     {};
+    \node[squarednode]     (output2) [above=of output3] {};
+    \node[squarednode]     (output1) [above=of output2] {};
+    \node[squarednode]     (output4) [below=of output3] {};
+    \node[squarednode]     (output5) [below=of output4] {};
+    \node[emptysquare]     (output1) [above=of output2] {};
+    
+    % Text labels (outside nodes)
+    \node[below=of input3.north]  {w(t)};
+    \node[right=of output1.west]  {w(t-2)};
+    \node[right=of output2.west]  {w(t-1)};
+    \node[right=of output4.west]  {w(t+1)};
+    \node[right=of output5.west]  {w(t+2)};
+    \node[above=of input1.north]  {Input};
+    \node[above=of sum1.north]    {Projection};
+    \node[above=of output1.north] {Output};
+
+    %Lines
+    \draw[->] (input3.east) -- (sum.west);
+    \draw[->] (sum.east)    -- (output1.west);
+    \draw[->] (sum.east)    -- (output2.west);
+    \draw[->] (sum.east)    -- (output4.west);
+    \draw[->] (sum.east)    -- (output5.west);
+\end{tikzpicture}
