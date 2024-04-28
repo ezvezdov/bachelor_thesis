@@ -48,8 +48,38 @@
 %   \label{tab:mathematical_notation}
 % \end{table*}
 
+\subsection{Text representation}
+The human language, with its nuances and complexities, presents a significant challenge for machines to understand.
+\ac{NLP} bridges this gap, and at its core lies the critical concept of text representation.
+This process acts as a translator, bridging the gap between the richness of text and the numerical language that machines understand.
+By effectively capturing the meaning within words and their relationships, text representation empowers \ac{NLP} models to leverage machine learning's capabilities.
+From sentiment analysis to machine translation, this ability to represent meaning fuels the advancements in \ac{NLP}, enabling machines to interact with and decipher human language with ever-increasing accuracy.
+
+\subsection{Evolution of text representation methods}
+
+\begin{enumerate}
+  \item \textbf{N-grams}: Represents text as sequences of n consecutive words (e.g., bigrams, trigrams). Captures some word order information and short phrases.
+  \item \textbf{\ac{BoW}} \cite{bow} : Represents a document or sentence as a histogram of word occurrences. Each word is considered independent, and word order is not taken into account.
+  \item \textbf{\ac{TF-IDF}} \cite{tf-idf} : Builds on \ac{BoW} by weighting words based on their importance.
+  \item \textbf{Word Embeddings}: Represent words as dense numerical vectors, where similar words have similar vector representations.
+  \item \textbf{Contextualized Word Embeddings}: Utilize Transformers like models to learn word representations that consider the context in which a word appears in a sentence. Words can have different vector representations depending on the surrounding words.
+\end{enumerate}
+
+\begin{figure}
+  \centering
+  \input{/home/ezvezdov/Programming/NLP/BP/bachelor_thesis/src/fig/tikz/evolution_text_representaion.tex}  
+  \caption{Evolution of the text representation methods.}
+  \label{fig:ecolution_text_representation}
+\end{figure}
+
+
+
+\subsection{Research objective}
+
+This research aims to evaluate the effectiveness of various word, sentence, and paragraph representations generated using embedding techniques for their subsequent application in \ac{RAG} algorithms, with a specific focus on the domain of technical \ac{QA}.
+
 \begin{itemize}
-  \item Briefly introduce the importance of text representation in Natural Language Processing (NLP) tasks.
+  \item Briefly introduce the importance of text representation in \ac{NLP} tasks.
   \item Highlight the evolution of text representation methods, from traditional techniques like FastText to advanced transformer-based models like BERT.
   \item State the research objective: Evaluate different word, sentence, and paragraph representations for Retrieval-Augmented Generation (RAG) algorithms, focusing on technical question answering (QA).
 \end{itemize}
