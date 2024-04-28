@@ -1,23 +1,21 @@
 \begin{tikzpicture}
     %Nodes
-    \begin{scope}[every node/.style={rectangle, draw=black!60, very thin, align=left, minimum width=15em}]
-    \node (ngram)            []                  {N-gram};
-    \node (bow)              [below=of ngram]    {\ac{BoW}};
-    \node (tf_idf)           [below=of bow]      {TF-IDF};
-    \node (word_emb)         [below=of tf_idf]   {Word embedding};
-    \node (context_word_emb) [below=of word_emb] {Contextualized Word embedding};
+    \begin{scope}[every node/.style={rectangle, draw=black!60, very thin, align=left, minimum width=10em}]
+    \node (Word2Vec)     []                  {Word2Vec};
+    \node (GloVe)        [below=of Word2Vec] {GloVe};
+    \node (FastText)     [below=of GloVe]    {FastText};
+    \node (Transformers) [below=of FastText] {Transformers};
     \end{scope}
 
     % Text labels (outside nodes)
-    \node[right=of ngram.east]            {1950's};
-    \node[right=of bow.east]              {1960's};
-    \node[right=of tf_idf.east]           {1972};
-    \node[right=of word_emb.east]         {2013};
-    \node[right=of context_word_emb.east] {2017};
+    \node[right=of Word2Vec.east]            {2013};
+    \node[right=of GloVe.east]              {2014};
+    \node[right=of FastText.east]           {2016};
+    \node[right=of Transformers.east]         {2017};
+    % \node[right=of context_word_emb.east] {2017};
 
     %Lines
-    \draw[->] (ngram.south)    -- (bow.north);
-    \draw[->] (bow.south)      -- (tf_idf.north);
-    \draw[->] (tf_idf.south)   -- (word_emb.north);
-    \draw[->] (word_emb.south) -- (context_word_emb.north);
+    \draw[->] (Word2Vec.south) -- (GloVe.north);
+    \draw[->] (GloVe.south)    -- (FastText.north);
+    \draw[->] (FastText.south) -- (Transformers.north);
 \end{tikzpicture}
