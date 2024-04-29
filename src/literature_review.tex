@@ -2,9 +2,6 @@
 
 \chapter{Literature Review\label{chap:literature_review}}
 
-% There are several methods for word representation.
-% These methods can be splitted into traditional non-contextualized methods and 
-
 \section{Traditional word embedding methods}
 
 \subsection{Word2Vec \cite{word2vec}}
@@ -26,11 +23,24 @@ Compared to more recent and complex models, Word2Vec requires minimal hyperparam
 However, it is important to acknowledge that Word2Vec has limitations.
 These include its inability to capture \textbf{global information} within a document, its challenges in effectively handling \textbf{morphologically rich languages} (languages with many word variations), and its lack of awareness of the \textbf{broader context} beyond a limited window of surrounding words.
 
-\subsection{GloVe \cite{glove}}
+\subsection{\ac{GloVe} \cite{glove}}
+\ac{GloVe} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
+This approach involves constructing a co-occurrence matrix, where each entry reflects the frequency of two words appearing together within a predefined window size.
+This matrix essentially captures the relative importance of various word pairings.
+
+A core principle of \ac{GloVe} lies in the notion that word vectors should effectively encode the ratios between co-occurrence probabilities of words.
+By analyzing these ratios, \ac{GloVe} can identify semantic relationships between words.
+This is achieved by factorizing the co-occurrence matrix into a lower-dimensional space, allowing for efficient representation and manipulation of word meanings.
+
+To optimize the learned word embeddings, \ac{GloVe} employs a weighted least squares objective function.
+This function aims to minimize the discrepancy between the dot product of two word vectors and the logarithm of their co-occurrence probability.
+Through iterative adjustments of the word vectors, \ac{GloVe} converges on a solution that yields the desired word embeddings.
+
+
 \subsection{FastText \cite{fasttext}}
 
 
-
+\section{Transformer-based models}
 
 
 \begin{itemize}
