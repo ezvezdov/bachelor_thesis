@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+    %Nodes
+    \begin{scope}[every node/.style={rectangle, draw=black!60, very thin, align=left, minimum width=12em, minimum height=1.7em}]
+    \node (acute_diacritics)       []                             {á $\vert$ é $\vert$ í $\vert$ ó $\vert$ ú $\vert$ ý};
+    \node (acute_diacriticless)    [right=of acute_diacritics]    {a $\vert$ e $\vert$ i $\vert$ o $\vert$ u $\vert$ y};
+    \node (caron_diacritics)       [below=of acute_diacritics]    {č $\vert$ ď $\vert$ ě $\vert$ ň $\vert$ ř $\vert$ š $\vert$ ť $\vert$ ž};
+    \node (caron_diacriticless)    [right=of caron_diacritics]    {c $\vert$ d $\vert$ e $\vert$ n $\vert$ r $\vert$ s $\vert$ t $\vert$ z};
+    \node (overring_diacritics)    [below=of caron_diacritics]    {ů};
+    \node (overring_diacriticless) [right=of overring_diacritics] {u};
+    \end{scope}
+
+    % Text labels (outside nodes)
+    \node[left=of acute_diacritics.west]    {Acute:};
+    \node[left=of caron_diacritics.west]    {Caron:};
+    \node[left=of overring_diacritics.west] {Overring:};
+
+    %Lines
+    \draw[->] (acute_diacritics.east)    -- (acute_diacriticless.west);
+    \draw[->] (caron_diacritics.east)    -- (caron_diacriticless.west);
+    \draw[->] (overring_diacritics.east) -- (overring_diacriticless.west);
+\end{tikzpicture}
