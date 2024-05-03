@@ -2,6 +2,148 @@
 
 \chapter{Methodology\label{chap:methodology}}
 
+\section{Evaluation process}
+
+This work specifically targets the evaluation of word, sentence, and paragraph representation methods on datasets in the Czech language.
+This focus on Czech allows for a deeper understanding of how these methods perform in a language with specific characteristics, such as a rich inflectional morphology and the presence of diacritics.
+
+\subsection{Text Data Preparation}
+In certain foreign languages, a common issue arises when individuals incorrectly write words by omitting diacritics or altering letters, \reffig{fig:diacritics_diacriticless}.
+This problem is prevalent in social media, chatbots, and other informal written communications.
+As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless). A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
+
+\begin{figure}[h]
+  \centering
+  \input{src/fig/tikz/diacritics_diacriticless.tex}
+  \caption{Usual changes in informal czech texts.}
+  \label{fig:diacritics_diacriticless}
+\end{figure} 
+
+This study will employ two distinct text representations: text with diacritics and text without diacritics.
+To ensure optimal evaluation, the diacritic text will be assessed using datasets that preserve these diacritics, while the diacriticless text will be evaluated using datasets that lack diacritics.
+
+As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating diacriticless versions of the datasets.
+
+\begin{lstlisting}[language=bash,basicstyle=\small\ttfamily, frame=single, caption={Script for removing diacritics using Unix utilities}, captionpos=b, label={lst:diacriticless.sh},backgroundcolor=\color{light-gray}] 
+  sed 's/.*/\L&/' "$1" | iconv -f utf-8 -t ascii//TRANSLIT > diacriticless/"$1"
+\end{lstlisting}
+
+\subsection{Datasets}
+
+\subsubsection{UPV FAQ}
+
+Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic website, organized into four distinct groups, as detailed in \reftab{table:UPV_FAQ_info}.
+
+This work will evaluate two key metrics using UPV FAQ dataset
+\begin{itemize}
+  \item \textbf{Question matching accuracy}: This metric involves calculating the cosine similarity between all possible question pairs within a dataset.
+                                            A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
+                                            The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
+  \item \textbf{Answer matching accuracy}: This metric assesses the system's ability to identify the correct answer for a given question.
+                                            The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
+                                            By evaluating the similarity between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
+                                            The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
+\end{itemize}
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{ |p{2cm}||p{3cm}| }
+    \hline
+    Tests set & Number of tests \\
+    \hline
+    FAQv5     & 2054            \\
+    FAQ50     & 561             \\
+    FAQ76     & 2025            \\
+    FAQ76v2   & 1965            \\
+    \hline
+    \hline
+    All       & 6605            \\
+    \hline
+  \end{tabular}
+  \caption{Information about UPV FAQ tests} \label{table:UPV_FAQ_info}
+\end{table}
+
+
+\subsection{Baseline}
+Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
+This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
+While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context.
+
+\subsubsection{Training parameters}
+\begin{itemize}
+  \item Architecture: \ac{CBOW}
+  \item Vector size: 300
+  \item Loss function: Negative sampling loss
+  \item Dictionary threshold (the frequency of the word to be included in the dictionary): 130
+\end{itemize}
+
+\subsubsection{Training data}
+
+FastText model is trained on a segment of a preprocessed Common Crawl repository, which encompasses raw data from web pages, as well as metadata and text extractions.
+Given the nature of this dataset, it is expected to include misspellings and text lacking diacritics.
+
+\begin{enumerate}
+  \item Eliminating duplicate entries
+  \item Filtering out lines containing fewer than 9 characters
+  \item Excluding URLs
+  \item Breaking lines into individual sentences
+  \item Converting all text to lowercase
+  \item Removing lines containing words exceeding 30 characters
+  \item Excluding HTML tags with less than 100 characters
+  \item Removing lines surpassing 500 characters
+  \item Omitting words longer than 21 characters
+
+\end{enumerate}
+
+
+\subsection{Chosen transformer models}
+
+The evaluation process will leverage a curated selection of embedding models. This selection encompasses two categories:
+
+\begin{enumerate}
+  \item \textbf{Existing Czech Embedding Models}: To assess the performance of established solutions within the Czech \ac{NLP} community, we will incorporate existing Czech embedding models into the evaluation.
+  \item \textbf{Models from \ac{MTEB}}: We will also evaluate the effectiveness of all multilingual and highly regarded, open-source, English models available through the \ac{MTEB}. This inclusion allows for a comparative analysis of how these models generalize to the Czech language.
+\end{enumerate}
+
+
+
+
+
+\subsubsection{mBERT}
+\ac{mBERT} is a \ac{BERT} model, trained on a Wikipedia dump of 100 languages.
+The model performs best on high-resource languages such as English, French and Chinese, since lower-resource languages are underrepresented in the training data.
+We test whether M-BERT's pre-training on a wide range of languages, and thus a wide range of culture-specific analogies, might enhance the model's general analogy understanding.
+
+\subsubsection{CZERT}
+
+\subsubsection{multilingual-e5}
+
+\subsubsection{UAE-Large-V1}
+
+\subsubsection{distiluse-base-multilingual-cased-v2}
+
+\subsubsection{paraphrase-multilingual-MiniLM-L12-v2}
+
+\subsubsection{paraphrase-multilingual-mpnet-base-v2}
+
+\subsubsection{bge}
+
+\subsubsection{gte}
+
+\subsubsection{LaBSE}
+
+\subsubsection{xlm-roberta}
+
+\subsubsection{snowflake-arctic-embed}
+
+\subsubsection{nomic-embed-text-v1.5}
+
+\subsubsection{Seznam's models}
+
+
+
+
+
 \begin{itemize}
     \item Describe the evaluation process for different text representations.
     \item \begin{itemize}
@@ -16,6 +158,7 @@
         \item{Mention the factors considered during evaluation, such as embedding efficiency, text chunk size, and factuality of generated answers.}
       \end{itemize}
 \end{itemize}
+
 
 
 
