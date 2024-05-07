@@ -68,11 +68,12 @@ This work will evaluate two key metrics using UPV FAQ dataset
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
 This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
 While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context.
+The FastText word embedding model will be trained using the fastText.cc library \footnote{fastText.cc library website: \url{https://fasttext.cc/}}
 
 \subsubsection{Training parameters}
 \begin{itemize}
-  \item Architecture: \ac{CBOW}
-  \item Vector size: 300
+  \item Architecture: \ac{CBOW} 
+  \item Vector dimensionality: 300
   \item Loss function: Negative sampling loss
   \item Dictionary threshold (the frequency of the word to be included in the dictionary): 130
 \end{itemize}
@@ -92,53 +93,125 @@ Given the nature of this dataset, it is expected to include misspellings and tex
   \item Excluding HTML tags with less than 100 characters
   \item Removing lines surpassing 500 characters
   \item Omitting words longer than 21 characters
-
 \end{enumerate}
 
+Processed corpus contains 3.87 billion words.
+
+\subsubsection{Model summary}
+
+The FastText models trained in this study exhibit differences in vocabulary size.
+The diacritic model possesses a dictionary of approximately 800,000 words, while the diacriticless model contains roughly 762,000 words.
+This discrepancy reflects the inherent reduction in word count due to the removal of diacritics in the diacriticless dataset.
+
+These vocabulary sizes directly influence the number of trainable parameters within each model.
+The number of parameters ($N$) can be calculated using the formula~\refeq{eq:cbow_parameters}
+
+\begin{align} \label{eq:cbow_parameters}
+  & N = V_{\text{size}}d + d \\
+  \text{where} \quad & V_{\text{size}} \text{ is model vocabulary size}  \notag \\
+                      & d \quad \text{is chosen dimensionality of word embeddings} \notag
+\end{align}
+  
+Applying this formula to the vocabulary sizes of our models:
+\begin{itemize}
+  \item The diacritics model possesses approximately 240 million parameters.
+  \item The diacriticless model has approximately 229 million parameters.
+\end{itemize}
 
 \subsection{Chosen transformer models}
-
-The evaluation process will leverage a curated selection of embedding models. This selection encompasses two categories:
+To ensure a comprehensive evaluation, a curated selection of embedding models will be utilized.
+This selection encompasses three distinct categories:
 
 \begin{enumerate}
-  \item \textbf{Existing Czech Embedding Models}: To assess the performance of established solutions within the Czech \ac{NLP} community, we will incorporate existing Czech embedding models into the evaluation.
-  \item \textbf{Models from \ac{MTEB}}: We will also evaluate the effectiveness of all multilingual and highly regarded, open-source, English models available through the \ac{MTEB}. This inclusion allows for a comparative analysis of how these models generalize to the Czech language.
+  \item \textbf{Existing Czech Embedding Models}: This category incorporates established Czech embedding models developed within the Czech NLP community. Their inclusion allows for a focused analysis of how these models perform specifically for the Czech language.
+  \item \textbf{Multilingual Models from the \ac{MTEB}}: The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}. This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
+  \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 100)}: In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}. This allows for a comparative analysis of how these models, potentially trained on English or other high-resource languages, perform on the Czech dataset.
 \end{enumerate}
 
+All models should be open-source. And sentence-bert. <1B. With information about training process.
+If exisit two version of models - monolingual (without czech) and multilingula, we evaluate only multilingual
 
-
-
-
-\subsubsection{mBERT}
+\subsubsection{mBERT \cite{bert_mbert}}
 \ac{mBERT} is a \ac{BERT} model, trained on a Wikipedia dump of 100 languages.
 The model performs best on high-resource languages such as English, French and Chinese, since lower-resource languages are underrepresented in the training data.
-We test whether M-BERT's pre-training on a wide range of languages, and thus a wide range of culture-specific analogies, might enhance the model's general analogy understanding.
 
-\subsubsection{CZERT}
+\subsubsection{Czert-B \cite{czert}}
 
-\subsubsection{multilingual-e5}
+The Czert model is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
+These models leverage the \ac{BERT} and \ac{ALBERT} \cite{ALBERT} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
+The training set includes a comprehensive corpus of Czech texts, such as Wikipedia articles, news, and other texts, accumulating to around 36GB of data.
 
-\subsubsection{UAE-Large-V1}
+There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only Czert-B model.
+Czert-B model is based on the traditional \ac{BERT} architecture (110M parameters).
+Model are pre-trained from scratch using the Masked Language Model (MLM) and Next Sentence Prediction (NSP) tasks. However, a slight modification is made to the NSP task to adapt it better to the Czech language corpus structure.
 
+
+\subsubsection{Seznam's models \cite{seznam-models}}
+This study leverages a group of compact word embedding models specifically designed for the Czech language.
+These models were developed by the Seznam research group with a focus on efficient word representation generation.
+
+\begin{itemize}
+  \item RetroMAE-Small: \ac{BERT}-small model trained with the \ac{RetroMAE} objective \cite{RetroMAE} on a custom Czech corpus.
+  \item Dist-MPNet-ParaCrawl: \ac{BERT}-small model distilled from the \textit{sentence-transformers/all-mpnet-base-v2} \footnote{Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} model, using parallel cs-en dataset  \cite{ParaCrawl} for training.
+  \item Dist-MPNet-CzEng: \ac{BERT}-small model distilled from the \textit{sentence-transformers/all-mpnet-base-v2} \footnote{Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} model, using parallel cs-en dataset Czeng \cite{CzEng_dataset} for training.
+  \item SimCSE-RetroMAE-Small: The \ac{RetroMAE}-Small model fine-tuned with the \ac{SimCSE} \cite{SimCSE}.
+  \item SimCSE-Dist-MPNet-ParaCrawl: The Dist-MPNet-ParaCrawl model fine-tuned with the \ac{SimCSE}.
+  \item SimCSE-Dist-MPNet-CzEng: The Dist-MPNet-CzEng fine-tuned with the \ac{SimCSE}.
+  \item SimCSE-Small-E-Czech: Czech ELECTRA model \cite{small-e-czech} fine-tuned with the \ac{SimCSE} objective to enhance sentence embeddings.
+\end{itemize}
+
+The developed models are about eight times smaller and five times faster than conventional base-sized models, making them suitable for real-time applications where computational efficiency is critical.
+The models are trained using techniques like pre-training, knowledge distillation, and unsupervised contrastive fine-tuning to adapt to the limited availability of labeled Czech data.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{\ac{mE5} \cite{multilingual-e5}}
 \subsubsection{distiluse-base-multilingual-cased-v2}
-
 \subsubsection{paraphrase-multilingual-MiniLM-L12-v2}
-
 \subsubsection{paraphrase-multilingual-mpnet-base-v2}
+\subsubsection{LaBSE \cite{LaBSE}}
 
-\subsubsection{bge}
 
-\subsubsection{gte}
-
-\subsubsection{LaBSE}
-
-\subsubsection{xlm-roberta}
 
 \subsubsection{snowflake-arctic-embed}
 
-\subsubsection{nomic-embed-text-v1.5}
 
-\subsubsection{Seznam's models}
+\subsubsection{jina-embeddings}
+Only jina-embeddings-v2, because it's better in \ac{mteb}
+
+
+\subsubsection{nomic-embed-text}
+nomic-embed-text-v1
+nomic-embed-text-v1.5
+
+
+\subsubsection{gte}
+
+gte-large-en-v1.5
+gte-base-en-v1.5
+gte-large
+gte-base
+gte-small
+gte-tiny
+
+\subsubsection{bge}
+
+bge-large-en-v1.5
+bge-base-en-v1.5
+bge-small-en-v1.5
+bge-micro-v2
+
+\subsection{mxbai-embed-large-v1}
+
+\subsubsection{xlm-roberta \cite{xlm-roberta} }
+XLM-RoBERTa is a multilingual version of RoBERTa.
+It is pre-trained on 2.5TB of filtered CommonCrawl data containing 100 languages.
+
+\subsubsection{UAE-Large-V1 \cite{UAE-Large-V1}}
+
+
 
 
 
