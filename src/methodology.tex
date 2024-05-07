@@ -131,10 +131,8 @@ This selection encompasses three distinct categories:
 All models should be open-source. And sentence-bert. <1B. With information about training process.
 If exisit two version of models - monolingual (without czech) and multilingula, we evaluate only multilingual
 
-\subsubsection{mBERT \cite{bert_mbert}}
-\ac{mBERT} is a \ac{BERT} model, trained on a Wikipedia dump of 100 languages.
-The model performs best on high-resource languages such as English, French and Chinese, since lower-resource languages are underrepresented in the training data.
-
+% Czech models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Czert-B \cite{czert}}
 
 The Czert model is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
@@ -164,14 +162,29 @@ The developed models are about eight times smaller and five times faster than co
 The models are trained using techniques like pre-training, knowledge distillation, and unsupervised contrastive fine-tuning to adapt to the limited availability of labeled Czech data.
 
 
-
+% Multilingual models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{mBERT-base \cite{bert_mbert}}
+\ac{mBERT} leverages the same transformer-based architecture as the original \ac{BERT} model but boasts an increased number of parameters (178M) to enhance its capabilities.
+A key distinction of \ac{mBERT} lies in its ability to understand and process text data across multiple languages.
+To achieve this multilingual proficiency, \ac{mBERT} is trained on a massive dataset sourced from Wikipedia entries in 104 different languages.
+This corpus is meticulously constructed to ensure balanced representation, meaning each language is included regardless of the size or depth of its corresponding Wikipedia.
+This approach ensures that even languages with limited resources are adequately represented within the training data, fostering better performance for these languages.
 
-\subsubsection{\ac{mE5} \cite{multilingual-e5}}
+\subsubsection{\ac{mE5} \cite{mE5}}
+\ac{mE5} models by Microsoft are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{E5}.
+These models are available in three variants — small (118M parameters), base (278 parameters), and large (560M parameters) — catering to different computational efficiency and performance needs.
+The \ac{mE5} models are trained using a two-phase approach.
+The first phase involves weakly-supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia, mC4, Multilingual CC News, Reddit, etc.).
+The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{ms_marco_dataset}, Natural Questions (NQ) \cite{NQ_dataset}, TriviaQA \cite{TriviaQA}, SQuAD \cite{SQuAD}, etc.).
+
+\subsubsection{LaBSE \cite{LaBSE}}
+
+
 \subsubsection{distiluse-base-multilingual-cased-v2}
 \subsubsection{paraphrase-multilingual-MiniLM-L12-v2}
 \subsubsection{paraphrase-multilingual-mpnet-base-v2}
-\subsubsection{LaBSE \cite{LaBSE}}
+
 
 
 
