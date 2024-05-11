@@ -134,9 +134,9 @@ If exisit two version of models - monolingual (no czech lang) and multilingual, 
 % Czech models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Czert
-\subsubsection{Czert-B \cite{czert}}
+\subsubsection{Czert-B} \label{modelczert-b}
 
-The Czert model is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
+The Czert model \cite{czert} is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
 These models leverage the \ac{BERT} and \ac{ALBERT} \cite{ALBERT} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
 The training set includes a comprehensive corpus of Czech texts, such as Wikipedia articles, news, and other texts, accumulating to around 36GB of data.
 
@@ -145,9 +145,9 @@ Czert-B model is based on the traditional \ac{BERT} architecture (110M parameter
 Model are pre-trained from scratch using \ac{MLM} and \ac{NSP} tasks. However, a slight modification is made to the \ac{NSP} task to adapt it better to the Czech language corpus structure.
 
 % Seznam
-\subsubsection{Seznam's models \cite{seznam-models}}
+\subsubsection{Seznam's models} \label{model:seznam}
 This study leverages a group of compact word embedding models specifically designed for the Czech language.
-These models were developed by the Seznam research group with a focus on efficient word representation generation.
+These models were developed by the Seznam research group with a focus on efficient word representation generation \cite{seznam-models}.
 
 \begin{itemize}
   \item RetroMAE-Small: \ac{BERT}-small model trained with the \ac{RetroMAE} objective \cite{RetroMAE} on a custom Czech corpus.
@@ -166,7 +166,7 @@ The models are trained using techniques like pre-training, knowledge distillatio
 % Multilingual models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % mBERT
-\subsubsection{mBERT}
+\subsubsection{mBERT} \label{model:mbert}
 \ac{mBERT} \cite{bert_mbert} leverages the same transformer-based architecture as the original \ac{BERT} model but boasts an increased number of parameters (178M) to enhance its capabilities.
 A key distinction of \ac{mBERT} lies in its ability to understand and process text data across multiple languages.
 To achieve this multilingual proficiency, \ac{mBERT} is trained on a massive dataset sourced from Wikipedia entries in 104 different languages.
@@ -174,29 +174,29 @@ This corpus is meticulously constructed to ensure balanced representation, meani
 This approach ensures that even languages with limited resources are adequately represented within the training data, fostering better performance for these languages.
 
 % mE5
-\subsubsection{\ac{mE5} \cite{mE5}}
-\ac{mE5} models by Microsoft are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{E5}.
+\subsubsection{\ac{mE5}} \label{model:me5}
+\ac{mE5} models by Microsoft \cite{mE5} are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{E5}.
 These models are available in three variants — small, base, and large — catering to different computational efficiency and performance needs.
 The \ac{mE5} models are trained using a two-phase approach.
 The first phase involves weakly-supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia, mC4, Multilingual CC News, Reddit, etc.).
 The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{ms_marco_dataset}, Natural Questions (NQ) \cite{NQ_dataset}, TriviaQA \cite{TriviaQA}, SQuAD \cite{SQuAD}, etc.).
 
 % LaBSE
-\subsubsection{LaBSE \cite{LaBSE}}
-\ac{LaBSE} model, developed by Google, is a state-of-the-art model for generating sentence embeddings that are effective across 109 languages.
+\subsubsection{LaBSE} \label{model:labse}
+\ac{LaBSE} model \cite{LaBSE}, developed by Google, is a state-of-the-art model for generating sentence embeddings that are effective across 109 languages.
 It leverages the transformer architecture and is trained on both monolingual (from sources like CommonCrawl and Wikipedia) and bilingual data (mined from web pages).
 LaBSE utilizes a dual-encoder structure with \ac{BERT}-based encoding modules.
 This setup enables the efficient processing of text pairs in multiple languages.
 
 % XLM-R
-\subsubsection{XLM-R \cite{xlm-roberta} }
-The \ac{XLM-R} model is a significant advancement in unsupervised cross-lingual representation learning, introduced by Facebook AI.
+\subsubsection{XLM-R} \label{model:xlm-roberta}
+The \ac{XLM-R} model \cite{xlm-roberta} is a significant advancement in unsupervised cross-lingual representation learning, introduced by Facebook AI.
 It is specifically designed to improve performance across a wide range of cross-lingual tasks.
 \ac{XLM-R} is pre-trained on a dataset dubbed 'CC-100', derived from Common Crawl, covering about 2.5 terabytes of text across 100 languages.
 This dataset is significantly larger than the ones used by its predecessors, offering a broader and more diverse linguistic foundation.
 
 % SentenceTransformers
-\subsubsection{SentenceTransformers multilingual models \cite{reimers-2019-sentence-bert}}
+\subsubsection{SentenceTransformers multilingual models \cite{reimers-2019-sentence-bert}} \label{model:st-multilingual}
 
 \begin{itemize}
   \item distiluse-base-multilingual-cased-v2: Multilingual knowledge distilled version of multilingual Universal Sentence Encoder \cite{yang2019multilingual}. This version supports 50+ languages including Czech.
@@ -209,8 +209,8 @@ This dataset is significantly larger than the ones used by its predecessors, off
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % UAE-Large-V1
-\subsubsection{UAE-Large-V1 \cite{UAE-Large-V1}}
-The UAE-Large-V1 model focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach that works by dividing text embeddings into real and imaginary components in a complex space.
+\subsubsection{UAE-Large-V1} \label{model-uae-large-v1}
+The UAE-Large-V1 model \cite{UAE-Large-V1} focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach that works by dividing text embeddings into real and imaginary components in a complex space.
 This model is designed to address the challenges posed by the saturation zones of the cosine function, which can impede learning by causing vanishing gradients.
 
 The model is trained using a hybrid objective that combines cosine similarity, in-batch negatives, and angle differences in complex space.
@@ -218,7 +218,7 @@ This approach helps overcome the limitations of traditional cosine similarity me
 Training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
 
 % Nomic Embed
-\subsubsection{Nomic Embed V1 and Nomic Embed V1.5}
+\subsubsection{Nomic Embed V1 and Nomic Embed V1.5} \label{model:nomic-embed}
 The Nomic model \cite{nussbaum2024nomic}, designed for reproducible long-context text embedding, employs a modified BERT architecture optimized for 8192 token sequences.
 It includes innovations such as rotary positional embeddings and SwiGLU activations, enhancing its ability to process longer texts.
 The model undergoes a comprehensive training regime starting with unsupervised contrastive pretraining on large-scale datasets, followed by supervised fine-tuning using human-annotated data.
@@ -227,7 +227,7 @@ This process leverages contrastive learning to improve text embedding capabiliti
 Nomic Embed V1.5 is an improvement upon Nomic Embed V1 that utilizes Matryoshka Representation Learning \cite{kusupati2024matryoshka} which gives developers the flexibility to trade off the embedding size for a negligible reduction in performance.
 
 % snowflake-arctic-embed
-\subsubsection{snowflake-arctic-embed}
+\subsubsection{snowflake-arctic-embed} \label{model:snowflake-embed}
 This study investigates the use of snowflake-arctic-embed, a suite of text embedding models optimized for retrieval tasks. The suite offers multiple model sizes (xs, s, m, m-long, l) for flexibility.
 
 Snowflake-arctic-embed leverages a two-stage training pipeline
@@ -237,7 +237,7 @@ Snowflake-arctic-embed leverages a two-stage training pipeline
 \end{enumerate}
 
 % GTE
-\subsubsection{GTE and GTE-v1.5}
+\subsubsection{GTE and GTE-v1.5} \label{model:gte}
 The \ac{GTE} model is a pivotal development in \ac{NLP}, utilizing a deep Transformer encoder based on a \ac{BERT}-like architecture for generating dense text embeddings.
 Initially, the \ac{GTE} model is unsupervisedly pre-trained on approximately 800 million text pairs from diverse web sources, enabling broad semantic coverage.
 It then undergoes supervised fine-tuning with 3 million annotated text triples from varied datasets, including MS MARCO and Natural Questions, applying contrastive learning to enhance text relevance detection and similarity assessments.
@@ -246,14 +246,14 @@ This dual-stage training strategy equips the \ac{GTE} model to excel in complex 
 There is also updated version \ac{GTE}-v1.5.
 
 % BGE
-\subsubsection{BGE-v1.5}
+\subsubsection{BGE-v1.5} \label{model:bge}
 \ac{BGE} Models \cite{bge_embedding} are built on a BERT-like architecture, available in three sizes: small, base, and large.
 They are trained using a sophisticated multi-stage process involving pre-training on large unlabeled data, contrastive learning for fine-tuning on text pairs, and multi-task learning with high-quality labeled datasets.
 This training regimen equips BGE models to handle a wide range of text embedding tasks with high efficiency and accuracy.
 
 
 % TaylorAI
-\subsubsection{TaylorAI tiny models}
+\subsubsection{TaylorAI tiny models} \label{model:taylorai}
 This study incorporates two distilled transformer models from TaylorAI for evaluation:
 
 \begin{itemize}
