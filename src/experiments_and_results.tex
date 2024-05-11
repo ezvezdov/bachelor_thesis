@@ -4,6 +4,16 @@
 
 \input{src/tables/evaluation.tex}
 
+\subsection{Balanced models}
+To ensure the effectiveness of the evaluation process, a selection criterion was applied to the initial set of candidate models.
+This criterion focused on Question Matching Accuracy and Answer Matching Accuracy for both diacritic and diacriticless models.
+Models that exhibited performance below the established baseline for their respective category (diacritic or diacriticless) were excluded from further evaluation.
+
+Additionally, models with lower performance metrics were removed if a smaller, more efficient model demonstrated comparable or superior accuracy.
+This approach ensures that the final selection of models for evaluation represents a balance between effectiveness and efficiency.
+
+\input{src/tables/models_balanced.tex}
+
 \begin{itemize}
     \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
     \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
