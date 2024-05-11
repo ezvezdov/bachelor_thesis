@@ -4,8 +4,8 @@
 
 \section{Traditional word embedding methods}
 
-\subsection{Word2Vec \cite{word2vec}}
-Word2Vec is algorithm that generates word embedding using information about target word (context).
+\subsection{Word2Vec}
+Word2Vec \cite{word2vec} is algorithm that generates word embedding using information about target word (context).
 Word2Vec uses \ac{NN} and \ac{ML} techniques to generate word embedding for every word in vocabulary during training.
 As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
 
@@ -23,8 +23,8 @@ Compared to more recent and complex models, Word2Vec requires minimal hyperparam
 However, it is important to acknowledge that Word2Vec has limitations.
 These include its inability to capture \textbf{global information} within a document, its challenges in effectively handling \textbf{morphologically rich languages} (languages with many word variations), and its lack of awareness of the \textbf{broader context} beyond a limited window of surrounding words.
 
-\subsection{\ac{GloVe} \cite{glove}}
-\ac{GloVe} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
+\subsection{GloVe}
+\ac{GloVe} \cite{glove} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
 This approach involves constructing a co-occurrence matrix, where each entry reflects the frequency of two words appearing together within a predefined window size.
 This matrix essentially captures the relative importance of various word pairings.
 
@@ -37,8 +37,19 @@ This function aims to minimize the discrepancy between the dot product of two wo
 Through iterative adjustments of the word vectors, \ac{GloVe} converges on a solution that yields the desired word embeddings.
 
 
-\subsection{FastText \cite{fasttext}}
-
+\subsection{FastText}
+FastText \cite{fasttext} utilizes similar \ac{NN} architectures as word2vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
+This decomposition allows FastText to represent a word's meaning by considering its constituent subword components.
+Consequently, FastText offers advantages in two key areas:
+\begin{itemize}
+    \item Rare Word Embeddings: Unlike word2vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words. By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
+    \item Handling Morphologically Rich Languages: Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for word2vec. FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms. This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate NLP tasks.
+\end{itemize}
+However, it's important to acknowledge that FastText also has limitations:
+\begin{itemize}
+    \item Context Insensitivity: Similar to word2vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence. This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
+    \item Limited Long-Range Dependency Capture: While subwords allow FastText to capture local context, it might not effectively capture long-range dependencies within sentences. This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
+\end{itemize}
 
 \section{Transformer-based models}
 
