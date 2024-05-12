@@ -52,8 +52,31 @@ However, it's important to acknowledge that FastText also has limitations:
 \end{itemize}
 
 \section{Transformer-based models}
+Transformer models \cite{vaswani2023attention} underpin powerful NLP models like BERT.
+A key advantage is their self-attention mechanism, which assigns importance to words based on context, not just position.
+This enables efficient parallel processing of entire sentences.
+Architecture of transformers visualized in \reffig{fig:model-arch}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{src/fig/imgs/transformer_arch.png}
+    \caption{The Transformer - model architecture.}
+    \label{fig:model-arch}
+\end{figure}
 
+BERT builds on transformers with pre-training on a massive text corpus.
+\ac{MLM} and \ac{NSP} further enhance \ac{BERT}'s capabilities, fostering deep contextual understanding and grasp of sentence relationships.
+
+These strengths make transformers, particularly \ac{BERT}, well-suited for \ac{NLP} tasks.
+Their advantage lies in capturing contextual understanding, leading to richer text representations and superior comprehension of semantic relationships.
+
+Furthermore, \ac{BERT} excels in transfer learning, readily adapting to various tasks (sentiment analysis, \ac{QA}) with minimal modifications.
+Additionally, efficiency and speed are benefits due to parallel processing and pre-training.
+
+Transformer models effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
+Finally, \ac{BERT}'s robustness allows it to handle nuances in text without significant performance degradation.
+
+\section{TODO: REMOVE, STRUCTURE}
 \begin{itemize}
     \item Discuss traditional word embedding methods like FastText and their limitations.
     \item Explain the concept of transformer-based models like BERT and their advantages for text representation.
