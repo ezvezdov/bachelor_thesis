@@ -281,6 +281,15 @@ Both stages rely heavily on the chosen text representation technique.
   \item \textbf{Generation}: Once retrieved, the passages serve as input for the generation model, which constructs a natural language answer. The quality of the text representation in these retrieved passages is crucial. Rich representations that capture semantic relationships and context allow the generation model to create informative and well-structured answers.  
 \end{itemize}
 
+\begin{figure}[h]
+  \centering
+  \input{src/fig/tikz/RAG_scheme.tex}
+  \caption{\ac{RAG} scheme}
+  \label{fig:RAG_scheme}
+\end{figure} 
+
+
+
 \subsection{Key factors}
 To identify the most suitable text representation model for \ac{RAG} in technical \ac{QA}, we propose a comprehensive evaluation approach that considers the following key factors:
 

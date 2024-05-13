@@ -1,0 +1,39 @@
+% Inspired by:
+% https://en.m.wikipedia.org/wiki/File:RAG_schema.svg
+% https://github.com/hkproj/retrieval-augmented-generation-notes/blob/main/Slides.pdf
+
+\begin{tikzpicture}[
+    longnode/.style={rectangle, rounded corners=.5em, draw=black!60, very thick, align=left, minimum height=1.7em, minimum width=9em},
+    emptylong/.style={longnode, draw=none},
+    highnode/.style={longnode, minimum height=10.2em},
+    line width=1pt, black
+    ]
+    
+    %Nodes
+    \node[longnode]  (question)    []                     {Question};
+    \node[emptylong] (empty1)      [below=of question]    {};
+    \node[longnode]  (embeddings1) [below=of empty1]      {Embeddings};
+    \node[longnode]  (vector_db)   [right=of embeddings1] {Vector database};
+    \node[longnode]  (embeddings2) [below=of vector_db]   {Embeddings};
+    \node[longnode]  (chunks)      [below=of embeddings2] {Split into chunks};
+    \node[longnode]  (documents)   [below=of chunks]      {Documents};
+    \node[longnode]  (context)     [right=of vector_db]   {Context};
+    \node[longnode]  (instruction) [above=of context]     {Instruction};
+    \node[emptylong] (llm_empty3)  [right=of context]     {};
+    \node[emptylong] (llm_empty2)  [above=of llm_empty3]  {};
+    \node[emptylong] (llm_empty1)  [above=of llm_empty2]  {};
+    \node[highnode]  (LLM)         [right=of instruction] {LLM};
+    \node[longnode]  (answer)      [below=of llm_empty3]  {Answer};
+
+    %Lines
+    \draw[->] (question.south)    --                                                  (embeddings1.north);
+    \draw[->] (embeddings1.east)  -- node[text width=3em,midway,above=0.7em] {Search} (vector_db.west);
+    \draw[->] (embeddings2.north) -- node[text width=3em,midway,right=0.7em] {Store}  (vector_db.south);
+    \draw[->] (chunks.north)      --                                                  (embeddings2.south);
+    \draw[->] (documents.north)   --                                                  (chunks.south);
+    \draw[->] (vector_db.east)    -- node[text width=3em,midway,above=0.7em] {Top-K}  (context.west);
+    \draw[->] (context.east)      --                                                  (llm_empty3.west);
+    \draw[->] (instruction.east)  --                                                  (llm_empty2.west);
+    \draw[->] (question.east)     --                                                  (llm_empty1.west);
+    \draw[->] (llm_empty3.south)  --                                                  (answer.north);
+\end{tikzpicture}
