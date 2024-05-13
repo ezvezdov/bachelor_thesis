@@ -76,6 +76,23 @@ Additionally, efficiency and speed are benefits due to parallel processing and p
 Transformer models effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
 Finally, \ac{BERT}'s robustness allows it to handle nuances in text without significant performance degradation.
 
+\section{Retrieval Augmented Generation}
+The \ac{RAG} \cite{lewis2021retrievalaugmented} algorithm leverages a two-stage approach for answer generation: retrieval and generation.
+Both stages rely heavily on the chosen text representation technique.
+
+\begin{itemize}
+  \item \textbf{Retrieval}: The algorithm retrieves relevant passages from a technical document (e.g., manual) that address the user's question. To achieve this, RAG represents both the question and potential answer passages using the same text representation model (e.g., word embeddings, sentence embeddings). The similarity between the question and passage representations determines the relevance of a passage for answering the question.  
+  \item \textbf{Generation}: Once retrieved, the passages serve as input for the generation model, which constructs a natural language answer. The quality of the text representation in these retrieved passages is crucial. Rich representations that capture semantic relationships and context allow the generation model to create informative and well-structured answers.  
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \input{src/fig/tikz/RAG_scheme.tex}
+  \caption{\ac{RAG} scheme}
+  \label{fig:RAG_scheme}
+\end{figure} 
+
+
 \section{TODO: REMOVE, STRUCTURE}
 \begin{itemize}
     \item Discuss traditional word embedding methods like FastText and their limitations.
