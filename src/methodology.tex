@@ -196,12 +196,12 @@ It is specifically designed to improve performance across a wide range of cross-
 This dataset is significantly larger than the ones used by its predecessors, offering a broader and more diverse linguistic foundation.
 
 % SentenceTransformers
-\subsubsection{SentenceTransformers multilingual models \cite{reimers-2019-sentence-bert}} \label{model:st-multilingual}
+\subsubsection{SentenceTransformers models \cite{reimers-2019-sentence-bert}} \label{model:st-multilingual}
 
 \begin{itemize}
-  \item distiluse-base-multilingual-cased-v2: Multilingual knowledge distilled version of multilingual Universal Sentence Encoder \cite{yang2019multilingual}. This version supports 50+ languages including Czech.
-  \item paraphrase-multilingual-MiniLM-L12-v2: Multilingual version of paraphrase-MiniLM-L12-v2, trained on parallel data for 50+ languages including Czech.
-  \item paraphrase-multilingual-mpnet-base-v2: Multilingual version of paraphrase-mpnet-base-v2, trained on parallel data for 50+ languages including Czech.
+  \item \textbf{distiluse-base-multilingual-cased-v2}: This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model. In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}. Notably, this version supports sentence encoding for over 50 languages, including Czech.
+  \item \textbf{paraphrase-multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification. It is a multilingual version of the paraphrase-MiniLM-L12-v2 model, trained on parallel datasets encompassing over 50 languages, including Czech. By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
+  \item \textbf{paraphrase-multilingual-mpnet-base-v2}: Similar to the previous model, this is a multilingual version of the paraphrase-mpnet-base-v2 model, trained on parallel data for over 50 languages, including Czech.  This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
 
@@ -210,7 +210,7 @@ This dataset is significantly larger than the ones used by its predecessors, off
 
 % UAE-Large-V1
 \subsubsection{UAE-Large-V1} \label{model-uae-large-v1}
-The UAE-Large-V1 model \cite{UAE-Large-V1} focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach that works by dividing text embeddings into real and imaginary components in a complex space.
+The UAE-Large-V1 model \cite{li2023angle} focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach (AnglE) that works by dividing text embeddings into real and imaginary components in a complex space.
 This model is designed to address the challenges posed by the saturation zones of the cosine function, which can impede learning by causing vanishing gradients.
 
 The model is trained using a hybrid objective that combines cosine similarity, in-batch negatives, and angle differences in complex space.
@@ -260,6 +260,26 @@ This study incorporates two distilled transformer models from TaylorAI for evalu
   \item \textbf{TaylorAI/bge-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}: This model is a 2-step distilled version of the small BGE-v1.5 model
   \item \textbf{TaylorAI/gte-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}: This model is a distilled version of the small version of GTE model
 \end{itemize}
+
+\subsubsection{mxbai-embed}
+This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
+\begin{itemize}
+  \item \textbf{mxbai-embed-large-v1} \cite{emb2024mxbai}: This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.  As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}. Notably, mxbai-embed-large-v1 surpasses other models in tasks such as classification, clustering, and retrieval. The success of this model can be attributed to its robust training methodology. Mxbai-embed-large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach. This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones. Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function. This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
+  \item \textbf{mxbai-embed-2d-large-v1} \cite{emb2024mxbai2d}: This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding. The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers. This  flexibility enables users to tailor the model size and complexity based on their specific computational needs. This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments. The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings. These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints. Mxbai-embed-2d-large-v1 tackles this challenge by employing a novel training strategy. This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets. This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
+\end{itemize}
+
+
+\subsection{ember-v1}
+This study leverages the ember-v1 model, developed by LLMRails.
+Ember-v1 is a text embedding model trained on a comprehensive dataset of text pairs encompassing a wide range of domains such as finance, science, medicine, law, and beyond.
+Notably, the training process incorporates techniques inspired by both RetroMAE \cite{RetroMAE} and SetFit \cite{tunstall2022efficient}. 
+
+
+
+
+
+
+
 
 
 % TODO:
