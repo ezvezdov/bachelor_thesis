@@ -10,7 +10,8 @@ This focus on Czech allows for a deeper understanding of how these methods perfo
 \subsection{Text Data Preparation}
 In certain foreign languages, a common issue arises when individuals incorrectly write words by omitting diacritics or altering letters, \reffig{fig:diacritics_diacriticless}.
 This problem is prevalent in social media, chatbots, and other informal written communications.
-As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless). A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
+As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless).
+A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
 
 \begin{figure}[h]
   \centering
@@ -36,13 +37,15 @@ Dataset is comprised of frequently asked questions (FAQs) and their answers from
 
 This work will evaluate two key metrics using UPV FAQ dataset
 \begin{itemize}
-  \item \textbf{Question matching accuracy}: This metric involves calculating the cosine similarity between all possible question pairs within a dataset.
-                                            A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
-                                            The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
-  \item \textbf{Answer matching accuracy}: This metric assesses the system's ability to identify the correct answer for a given question.
-                                            The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
-                                            By evaluating the similarity between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
-                                            The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
+  \item \textbf{Question matching accuracy}:
+    This metric involves calculating the cosine similarity between all possible question pairs within a dataset.
+    A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
+    The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
+  \item \textbf{Answer matching accuracy}:
+    This metric assesses the system's ability to identify the correct answer for a given question.
+    The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
+    By evaluating the similarity between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
+    The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
 \end{itemize}
 
 \begin{table}[!ht]
@@ -104,7 +107,7 @@ The diacritic model possesses a dictionary of approximately 800,000 words, while
 This discrepancy reflects the inherent reduction in word count due to the removal of diacritics in the diacriticless dataset.
 
 These vocabulary sizes directly influence the number of trainable parameters within each model.
-The number of parameters ($N$) can be calculated using the formula~\refeq{eq:cbow_parameters}
+The number of parameters ($N$) can be calculated using the formula~\refeq{eq:cbow_parameters}.
 
 \begin{align} \label{eq:cbow_parameters}
   & N = V_{\text{size}}d + d \\
@@ -123,9 +126,15 @@ To ensure a comprehensive evaluation, a curated selection of embedding models wi
 This selection encompasses three distinct categories:
 
 \begin{enumerate}
-  \item \textbf{Existing Czech Embedding Models}: This category incorporates established Czech embedding models developed within the Czech NLP community. Their inclusion allows for a focused analysis of how these models perform specifically for the Czech language.
-  \item \textbf{Multilingual Models from the \ac{MTEB}}: The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}. This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
-  \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 100)}: In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}. This allows for a comparative analysis of how these models, potentially trained on English or other high-resource languages, perform on the Czech dataset.
+  \item \textbf{Existing Czech Embedding Models}:
+    This category incorporates established Czech embedding models developed within the Czech NLP community.
+    Their inclusion allows for a focused analysis of how these models perform specifically for the Czech language.
+  \item \textbf{Multilingual Models from the \ac{MTEB}}:
+    The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}.
+    This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
+  \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 100)}:
+    In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}.
+    This allows for a comparative analysis of how these models, potentially trained on English or other high-resource languages, perform on the Czech dataset.
 \end{enumerate}
 
 All models should be open-source. And sentence-bert. <1B. With information about training process.
@@ -199,9 +208,15 @@ This dataset is significantly larger than the ones used by its predecessors, off
 \subsubsection{SentenceTransformers models \cite{reimers-2019-sentence-bert}} \label{model:st-multilingual}
 
 \begin{itemize}
-  \item \textbf{distiluse-base-multilingual-cased-v2}: This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model. In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}. Notably, this version supports sentence encoding for over 50 languages, including Czech.
-  \item \textbf{paraphrase-multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification. It is a multilingual version of the paraphrase-MiniLM-L12-v2 model, trained on parallel datasets encompassing over 50 languages, including Czech. By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
-  \item \textbf{paraphrase-multilingual-mpnet-base-v2}: Similar to the previous model, this is a multilingual version of the paraphrase-mpnet-base-v2 model, trained on parallel data for over 50 languages, including Czech.  This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
+  \item \textbf{distiluse-base-multilingual-cased-v2}:
+    This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model.
+    In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
+    Notably, this version supports sentence encoding for over 50 languages, including Czech.
+  \item \textbf{paraphrase-multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
+    It is a multilingual version of the paraphrase-MiniLM-L12-v2 model, trained on parallel datasets encompassing over 50 languages, including Czech.
+    By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
+  \item \textbf{paraphrase-multilingual-mpnet-base-v2}: Similar to the previous model, this is a multilingual version of the paraphrase-mpnet-base-v2 model, trained on parallel data for over 50 languages, including Czech.
+    This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
 
@@ -228,7 +243,8 @@ Nomic Embed V1.5 is an improvement upon Nomic Embed V1 that utilizes Matryoshka 
 
 % snowflake-arctic-embed
 \subsubsection{snowflake-arctic-embed} \label{model:snowflake-embed}
-This study investigates the use of snowflake-arctic-embed, a suite of text embedding models optimized for retrieval tasks. The suite offers multiple model sizes (xs, s, m, m-long, l) for flexibility.
+This study investigates the use of snowflake-arctic-embed, a suite of text embedding models optimized for retrieval tasks.
+The suite offers multiple model sizes (xs, s, m, m-long, l) for flexibility.
 
 Snowflake-arctic-embed leverages a two-stage training pipeline
 \begin{enumerate}
@@ -257,15 +273,34 @@ This training regimen equips BGE models to handle a wide range of text embedding
 This study incorporates two distilled transformer models from TaylorAI for evaluation:
 
 \begin{itemize}
-  \item \textbf{TaylorAI/BGE-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}: This model is a 2-step distilled version of the small BGE-v1.5 model
-  \item \textbf{TaylorAI/GTE-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}: This model is a distilled version of the small version of GTE model
+  \item \textbf{TaylorAI/BGE-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
+    This model is a 2-step distilled version of the small BGE-v1.5 model
+  \item \textbf{TaylorAI/GTE-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
+    This model is a distilled version of the small version of GTE model
 \end{itemize}
 
 \subsubsection{Mxbai embed}
 This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
 \begin{itemize}
-  \item \textbf{mxbai-embed-large-v1} \cite{emb2024mxbai}: This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.  As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}. Notably, mxbai-embed-large-v1 surpasses other models in tasks such as classification, clustering, and retrieval. The success of this model can be attributed to its robust training methodology. Mxbai-embed-large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach. This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones. Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function. This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
-  \item \textbf{mxbai-embed-2d-large-v1} \cite{emb2024mxbai2d}: This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding. The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers. This  flexibility enables users to tailor the model size and complexity based on their specific computational needs. This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments. The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings. These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints. Mxbai-embed-2d-large-v1 tackles this challenge by employing a novel training strategy. This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets. This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
+  \item \textbf{mxbai-embed-large-v1} \cite{emb2024mxbai}:
+    This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
+    As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
+    Notably, mxbai-embed-large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
+    The success of this model can be attributed to its robust training methodology.
+    Mxbai-embed-large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
+    This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
+    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function.
+    This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
+  \item \textbf{mxbai-embed-2d-large-v1} \cite{emb2024mxbai2d}:
+    This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding.
+    The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
+    This  flexibility enables users to tailor the model size and complexity based on their specific computational needs.
+    This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
+    The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
+    These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints.
+    Mxbai-embed-2d-large-v1 tackles this challenge by employing a novel training strategy.
+    This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets.
+    This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
 \end{itemize}
 
 
@@ -275,9 +310,11 @@ Ember-v1 is a text embedding model trained on a comprehensive dataset of text pa
 Notably, the training process incorporates techniques inspired by both RetroMAE \cite{RetroMAE} and SetFit \cite{tunstall2022efficient}. 
 
 \subsection{GIST-Embedding-v0}
-This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}. These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
+This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
+These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
-The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset. This targeted augmentation strategy aims to improve the model's performance on specific tasks.
+The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
+This targeted augmentation strategy aims to improve the model's performance on specific tasks.
 
 Based on their performance in the \ac{MTEB}, our evaluation will focus solely on the GIST-Embedding-v0 models built upon the \ac{BGE}-v1.5 architecture (small, base, and large sizes).
 This selection ensures we investigate the most promising fine-tuning approaches within the GIST-Embedding suite.
@@ -300,9 +337,19 @@ This selection ensures we investigate the most promising fine-tuning approaches 
 To identify the most suitable text representation model for \ac{RAG} in technical \ac{QA}, we propose a comprehensive evaluation approach that considers the following key factors:
 
 \begin{itemize}
-  \item \textbf{Embedding Efficiency}: Computational efficiency is crucial for real-world applications. We will evaluate the processing time required for different representation models, considering factors like embedding dimensionality and model complexity. This ensures the chosen model can handle real-time \ac{QA} tasks within reasonable processing time constraints.
-  \item \textbf{Text Chunk Size}: The size of text chunks used by the \ac{RAG} algorithm (e.g., words, sentences, or paragraphs) can impact performance. We will investigate the optimal chunk size for technical \ac{QA} tasks. Here, we will balance the granularity of information retrieved by the model with computational efficiency. Smaller chunks (words) might capture finer details but require more processing, while larger chunks (paragraphs) might be faster to process but might miss relevant details.  
-  \item \textbf{Factuality of Generated Answers}:  The primary objective is to generate answers that are factually accurate and consistent with the technical document. We will evaluate the models based on metrics that assess the factual correctness and coherence of the generated answers in response to technical questions. This ensures the generated answers are reliable and trustworthy for the user.
+  \item \textbf{Embedding Efficiency}:
+    Computational efficiency is crucial for real-world applications.
+    We will evaluate the processing time required for different representation models, considering factors like embedding dimensionality and model complexity.
+    This ensures the chosen model can handle real-time \ac{QA} tasks within reasonable processing time constraints.
+  \item \textbf{Text Chunk Size}:
+    The size of text chunks used by the \ac{RAG} algorithm (e.g., words, sentences, or paragraphs) can impact performance.
+    We will investigate the optimal chunk size for technical \ac{QA} tasks.
+    Here, we will balance the granularity of information retrieved by the model with computational efficiency.
+    Smaller chunks (words) might capture finer details but require more processing, while larger chunks (paragraphs) might be faster to process but might miss relevant details.  
+  \item \textbf{Factuality of Generated Answers}:
+    The primary objective is to generate answers that are factually accurate and consistent with the technical document.
+    We will evaluate the models based on metrics that assess the factual correctness and coherence of the generated answers in response to technical questions.
+    This ensures the generated answers are reliable and trustworthy for the user.
 \end{itemize}
 
 
