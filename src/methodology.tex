@@ -218,7 +218,7 @@ This approach helps overcome the limitations of traditional cosine similarity me
 Training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
 
 % Nomic Embed
-\subsubsection{Nomic Embed V1 and Nomic Embed V1.5} \label{model:nomic-embed}
+\subsubsection{Nomic-Embed-v1 and Nomic-Embed-v1.5} \label{model:nomic-embed}
 The Nomic model \cite{nussbaum2024nomic}, designed for reproducible long-context text embedding, employs a modified BERT architecture optimized for 8192 token sequences.
 It includes innovations such as rotary positional embeddings and SwiGLU activations, enhancing its ability to process longer texts.
 The model undergoes a comprehensive training regime starting with unsupervised contrastive pretraining on large-scale datasets, followed by supervised fine-tuning using human-annotated data.
@@ -257,11 +257,11 @@ This training regimen equips BGE models to handle a wide range of text embedding
 This study incorporates two distilled transformer models from TaylorAI for evaluation:
 
 \begin{itemize}
-  \item \textbf{TaylorAI/bge-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}: This model is a 2-step distilled version of the small BGE-v1.5 model
-  \item \textbf{TaylorAI/gte-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}: This model is a distilled version of the small version of GTE model
+  \item \textbf{TaylorAI/BGE-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}: This model is a 2-step distilled version of the small BGE-v1.5 model
+  \item \textbf{TaylorAI/GTE-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}: This model is a distilled version of the small version of GTE model
 \end{itemize}
 
-\subsubsection{mxbai-embed}
+\subsubsection{Mxbai embed}
 This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
 \begin{itemize}
   \item \textbf{mxbai-embed-large-v1} \cite{emb2024mxbai}: This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.  As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}. Notably, mxbai-embed-large-v1 surpasses other models in tasks such as classification, clustering, and retrieval. The success of this model can be attributed to its robust training methodology. Mxbai-embed-large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach. This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones. Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function. This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
@@ -274,7 +274,13 @@ This study leverages the ember-v1 model, developed by LLMRails.
 Ember-v1 is a text embedding model trained on a comprehensive dataset of text pairs encompassing a wide range of domains such as finance, science, medicine, law, and beyond.
 Notably, the training process incorporates techniques inspired by both RetroMAE \cite{RetroMAE} and SetFit \cite{tunstall2022efficient}. 
 
+\subsection{GIST-Embedding-v0}
+This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}. These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
+The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset. This targeted augmentation strategy aims to improve the model's performance on specific tasks.
+
+Based on their performance in the \ac{MTEB}, our evaluation will focus solely on the GIST-Embedding-v0 models built upon the \ac{BGE}-v1.5 architecture (small, base, and large sizes).
+This selection ensures we investigate the most promising fine-tuning approaches within the GIST-Embedding suite.
 
 
 
