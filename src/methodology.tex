@@ -50,19 +50,7 @@ This work will evaluate two key metrics using UPV FAQ dataset
 
 \begin{table}[!ht]
   \centering
-  \begin{tabular}{ |p{2cm}||p{3cm}| }
-    \hline
-    Tests set & Number of tests \\
-    \hline
-    FAQv5     & 2054            \\
-    FAQ50     & 561             \\
-    FAQ76     & 2025            \\
-    FAQ76v2   & 1965            \\
-    \hline
-    \hline
-    All       & 6605            \\
-    \hline
-  \end{tabular}
+  \input{src/tables/UPV_ntests.tex}
   \caption{Information about UPV FAQ tests} \label{table:UPV_FAQ_info}
 \end{table}
 
@@ -304,12 +292,12 @@ This is study incorporates two models developed by MixedBread AI, mxbai-embed-la
 \end{itemize}
 
 
-\subsection{ember-v1}
+\subsubsection{ember-v1}
 This study leverages the ember-v1 model, developed by LLMRails.
 Ember-v1 is a text embedding model trained on a comprehensive dataset of text pairs encompassing a wide range of domains such as finance, science, medicine, law, and beyond.
 Notably, the training process incorporates techniques inspired by both RetroMAE \cite{RetroMAE} and SetFit \cite{tunstall2022efficient}. 
 
-\subsection{GIST-Embedding-v0}
+\subsubsection{GIST-Embedding-v0}
 This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
 These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
