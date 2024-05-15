@@ -10,20 +10,20 @@
     ]
     
     %Nodes
-    \node[longnode]  (question)    []                     {Question};
-    \node[emptylong] (empty1)      [below=of question]    {};
-    \node[longnode]  (embeddings1) [below=of empty1]      {Embeddings};
-    \node[longnode]  (vector_db)   [right=of embeddings1] {Vector database};
-    \node[longnode]  (embeddings2) [below=of vector_db]   {Embeddings};
-    \node[longnode]  (chunks)      [below=of embeddings2] {Split into chunks};
-    \node[longnode]  (documents)   [below=of chunks]      {Documents};
-    \node[longnode]  (context)     [right=of vector_db]   {Context};
-    \node[longnode]  (instruction) [above=of context]     {Instruction};
-    \node[emptylong] (llm_empty3)  [right=of context]     {};
-    \node[emptylong] (llm_empty2)  [above=of llm_empty3]  {};
-    \node[emptylong] (llm_empty1)  [above=of llm_empty2]  {};
-    \node[highnode]  (LLM)         [right=of instruction] {LLM};
-    \node[longnode]  (answer)      [below=of llm_empty3]  {Answer};
+    \node[longnode, fill=blue!10]   (question)    []                     {Question};
+    \node[emptylong]                (empty1)      [below=of question]    {};
+    \node[longnode, fill=yellow!10] (embeddings1) [below=of empty1]      {Embeddings};
+    \node[longnode, fill=yellow!10] (vector_db)   [right=of embeddings1] {Vector database};
+    \node[longnode, fill=yellow!10] (embeddings2) [below=of vector_db]   {Embeddings};
+    \node[longnode, fill=yellow!10] (chunks)      [below=of embeddings2] {Split into chunks};
+    \node[longnode, fill=yellow!10] (documents)   [below=of chunks]      {Documents};
+    \node[longnode, fill=green!10]  (context)     [right=of vector_db]   {Context};
+    \node[longnode, fill=green!10]  (instruction) [above=of context]     {Instruction};
+    \node[emptylong]                (llm_empty3)  [right=of context]     {};
+    \node[emptylong]                (llm_empty2)  [above=of llm_empty3]  {};
+    \node[emptylong]                (llm_empty1)  [above=of llm_empty2]  {};
+    \node[highnode, fill=green!10]  (LLM)         [right=of instruction] {\ac{LLM}};
+    \node[longnode, fill=blue!10]   (answer)      [below=of llm_empty3]  {Answer};
 
     %Lines
     \draw[->] (question.south)    --                                                  (embeddings1.north);
