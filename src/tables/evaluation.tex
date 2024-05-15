@@ -2,23 +2,22 @@
     \centering
     \begin{tabular}{lcccccc}
       \toprule
-      % \hline
       \textbf{Model} & \textbf{QMA}\textsubscript{d} & \textbf{AMA}\textsubscript{d} & \textbf{QMA}\textsubscript{dl} & \textbf{AMA}\textsubscript{dl} & \textbf{\#params} \\
       \midrule
       \multicolumn{6}{c}{BASELINE} \\
       \hline
-      fasttext & 0.8304 & 0.2899 & 0.832 & 0.302 & 240M \\
+      FastText & 0.8304 & 0.2899 & 0.832 & 0.302 & 240M \\
       \hline
       \multicolumn{6}{c}{CZECH MODELS} \\
       \hline
       Czert-B & 0.8759 & 0.2469 & 0.8388 & 0.0977 & 110M \\
-      retromae-small-cs & 0.8651 & 0.2893 & 0.8634 & 0.2437 & 24M \\
-      dist-mpnet-paracrawl-cs-en & 0.8540 & 0.1089 & 0.8344 & 0.0808 & 24M \\
-      dist-mpnet-czeng-cs-en & 0.8705 & 0.0487 & 0.8322 & 0.0426 & 24M \\
-      simcse-retromae-small-cs & 0.8682 & 0.3647 & 0.8649 & 0.3316 & 24M \\
-      simcse-dist-mpnet-paracrawl-cs-en & 0.8817 & 0.2552 & 0.8602 & 0.2322 & 24M \\
-      simcse-dist-mpnet-czeng-cs-en & 0.8833 & 0.2278 & 0.8556 & 0.1450 & 24M \\
-      simcse-small-e-czech & 0.8094 & 0.1074 & 0.8160 & 0.0878 & 13M \\
+      RetroMAE-Small & 0.8651 & 0.2893 & 0.8634 & 0.2437 & 24M \\
+      Dist-MPNet-ParaCrawl & 0.8540 & 0.1089 & 0.8344 & 0.0808 & 24M \\
+      Dist-MPNet-CzEng & 0.8705 & 0.0487 & 0.8322 & 0.0426 & 24M \\
+      SimCSE-RetroMAE-Small & 0.8682 & 0.3647 & 0.8649 & 0.3316 & 24M \\
+      SimCSE-Dist-MPNet-ParaCrawl & 0.8817 & 0.2552 & 0.8602 & 0.2322 & 24M \\
+      SimCSE-Dist-MPNet-CzEng & 0.8833 & 0.2278 & 0.8556 & 0.1450 & 24M \\
+      SimCSE-Small-E-Czech & 0.8094 & 0.1074 & 0.8160 & 0.0878 & 13M \\
       \hline
       \multicolumn{6}{c}{MULTILINGUAL MODELS} \\
       \hline
@@ -29,24 +28,31 @@
       LaBSE & 0.8875 & 0.3525 & 0.8594 & 0.3264 & 471M \\
       XLM-R\textsubscript{Base} & 0.8011 & 0.0098 & 0.7701 & 0.0198 & 279M \\
       XLM-R\textsubscript{Large} & 0.7884 & 0.0460 & 0.7411 & 0.0298 & 560M \\
-      distiluse-base-multilingual-cased-v2 & 0.8335 & 0.2978 & 0.7784 & 0.2369 & 135M \\
-      paraphrase-multilingual-MiniLM-L12-v2 & 0.8502 & 0.4062 & 0.8029 & 0.2576 & 118M \\
-      paraphrase-multilingual-mpnet-base-v2 & 0.8752 & 0.4538 & 0.8354 & 0.3174 & 278M \\
+      Distiluse-Base-Multilingual-Cased-v2 & 0.8335 & 0.2978 & 0.7784 & 0.2369 & 135M \\
+      Paraphrase-Multilingual-MiniLM-L12-v2 & 0.8502 & 0.4062 & 0.8029 & 0.2576 & 118M \\
+      Paraphrase-Multilingual-MPNet-base-v2 & 0.8752 & 0.4538 & 0.8354 & 0.3174 & 278M \\
       \hline
       \multicolumn{6}{c}{MONOLINGUAL MODELS} \\
       \hline
-      UAE\textsubscript{Large} v1 & 0.8241 & 0.2913 & 0.8237 & 0.2931 & 335M \\
+      UAE-Large-V1 & 0.8241 & 0.2913 & 0.8237 & 0.2931 & 335M \\
+      Mxbai-Embed-Large-v1 & 0.8308 & 0.2998 & 0.8302 & 0.2994 & 335M \\
+      Mxbai-Embed-2D-Large-v1 & 0.8260 & 0.2511 & 0.8260 & 0.2516 & 335M \\
+      Nomic-Embed-v1 & 0.8523 & 0.3553 & 0.8541 & 0.3751 & 137M \\
+      Nomic-Embed-v1.5 & 0.8513 & 0.3537 & 0.8520 & 0.3533 & 137M \\
+      Ember-v1 & 0.8259 & 0.2971 & 0.8253 & 0.2966 & 335 \\
       GTE\textsubscript{Small} & 0.8549 & 0.3632 & 0.8543 & 0.3634 & 33M \\
       GTE\textsubscript{Base} & 0.8443 & 0.3645 & 0.8437 & 0.3643 & 109M \\
       GTE\textsubscript{Large} & 0.8376 & 0.3345 & 0.8370 & 0.3352 & 335M \\
-      GTE\textsubscript{Base} v1.5 & 0.8501 & 0.3336 & 0.8499 & 0.3305 & 137M \\
-      GTE\textsubscript{Large} v1.5 & 0.8592 & 0.3294 & 0.8586 & 0.3289 & 434M \\
-      BGE\textsubscript{Small} v1.5 & 0.8479 & 0.3816 & 0.8474 & 0.3798 & 33M \\
-      BGE\textsubscript{Base} v1.5 & 0.8368 & 0.3246 & 0.8362 & 0.3240 & 109M \\
-      BGE\textsubscript{Large} v1.5 & 0.8244 & 0.2938 & 0.8238 & 0.2955 & 335M \\
-      TaylorAI/BGE\textsubscript{Micro} v2 & 0.8476 & 0.3616 & 0.8475 & 0.3616 & 17M \\
-      TaylorAI/GTE\textsubscript{Tiny} & 0.8492 & 0.3343 & 0.8488 & 0.3342 & 23M \\
-      
+      GTE-v1.5\textsubscript{Base} & 0.8501 & 0.3336 & 0.8499 & 0.3305 & 137M \\
+      GTE-v1.5\textsubscript{Large} & 0.8592 & 0.3294 & 0.8586 & 0.3289 & 434M \\
+      BGE-v1.5\textsubscript{Small} & 0.8479 & 0.3816 & 0.8474 & 0.3798 & 33M \\
+      BGE-v1.5\textsubscript{Base} & 0.8368 & 0.3246 & 0.8362 & 0.3240 & 109M \\
+      BGE-v1.5\textsubscript{Large} & 0.8244 & 0.2938 & 0.8238 & 0.2955 & 335M \\
+      GIST-Embedding-v0\textsubscript{Small} & 0.8498 & 0.2664 & 0.8493 & 0.2653 & 33M \\
+      GIST-Embedding-v0\textsubscript{Base} & 0.8307 & 0.3023 & 0.8307 & 0.3023 & 109M \\
+      GIST-Embedding-v0\textsubscript{Large} & 0.8219 & 0.2579 & 0.8213 & 0.2588 & 335M \\
+      TaylorAI/BGE-micro-v2 & 0.8476 & 0.3616 & 0.8475 & 0.3616 & 17M \\
+      TaylorAI/GTE-tiny & 0.8492 & 0.3343 & 0.8488 & 0.3342 & 23M \\
       \bottomrule
     \end{tabular}
     \caption{\textbf{Evaliation of models.}

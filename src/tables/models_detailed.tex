@@ -2,43 +2,49 @@
     \centering
     \begin{tabular}{lcccccccc}
       \toprule
-      % \hline
-      \textbf{Model} & $L$ & $H_m$ & $H_{ff}$ & $A$ & $D$ & $V$ & \textbf{\#params} \\
+      \textbf{Model} & $L$ & $H_m$ & $H_{ff}$ & $A$ & $D$ & $T_{max}$ & $V$ & $N_p$ \\
       \midrule
-      Czert-B & 12 & 768 & 3072 & 12 & 768 & 31K & 110M \\
-      retromae-small-cs & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      dist-mpnet-paracrawl-cs-en & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      dist-mpnet-czeng-cs-en & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      simcse-retromae-small-cs & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      simcse-dist-mpnet-paracrawl-cs-en & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      simcse-dist-mpnet-czeng-cs-en & 12 & 256 & 1024 & 4 & 256 & 58K & 24M \\
-      simcse-small-e-czech & 12 & 256 & 1024 & 4 & 256 & 31K & 13M \\
-      mBERT & 12 & 768 & 3072 & 12 & 768 & 120K & 178M \\
-      mE5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 250K & 118M \\
-      mE5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 250K & 278M \\
-      mE5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 250K & 560M \\
-      LaBSE & 12 & 768 & 3072 & 12 & 768 & 502K & 471M \\
-      XLM-R\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 250K & 279M \\
-      XLM-R\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 250K & 560M \\
-      distiluse-base-multilingual-cased-v2 & 6 & 768 & 3072 & 12 & 512 & 120K & 135M \\
-      paraphrase-multilingual-MiniLM-L12-v2 & 12 & 384 & 1536 & 12 & 512 & 250K & 118M \\
-      paraphrase-multilingual-mpnet-base-v2 & 12 & 768 & 3072 & 12 & 514 & 250K & 278M \\
-      UAE\textsubscript{Large} v1 & 24 & 1024 & 4096 & 16 & 1024 & 31K & 335M \\
-      GTE\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 31K & 33M \\
-      GTE\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 31K & 109M \\
-      GTE\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 31K & 335M \\
-      GTE\textsubscript{Base} v1.5 & 12 & 768 & 3072 & 12 & 768 & 31K & 137M \\
-      GTE\textsubscript{Large} v1.5 & 24 & 1024 & 4096 & 16 & 1024 & 31K & 434M \\
-      BGE\textsubscript{Small} v1.5 & 12 & 384 & 1536 & 12 & 384 & 31K & 33M \\
-      BGE\textsubscript{Base} v1.5 & 12 & 768 & 3072 & 12 & 768 & 31K & 109M \\
-      BGE\textsubscript{Large} v1.5 & 24 & 1024 & 4096 & 16 & 1024 & 31K & 335M \\
-      TaylorAI/BGE\textsubscript{Micro} v2 & 3 & 384 & 1536 & 12 & 512 & 31K & 17M \\
-      TaylorAI/GTE\textsubscript{Tiny} & 6 & 384 & 1536 & 12 & 384 & 31K & 23M \\
-      
+      Czert-B & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 110M \\
+      RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      SimCSE-RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      SimCSE-Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      SimCSE-Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+      SimCSE-Small-E-Czech & 12 & 256 & 1024 & 4 & 256 & 512 & 31K & 13M \\
+      mBERT & 12 & 768 & 3072 & 12 & 768 & 512 & 120K & 178M \\
+      mE5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
+      mE5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
+      mE5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
+      LaBSE & 12 & 768 & 3072 & 12 & 768 & 512 & 502K & 471M \\
+      XLM-R\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 279M \\
+      XLM-R\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
+      Distiluse-Base-Multilingual-Cased-v2 & 6 & 768 & 3072 & 12 & 512 & 512 & 120K & 135M \\
+      Paraphrase-Multilingual-MiniLM-L12-v2 & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
+      Paraphrase-Multilingual-MPNet-base-v2 & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
+      UAE-Large-V1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      Mxbai-Embed-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      Mxbai-Embed-2D-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      Nomic-Embed-v1 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+      Nomic-Embed-v1.5 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+      Ember-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      GTE\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
+      GTE\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+      GTE\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      GTE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+      GTE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 8192 & 31K & 434M \\
+      BGE-v1.5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
+      BGE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+      BGE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      GIST-Embedding-v0\textsubscript{Small} & 12 & 384 & 1536 & 12 & 512 & 512 & 31K & 33M \\
+      GIST-Embedding-v0\textsubscript{Base}  & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+      GIST-Embedding-v0\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+      TaylorAI/BGE-micro-v2 & 3 & 384 & 1536 & 12 & 512 & 512 & 31K & 17M \\
+      TaylorAI/GTE-tiny & 6 & 384 & 1536 & 12 & 384 & 512 & 31K & 23M \\
       \bottomrule
     \end{tabular}
     \caption{\textbf{Details on model sizes.}
-            We show the number of layers $L$, the number of hidden states of the model $H_{m}$, the dimension of the feed-forward layer $H_{ff}$, the number of attention heads $A$, the dimension of output embedding $D$, the size of the vocabulary $V$ and the total number of parameters \#params. 
+            We show the number of layers $L$, the number of hidden states of the model $H_{m}$, the dimension of the feed-forward layer $H_{ff}$, the number of attention heads $A$, the dimension of output embedding $D$, the size of the vocabulary $V$ and the total number of parameters $N_p$. 
             For Transformer encoders, the number of parameters can be approximated by $4LH_m^2 + 2LH_m H_{ff} + VH_m$.
             While this table gives more hindsight on the difference of capacity of each model, note it does not highlight other critical differences between the models.}
     \label{tab:parameters}
