@@ -33,7 +33,7 @@ As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating d
 
 \subsubsection{UPV FAQ}
 
-Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic website, organized into four distinct groups, as detailed in \reftab{table:UPV_FAQ_info}.
+Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic website \footnote{UPV website: \url{https://upv.gov.cz/}}, organized into four distinct groups, as detailed in \reftab{table:UPV_FAQ_info}.
 
 This work will evaluate two key metrics using UPV FAQ dataset
 \begin{itemize}
@@ -71,7 +71,7 @@ The FastText word embedding model will be trained using the fastText.cc library 
 
 \subsubsection{Training data}
 
-FastText model is trained on a segment of a preprocessed Common Crawl repository, which encompasses raw data from web pages, as well as metadata and text extractions.
+FastText model is trained on a segment of a preprocessed Common Crawl repository \cite{commoncrawl}, which encompasses raw data from web pages, as well as metadata and text extractions.
 Given the nature of this dataset, it is expected to include misspellings and text lacking diacritics.
 
 \begin{enumerate}
@@ -120,13 +120,13 @@ This selection encompasses three distinct categories:
   \item \textbf{Multilingual Models from the \ac{MTEB}}:
     The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}.
     This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
-  \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 100)}:
+  \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 50)}:
     In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}.
     This allows for a comparative analysis of how these models, potentially trained on English or other high-resource languages, perform on the Czech dataset.
 \end{enumerate}
 
-All models should be open-source. And sentence-bert. <1B. With information about training process.
-If exisit two version of models - monolingual (no czech lang) and multilingual, we evaluate only multilingual
+To ensure transparency, reproducibility, and foster community development, this study will exclusively evaluate open-source text embedding models.  Furthermore, to prioritize computational efficiency and applicability to our research setting, we will restrict our evaluation to models with a parameter size of less than 1 billion.
+In cases where a model suite offers both monolingual and multilingual versions, we will prioritize the multilingual version for evaluation. This choice aligns with our focus on tasks that may involve processing text data in multiple languages, including Czech.
 
 % Czech models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,13 +147,20 @@ This study leverages a group of compact word embedding models specifically desig
 These models were developed by the Seznam research group with a focus on efficient word representation generation \cite{seznam-models}.
 
 \begin{itemize}
-  \item RetroMAE-Small: \ac{BERT}-small model trained with the \ac{RetroMAE} objective \cite{RetroMAE} on a custom Czech corpus.
-  \item Dist-MPNet-ParaCrawl: \ac{BERT}-small model distilled from the \textit{sentence-transformers/all-mpnet-base-v2} \footnote{\label{hf_all-mpnet-base-v2} Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} model, using parallel cs-en dataset  \cite{ParaCrawl} for training.
-  \item Dist-MPNet-CzEng: \ac{BERT}-small model distilled from the \textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2} . model, using parallel cs-en dataset Czeng \cite{CzEng_dataset} for training.
-  \item SimCSE-RetroMAE-Small: The \ac{RetroMAE}-Small model fine-tuned with the \ac{SimCSE} \cite{SimCSE}.
-  \item SimCSE-Dist-MPNet-ParaCrawl: The Dist-MPNet-ParaCrawl model fine-tuned with the \ac{SimCSE}.
-  \item SimCSE-Dist-MPNet-CzEng: The Dist-MPNet-CzEng fine-tuned with the \ac{SimCSE}.
-  \item SimCSE-Small-E-Czech: Czech ELECTRA model \cite{small-e-czech} fine-tuned with the \ac{SimCSE} objective to enhance sentence embeddings.
+  \item \textbf{RetroMAE-Small}:
+    This model leverages a \ac{BERT}-small architecture pre-trained with the \ac{RetroMAE} objective \cite{RetroMAE} on a custom Czech corpus.
+    The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
+  \item \textbf{Dist-MPNet-ParaCrawl} \& \textbf{Dist-MPNet-CzEng}:
+    These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2} \footnote{\label{hf_all-mpnet-base-v2} Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
+    Distillation involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
+    The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{ParaCrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{CzEng_dataset}.
+  \item \textbf{SimCSE-RetroMAE-Small} \& \textbf{SimCSE-Dist-MPNet-ParaCrawl} \& \textbf{SimCSE-Dist-MPNet-CzEng}:
+    These models are based on the previously described RetroMAE-Small, Dist-MPNet-ParaCrawl, and Dist-MPNet-CzEng models respectively.
+    Each is further fine-tuned with the \ac{SimCSE} objective \cite{SimCSE}.
+    \ac{SimCSE} focuses on improving sentence embedding quality by encouraging models to generate similar representations for semantically equivalent sentences.
+  \item \textbf{SimCSE-Small-E-Czech}:
+    This model builds upon the Czech ELECTRA model \cite{small-e-czech}.
+    It is fine-tuned with the \ac{SimCSE} \cite{SimCSE} objective to enhance the quality of its sentence embeddings.    
 \end{itemize}
 
 The developed models are about eight times smaller and five times faster than conventional base-sized models, making them suitable for real-time applications where computational efficiency is critical.
@@ -181,7 +188,7 @@ The second phase is supervised fine-tuning on approximately 1.6 million data poi
 % LaBSE
 \subsubsection{LaBSE} \label{model:labse}
 \ac{LaBSE} model \cite{LaBSE}, developed by Google, is a state-of-the-art model for generating sentence embeddings that are effective across 109 languages.
-It leverages the transformer architecture and is trained on both monolingual (from sources like CommonCrawl and Wikipedia) and bilingual data (mined from web pages).
+It leverages the transformer architecture and is trained on both monolingual (from sources like CommonCrawl \cite{commoncrawl} and Wikipedia) and bilingual data (mined from web pages).
 LaBSE utilizes a dual-encoder structure with \ac{BERT}-based encoding modules.
 This setup enables the efficient processing of text pairs in multiple languages.
 
@@ -189,21 +196,21 @@ This setup enables the efficient processing of text pairs in multiple languages.
 \subsubsection{XLM-R} \label{model:xlm-roberta}
 The \ac{XLM-R} model \cite{xlm-roberta} is a significant advancement in unsupervised cross-lingual representation learning, introduced by Facebook AI.
 It is specifically designed to improve performance across a wide range of cross-lingual tasks.
-\ac{XLM-R} is pre-trained on a dataset dubbed 'CC-100', derived from Common Crawl, covering about 2.5 terabytes of text across 100 languages.
+\ac{XLM-R} is pre-trained on a dataset dubbed 'CC-100', derived from Common Crawl \cite{commoncrawl}, covering about 2.5 terabytes of text across 100 languages.
 This dataset is significantly larger than the ones used by its predecessors, offering a broader and more diverse linguistic foundation.
 
 % SentenceTransformers
 \subsubsection{SentenceTransformers models \cite{reimers-2019-sentence-bert}} \label{model:st-multilingual}
 
 \begin{itemize}
-  \item \textbf{distiluse-base-multilingual-cased-v2}:
+  \item \textbf{Distiluse-Base-Multilingual-Cased-v2}:
     This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model.
     In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
     Notably, this version supports sentence encoding for over 50 languages, including Czech.
-  \item \textbf{paraphrase-multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
-    It is a multilingual version of the paraphrase-MiniLM-L12-v2 model, trained on parallel datasets encompassing over 50 languages, including Czech.
+  \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
+    It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2} \footnote{Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
     By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
-  \item \textbf{paraphrase-multilingual-mpnet-base-v2}: Similar to the previous model, this is a multilingual version of the paraphrase-mpnet-base-v2 model, trained on parallel data for over 50 languages, including Czech.
+  \item \textbf{Paraphrase-Multilingual-MPNet-base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2} \footnote{ Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
     This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
@@ -220,6 +227,31 @@ The model is trained using a hybrid objective that combines cosine similarity, i
 This approach helps overcome the limitations of traditional cosine similarity measures by ensuring better gradient flow during training.
 Training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
 
+% Mxbai embed
+\subsubsection{Mxbai embed}
+This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
+\begin{itemize}
+  \item \textbf{Mxbai-Embed-Large-v1} \cite{emb2024mxbai}:
+    This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
+    As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
+    Notably, Mxbai-Embed-Large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
+    The success of this model can be attributed to its robust training methodology.
+    Mxbai-Embed-Large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
+    This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
+    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function.
+    This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
+  \item \textbf{Mxbai-Embed-2D-Large-v1} \cite{emb2024mxbai2d}:
+    This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding.
+    The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
+    This  flexibility enables users to tailor the model size and complexity based on their specific computational needs.
+    This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
+    The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
+    These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints.
+    Mxbai-Embed-2D-Large-v1 tackles this challenge by employing a novel training strategy.
+    This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets.
+    This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
+\end{itemize}
+
 % Nomic Embed
 \subsubsection{Nomic-Embed-v1 and Nomic-Embed-v1.5} \label{model:nomic-embed}
 The Nomic model \cite{nussbaum2024nomic}, designed for reproducible long-context text embedding, employs a modified BERT architecture optimized for 8192 token sequences.
@@ -227,18 +259,7 @@ It includes innovations such as rotary positional embeddings and SwiGLU activati
 The model undergoes a comprehensive training regime starting with unsupervised contrastive pretraining on large-scale datasets, followed by supervised fine-tuning using human-annotated data.
 This process leverages contrastive learning to improve text embedding capabilities, significantly enhancing performance on both short and long-context tasks.
 
-Nomic Embed V1.5 is an improvement upon Nomic Embed V1 that utilizes Matryoshka Representation Learning \cite{kusupati2024matryoshka} which gives developers the flexibility to trade off the embedding size for a negligible reduction in performance.
-
-% snowflake-arctic-embed
-\subsubsection{snowflake-arctic-embed} \label{model:snowflake-embed}
-This study investigates the use of snowflake-arctic-embed, a suite of text embedding models optimized for retrieval tasks.
-The suite offers multiple model sizes (xs, s, m, m-long, l) for flexibility.
-
-Snowflake-arctic-embed leverages a two-stage training pipeline
-\begin{enumerate}
-  \item Pretraining on large batches of query-document pairs with dynamically generated negative examplesusing dataset with 400M samples combining public data and proprietary web search data.
-  \item Fine-tuning the model on a smaller dataset (1M samples) consisting of query-positive document-negative document triplets to improve retrieval accuracy.
-\end{enumerate}
+Nomic Embed v1.5 is an improvement upon Nomic Embed v1 that utilizes Matryoshka Representation Learning \cite{kusupati2024matryoshka} which gives developers the flexibility to trade off the embedding size for a negligible reduction in performance.
 
 % GTE
 \subsubsection{GTE and GTE-v1.5} \label{model:gte}
@@ -255,6 +276,16 @@ There is also updated version \ac{GTE}-v1.5.
 They are trained using a sophisticated multi-stage process involving pre-training on large unlabeled data, contrastive learning for fine-tuning on text pairs, and multi-task learning with high-quality labeled datasets.
 This training regimen equips BGE models to handle a wide range of text embedding tasks with high efficiency and accuracy.
 
+% GIST-Embedding-v0
+\subsubsection{GIST-Embedding-v0}
+This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
+These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
+
+The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
+This targeted augmentation strategy aims to improve the model's performance on specific tasks.
+
+Based on their performance in the \ac{MTEB}, our evaluation will focus solely on the GIST-Embedding-v0 models built upon the \ac{BGE}-v1.5 architecture (small, base, and large sizes).
+This selection ensures we investigate the most promising fine-tuning approaches within the GIST-Embedding suite.
 
 % TaylorAI
 \subsubsection{TaylorAI tiny models} \label{model:taylorai}
@@ -267,47 +298,23 @@ This study incorporates two distilled transformer models from TaylorAI for evalu
     This model is a distilled version of the small version of GTE model
 \end{itemize}
 
-\subsubsection{Mxbai embed}
-This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
-\begin{itemize}
-  \item \textbf{mxbai-embed-large-v1} \cite{emb2024mxbai}:
-    This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
-    As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
-    Notably, mxbai-embed-large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
-    The success of this model can be attributed to its robust training methodology.
-    Mxbai-embed-large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
-    This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
-    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function.
-    This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
-  \item \textbf{mxbai-embed-2d-large-v1} \cite{emb2024mxbai2d}:
-    This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding.
-    The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
-    This  flexibility enables users to tailor the model size and complexity based on their specific computational needs.
-    This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
-    The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
-    These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints.
-    Mxbai-embed-2d-large-v1 tackles this challenge by employing a novel training strategy.
-    This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets.
-    This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
-\end{itemize}
-
-
-\subsubsection{ember-v1}
-This study leverages the ember-v1 model, developed by LLMRails.
+% ember-v1
+\subsubsection{Ember-v1}
+This study leverages the Ember-v1 model, developed by LLMRails.
 Ember-v1 is a text embedding model trained on a comprehensive dataset of text pairs encompassing a wide range of domains such as finance, science, medicine, law, and beyond.
 Notably, the training process incorporates techniques inspired by both RetroMAE \cite{RetroMAE} and SetFit \cite{tunstall2022efficient}. 
 
-\subsubsection{GIST-Embedding-v0}
-This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
-These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
-The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
-This targeted augmentation strategy aims to improve the model's performance on specific tasks.
+% Snowflake-Arctic-Embed
+% \subsubsection{Snowflake-Arctic-Embed} \label{model:snowflake-embed}
+% This study investigates the use of Snowflake-Arctic-Embed, a suite of text embedding models optimized for retrieval tasks.
+% The suite offers multiple model sizes (xs, s, m, m-long, l) for flexibility.
 
-Based on their performance in the \ac{MTEB}, our evaluation will focus solely on the GIST-Embedding-v0 models built upon the \ac{BGE}-v1.5 architecture (small, base, and large sizes).
-This selection ensures we investigate the most promising fine-tuning approaches within the GIST-Embedding suite.
-
-
+% Snowflake-arctic-embed leverages a two-stage training pipeline
+% \begin{enumerate}
+%   \item Pretraining on large batches of query-document pairs with dynamically generated negative examplesusing dataset with 400M samples combining public data and proprietary web search data.
+%   \item Fine-tuning the model on a smaller dataset (1M samples) consisting of query-positive document-negative document triplets to improve retrieval accuracy.
+% \end{enumerate}
 
 
 
@@ -316,8 +323,6 @@ This selection ensures we investigate the most promising fine-tuning approaches 
 % TODO:
 % \subsubsection{jina-embeddings}
 %Only jina-embeddings-v2, because it's better in \ac{MTEB}
-%
-%\subsection{mxbai-embed-large-v1}
 
 \section{Optimizing Text Representations for RAG in Technical QA}
 
