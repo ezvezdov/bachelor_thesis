@@ -76,12 +76,10 @@ Additionally, efficiency and speed are benefits due to parallel processing and p
 Transformer models effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
 Finally, \ac{BERT}'s robustness allows it to handle nuances in text without significant performance degradation.
 
-\section{Retrieval Augmented Generation}
+\section{\ac{RAG}}
 \ac{RAG} is an advanced \ac{NLP} framework that combines the strengths of retrieval-based and generation-based models to produce high-quality, contextually relevant text based on provided document (web-page etc.), instruction and query (question). 
 
-
-\subsection{Architecture of RAG}
-
+\subsection{Architecture of \ac{RAG}}
 The \ac{RAG} \cite{lewis2021retrievalaugmented} algorithm leverages a two-stage approach for answer generation: retrieval and generation.
 Both stages rely heavily on the chosen text representation technique.
 
@@ -106,6 +104,21 @@ Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}
   \label{fig:RAG_scheme}
 \end{figure}
 
+\subsection{Factors Influencing RAG Performance}
+The performance of \ac{RAG} systems can be influenced by several key factors.
+Two important aspects are:
+
+\begin{itemize}
+    \item \textbf{Embedding Model Selection}:
+        Previous work \cite{joshi2024RAGemb} suggests that the choice of embedding model significantly impacts \ac{RAG} performance.
+        Different embedding models offer varying strengths in capturing semantic relationships within text data.
+        Selecting the most suitable model depends on the specific task and dataset.
+    \item \textbf{Document Chunking Size}:
+        Another factor influencing \ac{RAG} performance is the size of the document chunks used for retrieval \cite{theja2023RAGchunk}.
+        Splitting documents into smaller chunks can potentially improve retrieval efficiency.
+        However, excessively small chunks may lead to a loss of context and hinder the \ac{RAG} system's ability to generate coherent and relevant text.
+        Finding the optimal chunking size requires careful consideration of the task and available computational resources.    
+\end{itemize}
 
 \section{TODO: REMOVE, STRUCTURE}
 \begin{itemize}
