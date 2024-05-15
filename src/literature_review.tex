@@ -36,7 +36,6 @@ To optimize the learned word embeddings, \ac{GloVe} employs a weighted least squ
 This function aims to minimize the discrepancy between the dot product of two word vectors and the logarithm of their co-occurrence probability.
 Through iterative adjustments of the word vectors, \ac{GloVe} converges on a solution that yields the desired word embeddings.
 
-
 \subsection{FastText}
 FastText \cite{fasttext} utilizes similar \ac{NN} architectures as word2vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
 This decomposition allows FastText to represent a word's meaning by considering its constituent subword components.
@@ -120,10 +119,30 @@ Two important aspects are:
         Finding the optimal chunking size requires careful consideration of the task and available computational resources.    
 \end{itemize}
 
-\section{TODO: REMOVE, STRUCTURE}
-\begin{itemize}
-    \item Discuss traditional word embedding methods like FastText and their limitations.
-    \item Explain the concept of transformer-based models like BERT and their advantages for text representation.
-    \item Review related work on RAG algorithms and their dependence on effective text representations.Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
-    \item Briefly mention the UPV corpus set as the chosen evaluation benchmark.
-\end{itemize}
+\section{Evaluating Text Representations}
+
+\subsection{Analogy Tests}
+
+Analogy tests, as demonstrated in the seminal word2vec paper \cite{word2vec}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
+These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
+
+A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
+For instance, the question "man is to king as woman is to queen" probes the model's understanding of gender relations.
+If the word embeddings are of high quality, performing the vector operation vector(king) - vector(man) + vector(woman) should result in a vector that closely resembles vector(queen).
+This outcome indicates that the model has successfully learned the analogous relationship between "man" and "king" and "woman" and "queen."
+
+\subsection{Confusion matrix}
+
+Confusion matrices are a widely used tool for evaluating classification algorithms, and they can be adapted to assess text representations in tasks such as word sense disambiguation, part-of-speech tagging, or sentiment analysis.
+A confusion matrix is a table that describes the performance of a classification model by comparing predicted and actual labels.
+
+
+
+
+% Literature Review Structure
+% \begin{itemize}
+%     \item Discuss traditional word embedding methods like FastText and their limitations.
+%     \item Explain the concept of transformer-based models like BERT and their advantages for text representation.
+%     \item Review related work on RAG algorithms and their dependence on effective text representations.Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
+%     \item Briefly mention the UPV corpus set as the chosen evaluation benchmark.
+% \end{itemize}
