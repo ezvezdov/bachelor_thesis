@@ -55,6 +55,10 @@
 \usepackage{subfig}
 \usepackage[export]{adjustbox}
 \usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{chngcntr}
 
 % print version has different margins to accommodate the spine of the book
 % do not move this around, or it stops working
@@ -96,6 +100,10 @@
   urlcolor=cvutblue
 }
 
+%% | --------------- figures, tables numbering ---------------- |
+
+\counterwithout{table}{chapter}
+\counterwithout{figure}{chapter}
 
 %% | -------------------------- tikz -------------------------- |
 
@@ -279,7 +287,8 @@
     framesep=12pt,
     xleftmargin=12pt,
     tabsize=4,
-    captionpos=b
+    captionpos=b,
+    numberbychapter=false
 }
 
 %% | -------------------- layout parameters ------------------- |
