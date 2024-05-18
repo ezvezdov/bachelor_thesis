@@ -2,7 +2,7 @@
 
 \chapter{Methodology\label{chap:methodology}}
 
-\section{Evaluation process}
+\section{Embedding methods evaluation process}
 
 This work specifically targets the evaluation of word, sentence, and paragraph representation methods on datasets in the Czech language.
 This focus on Czech allows for a deeper understanding of how these methods perform in a language with specific characteristics, such as a rich inflectional morphology and the presence of diacritics.
@@ -50,7 +50,7 @@ This work will evaluate two key metrics using UPV FAQ dataset
 
 \input{src/tables/UPV_ntests.tex}
 
-Traditional models will be assessed using upv\_faq \footnote{upv\_faq evaluator on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using upv\_faq\_transformers \footnote{upv\_faq\_transformers evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
+Traditional models will be assessed using jirkoada/upv\_faq \footnote{jirkoada/upv\_faq evaluator on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using ezvezdov/upv\_faq\_transformers \footnote{ezvezdov/upv\_faq\_transformers evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
 
 
 \subsubsection{Analogies}
@@ -153,7 +153,7 @@ This appendix provides a more in-depth examination of the specific configuration
 \subsubsection{Czert-B} \label{modelczert-b}
 
 The Czert model \cite{czert} is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
-These models leverage the \ac{BERT} and \ac{ALBERT} \cite{ALBERT} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
+These models leverage the \ac{BERT} and A Lite \ac{BERT} (ALBERT) \cite{ALBERT} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
 The training set includes a comprehensive corpus of Czech texts, such as Wikipedia articles, news, and other texts, accumulating to around 36GB of data.
 
 There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only Czert-B model.
@@ -312,9 +312,9 @@ This study incorporates two distilled transformer models from TaylorAI for evalu
 
 \begin{itemize}
   \item \textbf{TaylorAI/BGE-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
-    This model is a 2-step distilled version of the small BGE-v1.5 model
+    This model is a 2-step distilled version of the small \ac{BGE}-v1.5 model
   \item \textbf{TaylorAI/GTE-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
-    This model is a distilled version of the small version of GTE model
+    This model is a distilled version of the small version of \ac{GTE} model
 \end{itemize}
 
 % ember-v1
@@ -343,7 +343,7 @@ Notably, the training process incorporates techniques inspired by both RetroMAE 
 % \subsubsection{jina-embeddings}
 %Only jina-embeddings-v2, because it's better in \ac{MTEB}
 
-\section{Optimizing Text Representations for RAG in Technical QA}
+\section{Optimizing Text Representations for \ac{RAG} in Technical \ac{QA}}
 
 \subsection{Key factors}
 To identify the most suitable text representation model for \ac{RAG} in technical \ac{QA}, we propose a comprehensive evaluation approach that considers the following key factors:
@@ -364,29 +364,42 @@ To identify the most suitable text representation model for \ac{RAG} in technica
     This ensures the generated answers are reliable and trustworthy for the user.
 \end{itemize}
 
+\subsection{Chunk Size and K Parameter Selection}
+This section explores the selection of chunk sizes and the corresponding K parameter for evaluation using the \ac{RAG} model.
+The chunk size refers to the length of text passages (number of characters) that will be processed by the \ac{RAG} model during evaluation.
+The K parameter, on the other hand, determines the number of retrieved passages that the \ac{RAG} model will consider when generating a response.
+Chosen parameters are shown at \reftab{table:RAG_settings}
 
-\section{REMOVE: Methodology structure}
+\input{src/tables/RAG_settings.tex}
 
-\begin{itemize}
-    \item Describe the evaluation process for different text representations.
-      \begin{itemize}
-        \item{Specify the chosen word, sentence, and paragraph representation models (e.g., FastText, BERT variants).}
-        \item{Explain the usage of analogy tests and confusion matrices for evaluation.}
-        \item{Detail the selection process for the UPV corpus set and its suitability for technical QA tasks.}
-      \end{itemize}
-    \item Outline the second part of the study focusing on RAG for technical QA.
-      \begin{itemize}
-        \item{Explain the RAG algorithm and its reliance on text representations.}
-        \item{Describe the evaluation approach for selecting optimal representations for RAG.}
-        \item{Mention the factors considered during evaluation, such as embedding efficiency, text chunk size, and factuality of generated answers.}
-      \end{itemize}
-\end{itemize}
+\subsection{RAG pipeline}
 
+This section describes the evaluation methodology employed for the \ac{RAG} model using an English language test set.
+Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 
+The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
 
+For the embedding generation stage within \ac{RAG}, we will leverage the GTE-v1.5\textsubscript{Large} model.
+This selection is based on its performance as the highest-scoring transformer model for English according to the \ac{MTEB} results.
 
+For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{brown2020language}.
 
 
 
 
 
+% \section{Methodology structure}
+% \begin{itemize}
+%     \item Describe the evaluation process for different text representations.
+%       \begin{itemize}
+%         \item{Specify the chosen word, sentence, and paragraph representation models (e.g., FastText, BERT variants).}
+%         \item{Explain the usage of analogy tests and confusion matrices for evaluation.}
+%         \item{Detail the selection process for the UPV corpus set and its suitability for technical \ac{QA} tasks.}
+%       \end{itemize}
+%     \item Outline the second part of the study focusing on \ac{RAG} for technical QA.
+%       \begin{itemize}
+%         \item{Explain the \ac{RAG} algorithm and its reliance on text representations.}
+%         \item{Describe the evaluation approach for selecting optimal representations for RAG.}
+%         \item{Mention the factors considered during evaluation, such as embedding efficiency, text chunk size, and factuality of generated answers.}
+%       \end{itemize}
+% \end{itemize}
