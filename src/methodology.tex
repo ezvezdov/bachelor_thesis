@@ -50,6 +50,27 @@ This work will evaluate two key metrics using UPV FAQ dataset
 
 \input{src/tables/UPV_ntests.tex}
 
+Traditional models will be assessed using upv\_faq \footnote{upv\_faq evaluator on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using upv\_faq\_transformers \footnote{upv\_faq\_transformers evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
+
+
+\subsubsection{Analogies}
+
+This study opted to exclude analogy-based evaluation methods for assessing the performance of transformer models.
+This decision stems from the fundamental differences between traditional pre-trained models and transformer architectures in how they generate word embeddings.
+
+Traditional models typically employ pre-training techniques that result in static word embeddings.
+These embeddings capture comprehensive information about a word based on its occurrences throughout the training corpus.
+This characteristic allows for the use of analogy tests where the model is presented with a triplet of words (e.g., "King" - "Man" + "Woman") and expected to predict the fourth word that completes the analogy ("Queen").
+
+However, transformer models operate differently.
+They generate word embeddings dynamically, considering the specific context in which a word appears within a sentence.
+This context-dependent nature of transformer embeddings renders traditional analogy tests inapplicable.
+Providing a single, isolated word to a transformer model would not be sufficient for it to generate a high-quality embedding that effectively captures all potential word contexts.
+
+In light of these limitations, analogy-based evaluations are not well-suited for assessing the performance of transformer models.
+Therefore, we opted to prioritize alternative evaluation methods that are more compatible with the context-aware embedding generation process employed by transformers.
+These alternative methods, such as masked language modeling tasks, can provide a more accurate assessment of a transformer model's ability to capture semantic relationships within text.
+
 \subsection{Baseline}
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
 This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
