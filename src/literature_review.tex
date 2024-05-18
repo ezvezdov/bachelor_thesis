@@ -75,11 +75,28 @@ Additionally, efficiency and speed are benefits due to parallel processing and p
 Transformer models effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
 Finally, \ac{BERT}'s robustness allows it to handle nuances in text without significant performance degradation.
 
-\section{\ac{RAG}}
-\ac{RAG} is an advanced \ac{NLP} framework that combines the strengths of retrieval-based and generation-based models to produce high-quality, contextually relevant text based on provided document (web-page etc.), instruction and query (question). 
+\section{Methods of text representations evaluation}
+
+\subsection{Analogy Tests}
+
+Analogy tests, as demonstrated in the seminal word2vec paper \cite{word2vec}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
+These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
+
+A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
+For instance, the question "man is to king as woman is to queen" probes the model's understanding of gender relations.
+If the word embeddings are of high quality, performing the vector operation vector(king) - vector(man) + vector(woman) should result in a vector that closely resembles vector(queen).
+This outcome indicates that the model has successfully learned the analogous relationship between "man" and "king" and "woman" and "queen."
+
+\subsection{Confusion matrix}
+
+Confusion matrices are a widely used tool for evaluating classification algorithms, and they can be adapted to assess text representations in tasks such as word sense disambiguation, part-of-speech tagging, or sentiment analysis.
+A confusion matrix is a table that describes the performance of a classification model by comparing predicted and actual labels.
+
+\section{\acf{RAG}}
+\ac{RAG} \cite{lewis2021retrievalaugmented} is an advanced \ac{NLP} framework that combines the strengths of retrieval-based and generation-based models to produce high-quality, contextually relevant text based on provided document (web-page etc.), instruction and query (question). 
 
 \subsection{Architecture of \ac{RAG}}
-The \ac{RAG} \cite{lewis2021retrievalaugmented} algorithm leverages a two-stage approach for answer generation: retrieval and generation.
+The \ac{RAG} algorithm leverages a two-stage approach for answer generation: retrieval and generation.
 Both stages rely heavily on the chosen text representation technique.
 
 \begin{itemize}
@@ -103,7 +120,7 @@ Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}
   \label{fig:RAG_scheme}
 \end{figure}
 
-\subsection{Factors Influencing RAG Performance}
+\subsection{Factors Influencing \ac{RAG} Performance}
 The performance of \ac{RAG} systems can be influenced by several key factors.
 Two important aspects are:
 
@@ -118,23 +135,6 @@ Two important aspects are:
         However, excessively small chunks may lead to a loss of context and hinder the \ac{RAG} system's ability to generate coherent and relevant text.
         Finding the optimal chunking size requires careful consideration of the task and available computational resources.    
 \end{itemize}
-
-\section{Evaluating Text Representations}
-
-\subsection{Analogy Tests}
-
-Analogy tests, as demonstrated in the seminal word2vec paper \cite{word2vec}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
-These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
-
-A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
-For instance, the question "man is to king as woman is to queen" probes the model's understanding of gender relations.
-If the word embeddings are of high quality, performing the vector operation vector(king) - vector(man) + vector(woman) should result in a vector that closely resembles vector(queen).
-This outcome indicates that the model has successfully learned the analogous relationship between "man" and "king" and "woman" and "queen."
-
-\subsection{Confusion matrix}
-
-Confusion matrices are a widely used tool for evaluating classification algorithms, and they can be adapted to assess text representations in tasks such as word sense disambiguation, part-of-speech tagging, or sentiment analysis.
-A confusion matrix is a table that describes the performance of a classification model by comparing predicted and actual labels.
 
 
 
