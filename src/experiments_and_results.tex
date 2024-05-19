@@ -20,6 +20,7 @@ The SimCSE-RetroMAE-Small model emerged as the clear leader within this group, s
 \subsubsection{Multilingual models}
 Among the evaluated multilingual models, all versions of mE5 and LaBSE demonstrated particularly promising performance.
 Notably, mE5 achieved the highest overall results within the tested models.
+Confusion matrices of evaluation are shown at \reffig{fig:Confusion_matrices}.
 This suggests that the training objectives and architectures employed for these models might be well-suited for capturing semantic similarity across languages, including Czech.
 
 Paraphrase-Multilingual-MiniLM-L12-v2 and Paraphrase-Multilingual-MPNet-Base-v2 exhibited strong performance when applied to text containing diacritics.
@@ -39,15 +40,32 @@ Models trained solely on a language like English may struggle to fully grasp the
 In contrast, several monolingual models, particularly the Nomic Embed models, the small version of GTE, and the large version of GTE-v1.5, exhibited performance exceeding the baseline.
 This highlights the potential effectiveness of certain model architectures, even when not specifically trained on the target language.
 Further investigation into the specific characteristics of these models that contribute to their success in this context might provide valuable insights for future research.
+
+\begin{figure}[htbp]
+    \centering
+
+    \subfloat[Evaluatinon using diacritics tests.]{%
+        \centering
+        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacritics.pdf}
+        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacritics.pdf}
+        \label{fig:CM_diacritics}
+    }
+
+    \subfloat[Evaluatinon using diacriticless tests.]{%
+        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacriticless.pdf}
+        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacriticless.pdf}
+        \label{fig:CM_diacriticless}
+    }
+
+    \caption{Confusion matrices of \ac{mE5}\textsubscript{Large} evaluated using diacritics (a) and diacriticless (b) FAQ50 subsets of UPV FAQ dataset.}
+    \label{fig:Confusion_matrices}
+\end{figure}
+
 \FloatBarrier
 
 \input{src/tables/evaluation.tex}
 
 \FloatBarrier
-
-% \newpage
-
-
 
 \subsection{Balanced models}
 To ensure the effectiveness of the evaluation process, a selection criterion was applied to the initial set of candidate models.
