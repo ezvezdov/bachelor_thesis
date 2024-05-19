@@ -1,7 +1,38 @@
 %!TEX root = ../main.tex
 
-\chapter{Discussion\label{chap:discussion}}
+\chapter{Discussion DRAFT\label{chap:discussion}}
 
+\section{Findings}
+This study demonstrates the potential advantages of transformer-based models for text representation compared to traditional models like fastText.
+Notably, the SimCSE-RetroMAE-Small transformer model achieved superior performance despite having significantly fewer parameters compared to fastText.
+This suggests that the architectural design of transformer models may be particularly well-suited for capturing semantic meaning within text data.
+
+Furthermore, the study revealed that certain monolingual models, even those not specifically trained on the Czech language used for evaluation, achieved surprisingly positive results.
+This suggests that some level of semantic similarity can be captured between languages that share structural similarities, even without targeted training.
+However, it is crucial to acknowledge that these models may not achieve optimal performance for tasks involving Czech text.
+
+Finally, the study observed that unsupervised training methods employed by some models (e.g., \ac{MLM} and \ac{NSP}) resulted in lower performance compared to supervised training approaches.
+This suggests that supervised training on high-quality, task-specific datasets may be necessary to achieve optimal performance in tasks involving semantic similarity assessment.
+
+
+\section{Strengths and limitations of the chosen evaluation methods}
+
+\section{Improvements for future research}
+This study exclusively employed pre-trained models for the evaluation process.
+While these models achieved promising results, a potential avenue for future research lies in fine-tuning the models specifically for the task of assessing semantic similarity in Czech text.
+
+
+
+We use English dataset for \ac{RAG}  evaluation in out work.
+Optimal chunk size for Czech and English languages can vary, because of different sizes of average words. 
+So good idea for the future research is creation of the new dataset for technical \ac{QA} and testing for the optimal chunk size.
+
+This study employs the K parameter within the \ac{RAG} evaluation process.
+The initial K values were chosen to be proportional to the chunk size, similar to the default settings within the evaluator tool.
+However, to ensure optimal performance for the \ac{QA} task, it is recommended to further investigate the impact of varying K values.
+Evaluating a broader range of K values alongside the chunk size variations will enable the identification of the optimal configuration for maximizing RAG's performance within the context of this specific English technical document retrieval task.
+
+\section{TODO: REMOVE DISCUSSION STRUCTURE}
 \begin{itemize}
     \item Interpret the overall findings and their implications for choosing suitable text representations for RAG in technical QA tasks.
     \item Discuss the strengths and limitations of the chosen evaluation methods.
