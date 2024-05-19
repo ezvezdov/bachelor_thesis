@@ -1,9 +1,9 @@
 %!TEX root = ../main.tex
 
-\chapter{Experiments and Results\label{chap:experiments_and_results}}
+\chapter{Experiments and Results DRAFT\label{chap:experiments_and_results}}
 
 \section{Text representation models}
-In \reftab{tab:evaluatinon} we can see evaluation of chosen models
+Table \ref{tab:evaluatinon} presents the evaluation results for the chosen text embedding models.
 
 \subsection{Analysis of results}
 \subsubsection{Czech models}
@@ -77,11 +77,14 @@ This approach ensures that the final selection of models for evaluation represen
 
 \input{src/tables/models_balanced.tex}
 
+\section{RAG Optimization}
+
+\input{src/tables/RAG_evaluation.tex}
+
+\section{TODO: REMOVE Experiments structure}
 \begin{itemize}
     \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
     \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
     \item Analyze the results from the RAG evaluation, highlighting the impact of different representations and text chunk sizes on answer generation quality and CPU efficiency.
     \item Identify the representation model that achieves a balance between factuality of answers and computational demands.
 \end{itemize}
-
-\section{RAG Optimization}
