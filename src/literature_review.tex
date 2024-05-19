@@ -5,7 +5,7 @@
 \section{Traditional word embedding methods}
 
 \subsection{Word2Vec}
-Word2Vec \cite{word2vec} is algorithm that generates word embedding using information about target word (context).
+Word2Vec \cite{mikolov2013efficient} is algorithm that generates word embedding using information about target word (context).
 Word2Vec uses \ac{NN} and \ac{ML} techniques to generate word embedding for every word in vocabulary during training.
 As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
 
@@ -24,7 +24,7 @@ However, it is important to acknowledge that Word2Vec has limitations.
 These include its inability to capture \textbf{global information} within a document, its challenges in effectively handling \textbf{morphologically rich languages} (languages with many word variations), and its lack of awareness of the \textbf{broader context} beyond a limited window of surrounding words.
 
 \subsection{GloVe}
-\ac{GloVe} \cite{glove} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
+\ac{GloVe} \cite{pennington2014glove} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
 This approach involves constructing a co-occurrence matrix, where each entry reflects the frequency of two words appearing together within a predefined window size.
 This matrix essentially captures the relative importance of various word pairings.
 
@@ -37,7 +37,7 @@ This function aims to minimize the discrepancy between the dot product of two wo
 Through iterative adjustments of the word vectors, \ac{GloVe} converges on a solution that yields the desired word embeddings.
 
 \subsection{FastText}
-FastText \cite{fasttext} utilizes similar \ac{NN} architectures as word2vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
+FastText \cite{bojanowski2017enriching} utilizes similar \ac{NN} architectures as word2vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
 This decomposition allows FastText to represent a word's meaning by considering its constituent subword components.
 Consequently, FastText offers advantages in two key areas:
 \begin{itemize}
@@ -79,7 +79,7 @@ Finally, \ac{BERT}'s robustness allows it to handle nuances in text without sign
 
 \subsection{Analogy Tests}
 
-Analogy tests, as demonstrated in the seminal word2vec paper \cite{word2vec}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
+Analogy tests, as demonstrated in the seminal word2vec paper \cite{mikolov2013efficient}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
 These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
 
 A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
