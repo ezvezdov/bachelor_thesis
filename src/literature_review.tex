@@ -63,8 +63,15 @@ Architecture of transformers visualized in \reffig{fig:model-arch}
     \label{fig:model-arch}
 \end{figure}
 
-BERT builds on transformers with pre-training on a massive text corpus.
+BERT \cite{devlin2019bert} builds on transformers with pre-training on a massive text corpus.
 \ac{MLM} and \ac{NSP} further enhance \ac{BERT}'s capabilities, fostering deep contextual understanding and grasp of sentence relationships.
+\ac{MLM} injects a deeper understanding of context into \ac{BERT} by requiring it to predict masked words within a sentence.
+Through this process, \ac{BERT} learns the relationships between words and their meaning based on the surrounding context.
+This goes beyond simple memorization - it allows \ac{BERT} to grasp the nuances of language and handle even unseen words.
+\ac{NSP}, on the other hand, strengthens \ac{BERT}'s ability to understand the flow and connection between sentences.
+During training, \ac{BERT} is presented with sentence pairs and tasked with determining if the second sentence logically follows the first. 
+By tackling this objective, \ac{BERT} develops a grasp of sentence relationships, enabling it to analyze and process text that unfolds across multiple sentences, like news articles or conversations.
+
 
 These strengths make transformers, particularly \ac{BERT}, well-suited for \ac{NLP} tasks.
 Their advantage lies in capturing contextual understanding, leading to richer text representations and superior comprehension of semantic relationships.
