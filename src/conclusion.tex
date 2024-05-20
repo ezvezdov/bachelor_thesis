@@ -2,16 +2,79 @@
 
 \chapter{Conclusion DRAFT\label{chap:conclusion}}
 
-Summarize the achieved results.
-Can be similar as an abstract or an introduction, however, it should be written in past tense.
+% In this thesis we focused on comparing traditional methods for text representation and transformer-based methods.
+% We reviewed architectures, work principles, strengths, limitation, uniqueness and purposes of the traditional methods of text representations.
+% We reviewed Transformer architecture.
+% We describe BERT model and explain its training process. Also we described BERT strenghts.
+% We reviewed two evaluation methods to measure quality of the models for our task.
+% After we reviewed ideas of \ac{RAG} and principles of work. After we reviewed \ac{RAG} architecture and discuss about parameters, that can affect accuracy and rightness of its work.
 
-\section{TODO: REMOVE CONCLUSION STRUCTURE}
-\begin{itemize}
-    \item Summarize the key takeaways from the research, emphasizing the most effective text representation model for RAG in technical QA based on the evaluation criteria.
-    \item Briefly mention the trade-offs between factuality, CPU usage, and other factors in selecting representations for RAG.
-    \item Suggest potential future research directions, such as exploring other text representation methods or evaluating RAG performance on different datasets.
-\end{itemize}
+% Next we discussed about chosen language and its grammatical representation, in result we choosed diacritics and diacriticless versions of texts.
+% Next was review of UPV FAQ benchmark.
+% After we defined baseline using fasttext model.
+% Next we chose transformer based models to evaluate.
+% In result we choosed 15 groups of models that expands to 37 models.
+
+% After we discussed parameters and evaluation process of \ac{RAG} and decided to test 5 sizes of chunks of to use in \ac{RAG}.
+
+% Next we present evaluation results, where most models have above deadline results.
+% We discuss about models performances and reasons its performances.
+% We define best model of the evaluation that was \ac{mE5}\textsubscript{Large} and present confussion matrix of its evaluation of one of the benchmark subset.
+% After result analys we defined balanced models, that has best performances for its model size.
+% That models are SimCSE-RetroMAE-Small, small version of \ac{GTE} and all sized of \ac{mE5}.
+
+% In second part of evaluation we focused on evaluation \ac{RAG} algorithm with different chunk size, wherein computing its factuality and computational efficiency.
+% We define, that the best chunk size is TODO.
+% We analyze this evaluation TODO.
+
+This thesis investigated the effectiveness of transformer-based models for text representation compared to traditional methods in the context of semantic similarity assessment for Czech text.
+
+The analysis began with a comprehensive review of traditional text representation methods.
+Their architectures, underlying principles, strengths, weaknesses, and specific applications were examined.
+This review established a foundation for understanding the evolution of text representation techniques.
+
+Following this, the study shifted its focus to transformer architectures.
+Here, the investigation delved into the inner workings of these models and explored their advantages over traditional methods.
+The \ac{BERT} model served as a specific example, with an explanation of its training process and its strengths in capturing semantic meaning from textual data.
+
+To ensure objective assessment of model quality for the chosen task, two relevant evaluation methods were reviewed.
+These established methods provided a framework for comparing the performance of different text representation models used for semantic similarity assessment in Czech text.
+
+Next, the investigation explored the \ac{RAG} model.
+Core concepts, operational principles, and critical parameters influencing \ac{RAG}'s accuracy were examined.
+This in-depth analysis proved crucial for effectively configuring and evaluating \ac{RAG} within the context of the chosen task.
+
+Recognizing the importance of language-specific analysis, Czech was chosen as the target language.
+The study incorporated both diacritic and diacritic-less text versions to account for potential variations within Czech text data.
+The established UPV FAQ benchmark served as the standard for consistent and reliable evaluation.
+
+A baseline performance metric was established using the fastText model.
+This baseline provided a benchmark for comparing the performance of the transformer-based models.
+Following the establishment of this baseline, a diverse selection of 15 transformer-based model groups (encompassing a total of 37 models) were chosen for further evaluation.
+
+The \ac{RAG} evaluation process involved testing five different chunk sizes.
+This exploration aimed to understand the impact of chunk size on both the factuality (accuracy and relevance) of retrieved information and computational efficiency (processing time).
+While the optimal chunk size is still under investigation, further analysis is ongoing.
+These findings will be instrumental in refining \ac{RAG}'s configuration for future applications.
+
+The evaluation results revealed that a significant portion of the transformer-based models outperformed the baseline, suggesting their promise for semantic similarity assessment in Czech text.
+A detailed analysis of model performance and influencing factors identified \ac{mE5} \textsubscript{Large} as the top performer.
+A confusion matrix visualized its evaluation on a specific benchmark subset.
+Additionally, "balanced models" exhibiting the best performance relative to their model size were highlighted.
+These included SimCSE-RetroMAE-Small, the small version of \ac{GTE}, and all sizes of \ac{mE5}, demonstrating the potential of both large and efficient models for this task.
+
+
+TODO: ADD RAG
+% In second part of evaluation we focused on evaluation \ac{RAG} algorithm with different chunk size, wherein computing its factuality and computational efficiency.
+% We define, that the best chunk size is TODO.
+% We analyze this evaluation TODO.
 
 
 
 
+% \section{TODO: REMOVE CONCLUSION STRUCTURE}
+% \begin{itemize}
+%     \item Summarize the key takeaways from the research, emphasizing the most effective text representation model for RAG in technical QA based on the evaluation criteria.
+%     \item Briefly mention the trade-offs between factuality, CPU usage, and other factors in selecting representations for RAG.
+%     \item Suggest potential future research directions, such as exploring other text representation methods or evaluating RAG performance on different datasets.
+% \end{itemize}
