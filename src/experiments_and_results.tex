@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-\chapter{Experiments and Results DRAFT\label{chap:experiments_and_results}}
+\chapter{Experiments and Results \label{chap:experiments_and_results}}
 
 \section{Text representation models}
 Table \ref{tab:evaluatinon} presents the evaluation results for the chosen text embedding models.
@@ -18,17 +18,18 @@ Regarding the Seznam models, the observed differences in results likely stem fro
 The SimCSE-RetroMAE-Small model emerged as the clear leader within this group, suggesting that the fine-tuning strategy employed with \ac{SimCSE} and \ac{RetroMAE} may be particularly effective for these models.
 
 \subsubsection{Multilingual models}
-Among the evaluated multilingual models, all versions of mE5 and LaBSE demonstrated particularly promising performance.
-Notably, mE5 achieved the highest overall results within the tested models.
-This suggests that the training objectives and architectures employed for these models might be well-suited for capturing semantic similarity across languages, including Czech.
-Confusion matrices of \ac{mE5}\textsubscript{Large} evaluation are shown at \reffig{fig:Confusion_matrices}.
+The evaluation revealed particularly strong performance from all versions of \ac{mE5} and \ac{LaBSE} among the multilingual models.
+Notably, \ac{mE5} models achieved the highest overall results within the tested set.
+This finding suggests that the training objectives and architectures employed for these models are well-suited for capturing semantic similarity across languages, including Czech.
+Confusion matrices for the \ac{mE5}\textsubscript{Large} evaluation are presented in \reffig{fig:Confusion_matrices}.
 
-Paraphrase-Multilingual-MiniLM-L12-v2 and Paraphrase-Multilingual-MPNet-Base-v2 exhibited strong performance when applied to text containing diacritics.
-However, their performance appeared less effective when handling diacriticless text.
-This observation suggests that these models might benefit from further training or adaptation specifically tailored for handling variations in Czech text with and without diacritics.
+Paraphrase-Multilingual-MiniLM-L12-v2 and Paraphrase-Multilingual-MPNet-Base-v2 demonstrated strong performance with text that included diacritics.
+However, their effectiveness notably decreased when processing diacriticless text.
+This suggests a limitation in these models' capacity to generalize across different forms of Czech text.
+To improve their performance, additional training or adaptation tailored to handle both diacritic and diacriticless variations in Czech text would be beneficial.
 
-While mBERT and XLM-R did not achieve the same level of success as other models, it's important to acknowledge that the unsupervised training methods they employ (e.g. \ac{MLM} and \ac{NSP}) might not be specifically optimized for the task of assessing semantic similarity.
-Alternative training objectives or supervised learning approaches tailored for this task might lead to improved performance from these models in the context of Czech text analysis.
+While \ac{mBERT} and \ac{XLM-R} did not achieve the same level of success as other models, it is important to consider the limitations of their unsupervised training methods (e.g., \ac{MLM} and \ac{NSP}) which may not be specifically optimized for the task of assessing semantic similarity.
+Utilizing alternative training objectives or supervised learning approaches tailored for this task could potentially lead to improved performance from these models in the context of Czech text analysis.
 
 \subsubsection{Monolingual models}
 
@@ -81,10 +82,10 @@ This approach ensures that the final selection of models for evaluation represen
 
 \input{src/tables/RAG_evaluation.tex}
 
-\section{TODO: REMOVE Experiments structure}
-\begin{itemize}
-    \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
-    \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
-    \item Analyze the results from the RAG evaluation, highlighting the impact of different representations and text chunk sizes on answer generation quality and CPU efficiency.
-    \item Identify the representation model that achieves a balance between factuality of answers and computational demands.
-\end{itemize}
+% \section{TODO: REMOVE Experiments structure}
+% \begin{itemize}
+%     \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
+%     \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
+%     \item Analyze the results from the RAG evaluation, highlighting the impact of different representations and text chunk sizes on answer generation quality and CPU efficiency.
+%     \item Identify the representation model that achieves a balance between factuality of answers and computational demands.
+% \end{itemize}
