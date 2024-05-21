@@ -219,8 +219,12 @@ It is specifically designed to improve performance across a wide range of cross-
 This dataset is significantly larger than the ones used by its predecessors, offering a broader and more diverse linguistic foundation.
 
 % SentenceTransformers
-\subsubsection{SentenceTransformers models \cite{reimers2019sentencebert}} \label{model:st-multilingual}
+\subsubsection{SentenceTransformers models} \label{model:st-multilingual}
 
+This work leverages SentenceTransformers \cite{reimers2019sentencebert}, a Python framework offering a comprehensive collection of pre-trained models designed for state-of-the-art sentence, text, and image embeddings.
+These models are specifically tuned for various tasks, providing researchers with a powerful starting point for their investigations.
+
+The following pre-trained models from SentenceTransformers will be evaluated in this study:
 \begin{itemize}
   \item \textbf{Distiluse-Base-Multilingual-Cased-v2}:
     This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model.
@@ -229,7 +233,7 @@ This dataset is significantly larger than the ones used by its predecessors, off
   \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
     It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2} \footnote{Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
     By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
-  \item \textbf{Paraphrase-Multilingual-MPNet-base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2} \footnote{ Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
+  \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2} \footnote{ Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
     This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
@@ -379,8 +383,7 @@ Due to limitations in the availability of Czech language testing data, we opted 
 
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
 
-For the embedding generation stage within \ac{RAG}, we will leverage the GTE-v1.5\textsubscript{Large} model.
-This selection is based on its performance as the highest-scoring transformer model for English according to the \ac{MTEB} results.
+For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as popular small model with good \ac{MTEB} rating.
 
 For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{brown2020language}.
 
