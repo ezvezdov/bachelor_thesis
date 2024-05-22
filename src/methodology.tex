@@ -277,12 +277,19 @@ This is study incorporates two models developed by MixedBread AI, mxbai-embed-la
 
 % Nomic Embed
 \subsubsection{Nomic-Embed-v1 and Nomic-Embed-v1.5} \label{model:nomic-embed}
-The Nomic model \cite{nussbaum2024nomic}, designed for reproducible long-context text embedding, employs a modified BERT architecture optimized for 8192 token sequences.
-It includes innovations such as rotary positional embeddings and SwiGLU activations, enhancing its ability to process longer texts.
-The model undergoes a comprehensive training regime starting with unsupervised contrastive pretraining on large-scale datasets, followed by supervised fine-tuning using human-annotated data.
-This process leverages contrastive learning to improve text embedding capabilities, significantly enhancing performance on both short and long-context tasks.
+The Nomic model \cite{nussbaum2024nomic}, focuses on generating high-quality embeddings for long-context text in a reproducible manner.
+It leverages a modified BERT architecture specifically optimized for handling sequences of up to 8192 tokens.
+This optimization includes innovative techniques like rotary positional embeddings and SwiGLU activations, which enhance the model's capacity to process longer texts effectively.
+The training process for Nomic Embed employs a two-stage approach.
+The first stage involves unsupervised contrastive pre-training on large-scale datasets.
+This pre-training equips the model with a strong foundation for capturing semantic relationships within text data.
+Subsequently, the model undergoes supervised fine-tuning using human-annotated data.
+This stage further refines the model's ability to generate accurate text embeddings, particularly beneficial for tasks involving both short and long contexts.
+Contrastive learning plays a crucial role in both stages, ultimately improving the overall effectiveness of the model in generating robust text embeddings.
 
-Nomic Embed v1.5 is an improvement upon Nomic Embed v1 that utilizes Matryoshka Representation Learning \cite{kusupati2024matryoshka} which gives developers the flexibility to trade off the embedding size for a negligible reduction in performance.
+Nomic Embed v1.5 builds upon the success of v1 by incorporating Matryoshka Representation Learning \cite{kusupati2024matryoshka}.
+This approach offers developers greater flexibility in terms of embedding size, allowing for a trade-off between embedding size and performance.
+While there may be a slight reduction in performance, developers can choose a smaller embedding size if computational resources are limited.
 
 % GTE
 \subsubsection{GTE and GTE-v1.5} \label{model:gte}
@@ -304,7 +311,7 @@ This training regimen equips BGE models to handle a wide range of text embedding
 This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
 These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
-The fine-tuning process for GIST-Embedding-v0 utilizes the MEDI datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
+The fine-tuning process for GIST-Embedding-v0 utilizes the Multitask Embeddings Data with Instructions (MEDI) datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
 This targeted augmentation strategy aims to improve the model's performance on specific tasks.
 
 Based on their performance in the \ac{MTEB}, our evaluation will focus solely on the GIST-Embedding-v0 models built upon the \ac{BGE}-v1.5 architecture (small, base, and large sizes).
@@ -339,13 +346,6 @@ Notably, the training process incorporates techniques inspired by both RetroMAE 
 %   \item Fine-tuning the model on a smaller dataset (1M samples) consisting of query-positive document-negative document triplets to improve retrieval accuracy.
 % \end{enumerate}
 
-
-
-
-
-% TODO:
-% \subsubsection{jina-embeddings}
-%Only jina-embeddings-v2, because it's better in \ac{MTEB}
 
 \section{Optimizing Text Representations for \ac{RAG} in Technical \ac{QA}}
 
