@@ -1,0 +1,17 @@
+\begin{table*}[ht!]
+    \centering
+    \begin{tabular}{lcccccc}
+      \toprule
+      $S_{chunk}$ & $t_1$ & $t_2$ & $t_3$ & $t_4$ & $t_5$ \\
+      \midrule
+      256  & 133s & 126s & 135s & 131s & 129s \\
+      512  & 164s & 160s & 163s & 159s & 160s \\
+      1024  & 161s & 161s & 161s & 163s & 163s \\
+      2048  & 134s & 111s & 110s & 112s & 109s \\
+      4096  & 74s & 77s & 79s & 79s & 78s \\
+      \bottomrule
+    \end{tabular}
+    \caption{Time of \ac{RAG} evaluation with different chunk sizes.}
+    \label{tab:RAG_time}
+  \end{table*}
+  
