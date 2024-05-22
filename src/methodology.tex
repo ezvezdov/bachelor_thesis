@@ -50,7 +50,7 @@ This work will evaluate two key metrics using UPV FAQ dataset
 
 \input{src/tables/UPV_ntests.tex}
 
-Traditional models will be assessed using jirkoada/upv\_faq \footnote{jirkoada/upv\_faq evaluator on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using ezvezdov/upv\_faq\_transformers \footnote{ezvezdov/upv\_faq\_transformers evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
+Traditional models will be assessed using \textit{jirkoada/upv\_faq} \footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers} \footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
 
 
 \subsubsection{Analogies}
@@ -378,16 +378,17 @@ Chosen parameters are shown at \reftab{table:RAG_settings}
 
 \subsection{RAG pipeline}
 
-This section describes the evaluation methodology employed for the \ac{RAG} model using an English language test set.
-Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
+This section describes the evaluation methodology employed for the \ac{RAG} model.
+The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator} \footnote {\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool.
 
+Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
 
 For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as popular small model with good \ac{MTEB} rating.
 
 For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{brown2020language}.
+The quality of the answers will be controlled and verified using GPT-4o \footnote{Information about GPT-4o on OpenAI website: \url{https://upv.gov.cz/}}.
 
-The evaluation will be conducted using the jirkoada\/qa\_evaluator \footnote {jirkoada/qa\_evaluator on github: \url{https://github.com/jirkoada/qa_evaluator}} tool.
 
 
 \subsection{Experiment hardware}
