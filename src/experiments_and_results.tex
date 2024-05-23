@@ -84,9 +84,25 @@ This approach ensures that the final selection of models for evaluation represen
 
 \input{src/tables/RAG_time.tex}
 
+An unexpected observation is the increase in processing time when moving from a chunk size of 256 to 512 characters.
+However, the processing time remains constant for chunk sizes of 512 and 1024 characters.
+Interestingly, the processing time then decreases for chunk sizes of 2048 and 4096 characters.
+
+While the reason for the initial increase in processing time is unclear, the subsequent decrease can potentially be attributed to text truncation.
+With larger chunk sizes (2048 and 4096 characters), the text may be divided into fewer parts, each exceeding the maximum sequence length.
+This could lead to improved efficiency due to the Transformer model's ability to leverage parallelism when processing longer sequences.
+Conversely, smaller chunk sizes might result in a higher number of text segments, potentially hindering the model's ability to exploit parallelism effectively.
+
+
+Results of the \ac{RAG} evaluation are presented in \reftab{tab:RAG_evaluation}.
 \input{src/tables/RAG_evaluation.tex}
 
-% \section{TODO: REMOVE Experiments structure}
+Our analysis of the results in \reftab{tab:RAG_evaluation} (or similar table title) reveals a positive correlation between chunk size and model accuracy.
+The model achieves its highest accuracy when processing chunks of 4096 characters.
+This suggests that providing the model with larger text segments during the embedding process might contribute to improved performance in capturing semantic relationships within the text.
+
+
+% \section{Experiments structure}
 % \begin{itemize}
 %     \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
 %     \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
