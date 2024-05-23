@@ -11,8 +11,12 @@ Furthermore, the study reveals that certain monolingual models, even those not s
 This suggests that some level of semantic similarity can be identified between languages with structural similarities, even without targeted training.
 However, it is important to acknowledge that these models might not reach optimal performance for tasks involving Czech text analysis.
 
-Finally, the study observes that unsupervised training methods employed by some models (e.g., MLM and NSP) lead to lower performance compared to supervised training approaches.
+This study observes that unsupervised training methods employed by some models (e.g., MLM and NSP) lead to lower performance compared to supervised training approaches.
 This suggests that supervised training on high-quality, task-specific datasets might be necessary to achieve optimal performance in tasks involving semantic similarity assessment.
+
+Results indicate that embedding generation for less segmented text is faster compared to highly segmented text.
+However, the study finds that \ac{QA} accuracy is maximized when utilizing larger chunk sizes.
+This suggests a potential trade-off between processing efficiency and model performance, requiring further investigation to determine the optimal balance for specific applications.
 
 \section{Improvements for future research}
 This study relies exclusively on pre-trained models for evaluation.
