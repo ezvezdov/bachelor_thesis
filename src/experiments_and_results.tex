@@ -31,6 +31,10 @@ To improve their performance, additional training or adaptation tailored to hand
 While \ac{mBERT} and \ac{XLM-R} did not achieve the same level of success as other models, it is important to consider the limitations of their unsupervised training methods (e.g., \ac{MLM} and \ac{NSP}) which may not be specifically optimized for the task of assessing semantic similarity.
 Utilizing alternative training objectives or supervised learning approaches tailored for this task could potentially lead to improved performance from these models in the context of Czech text analysis.
 
+\FloatBarrier
+\input{src/tables/evaluation.tex}
+\FloatBarrier
+
 \subsubsection{Monolingual models}
 
 While all monolingual models achieved performance near the established baseline, this is a noteworthy finding considering they were not specifically trained in the Czech language.
@@ -62,11 +66,7 @@ Further investigation into the specific characteristics of these models that con
     \label{fig:Confusion_matrices}
 \end{figure}
 
-\FloatBarrier
 
-\input{src/tables/evaluation.tex}
-
-\FloatBarrier
 
 \subsection{Balanced models}
 To ensure the effectiveness of the evaluation process, a selection criterion was applied to the initial set of candidate models.
