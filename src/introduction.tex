@@ -14,10 +14,10 @@ From sentiment analysis to machine translation, this ability to represent meanin
 \ac{NLP} has undergone a significant transformation in its approach to text representation.
 Early methods, such as one-hot encoding (e.g. \ac{BoW} \cite{wiki_BoW}, \ac{TF-IDF} \cite{wiki_tf_idf}), while simple to implement, suffered from limitations in efficiency due to dimensionality and sparsity issues.
 
-Word embedding techniques (e.g., Word2Vec, \ac{GloVe}, FastText) offered a significant improvement by capturing semantic relationships between words through high-dimensional word vectors.
+Word embedding techniques (e.g., Word2Vec \cite{mikolov2013efficient}, \ac{GloVe} \cite{pennington2014glove}, FastText \cite{bojanowski2017enriching}) offered a significant improvement by capturing semantic relationships between words through high-dimensional word vectors.
 However, these techniques primarily focused on local context within a limited window, hindering their ability to capture complex relationships within sentences or documents.
 
-The emergence of deep learning architectures, particularly transformer-based models like \ac{BERT}, revolutionized the field of text representation.
+The emergence of deep learning architectures, particularly transformer-based models like \ac{BERT} \cite{vaswani2023attention}, revolutionized the field of text representation.
 These models allow us to not only understand the meaning of individual words but also consider their interaction and context within a sentence or document.
 
 \begin{figure}
@@ -29,4 +29,4 @@ These models allow us to not only understand the meaning of individual words but
 
 \section{Research objective}
 
-This research aims to evaluate the effectiveness of various word, sentence, and paragraph representations for their subsequent application in \ac{RAG} algorithms, with a specific focus on the domain of technical \ac{QA}.
+This research aims to evaluate the effectiveness of various word, sentence, and paragraph representations for their subsequent application in \ac{RAG} algorithms \cite{lewis2021retrievalaugmented}, with a specific focus on the domain of technical \ac{QA}.

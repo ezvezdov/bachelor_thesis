@@ -40,6 +40,7 @@ As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating d
 \subsubsection{UPV FAQ}
 
 The dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}.}.
+Dataset consists of four test sets as described in \reftab{table:UPV_FAQ_info}.
 Each test within the UPV FAQ dataset follows a consistent structure, consisting of three key elements:
 \begin{itemize}
   \item \textbf{Question}:
@@ -57,7 +58,7 @@ This work will evaluate two key metrics using the UPV FAQ dataset:
 \begin{itemize}
   \item \textbf{Question matching accuracy}:
  This metric involves calculating the cosine similarity \refeq{eq:cosine_similarity} between all possible question pairs within a dataset.
- A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
+ A question is considered successfully matched if its second-highest cosine similarity \refeq{eq:cosine_similarity} score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
  The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
   \item \textbf{Answer matching accuracy}:
  This metric assesses the system's ability to identify the correct answer for a given question.
@@ -235,7 +236,7 @@ This setup enables the efficient processing of text pairs in multiple languages.
 \subsubsection{\ac{XLM-R}} \label{model:xlm-roberta}
 The \ac{XLM-R} model \cite{conneau2020unsupervised} is a significant advancement in unsupervised cross-lingual representation learning, introduced by Facebook AI.
 It is specifically designed to improve performance across a wide range of cross-lingual tasks.
-\ac{XLM-R} is pre-trained on a dataset dubbed 'CC-100', derived from Common Crawl \cite{commoncrawl}, covering about 2.5 terabytes of text across 100 languages.
+\ac{XLM-R} is pre-trained on a dataset dubbed CC-100, derived from Common Crawl \cite{commoncrawl}, covering about 2.5 terabytes of text across 100 languages.
 This dataset is significantly larger than the ones used by its predecessors, offering a broader and more diverse linguistic foundation.
 
 % SentenceTransformers
@@ -276,7 +277,7 @@ This study incorporates two models developed by MixedBread AI:
 \begin{itemize}
   \item \textbf{Mxbai-Embed-Large-v1} \cite{emb2024mxbai}:
     This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
-    As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
+    As of May 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
     Notably, Mxbai-Embed-Large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
     The success of this model can be attributed to its robust training methodology.
     Mxbai-Embed-Large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
