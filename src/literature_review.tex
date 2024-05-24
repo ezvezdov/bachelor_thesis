@@ -37,16 +37,16 @@ This function aims to minimize the discrepancy between the dot product of two wo
 Through iterative adjustments of the word vectors, \ac{GloVe} converges on a solution that yields the desired word embeddings.
 
 \subsection{FastText}
-FastText \cite{bojanowski2017enriching} utilizes similar \ac{NN} architectures as word2vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
+FastText \cite{bojanowski2017enriching} utilizes similar \ac{NN} architectures as Word2Vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
 This decomposition allows FastText to represent a word's meaning by considering its constituent subword components.
 Consequently, FastText offers advantages in two key areas:
 \begin{itemize}
-    \item Rare Word Embeddings: Unlike word2vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words. By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
-    \item Handling Morphologically Rich Languages: Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for word2vec. FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms. This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate NLP tasks.
+    \item Rare Word Embeddings: Unlike Word2Vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words. By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
+    \item Handling Morphologically Rich Languages: Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for Word2Vec. FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms. This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate NLP tasks.
 \end{itemize}
 However, it's important to acknowledge that FastText also has limitations:
 \begin{itemize}
-    \item Context Insensitivity: Similar to word2vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence. This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
+    \item Context Insensitivity: Similar to Word2Vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence. This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
     \item Limited Long-Range Dependency Capture: While subwords allow FastText to capture local context, it might not effectively capture long-range dependencies within sentences. This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
 \end{itemize}
 
@@ -85,7 +85,7 @@ Finally, \ac{BERT}'s robustness allows it to handle nuances in text without sign
 
 \subsection{Analogy Tests}
 
-Analogy tests, as demonstrated in the seminal word2vec paper \cite{mikolov2013efficient}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
+Analogy tests, as demonstrated in the seminal Word2Vec paper \cite{mikolov2013efficient}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
 These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
 
 A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
@@ -126,7 +126,7 @@ Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}
   \label{fig:RAG_scheme}
 \end{figure}
 
-\subsection{Factors Influencing \ac{RAG} Performance}
+\subsection{Factors influencing \ac{RAG} performance}
 The performance of \ac{RAG} systems can be influenced by several key factors.
 Two important aspects are:
 
