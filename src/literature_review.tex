@@ -5,15 +5,15 @@
 \section{Traditional word embedding methods}
 
 \subsection{Word2Vec}
-Word2Vec \cite{mikolov2013efficient} is algorithm that generates word embedding using information about target word (context).
+Word2Vec \cite{mikolov2013efficient} is an algorithm that generates word embedding using information about the target word (context).
 Word2Vec uses \ac{NN} and \ac{ML} techniques to generate word embedding for every word in vocabulary during training.
-As \ac{NN} architecture are used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
+As \ac{NN} architecture is used \ac{CBOW} and Skip-gram, \reffig{fig:cbow_skipgram_scheme}.
 
 \begin{figure}[h]
-    \centering
+ \centering
     \input{src/fig/tikz/cbow_scheme.tex}
     \input{src/fig/tikz/skip_gram_scheme.tex}
-    \caption{\ac{CBOW} and Skip-gram schemes respectively}
+ \caption{\ac{CBOW} and Skip-gram schemes respectively.}
     \label{fig:cbow_skipgram_scheme}
 \end{figure} 
 
@@ -40,26 +40,36 @@ Through iterative adjustments of the word vectors, \ac{GloVe} converges on a sol
 FastText \cite{bojanowski2017enriching} utilizes similar \ac{NN} architectures as Word2Vec, namely \ac{CBOW} and Skip-gram, but applies them to character n-grams (subwords) instead of entire words.
 This decomposition allows FastText to represent a word's meaning by considering its constituent subword components.
 Consequently, FastText offers advantages in two key areas:
+
 \begin{itemize}
-    \item \textbf{Rare Word Embeddings}: Unlike Word2Vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words. By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
-    \item \textbf{Handling Morphologically Rich Languages}: Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for Word2Vec. FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms. This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate \ac{NLP} tasks.
+    \item \textbf{Rare Word Embeddings}:
+        Unlike Word2Vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words.
+        By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
+    \item \textbf{Handling Morphologically Rich Languages}:
+        Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for Word2Vec.
+        FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms.
+        This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate \ac{NLP} tasks.
 \end{itemize}
 However, it's important to acknowledge that FastText also has limitations:
 \begin{itemize}
-    \item \textbf{Context Insensitivity}: Similar to Word2Vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence. This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
-    \item \textbf{Limited Long-Range Dependency Capture}: While subwords allow FastText to capture local context, it might not effectively capture long-range dependencies within sentences. This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
+    \item \textbf{Context Insensitivity}:
+        Similar to Word2Vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence.
+        This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
+    \item \textbf{Limited Long-Range Dependency Capture}:
+        While subwords allow FastText to capture local context, they might not effectively capture long-range dependencies within sentences.
+        This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
 \end{itemize}
 
 \section{Transformer-based models}
 Transformer models \cite{vaswani2023attention} \nocite{umarjamilai} underpin powerful \ac{NLP} models like \ac{BERT}.
 A key advantage is their self-attention mechanism, which assigns importance to words based on context, not just position.
 This enables efficient parallel processing of entire sentences.
-Architecture of transformers visualized in \reffig{fig:model-arch}
+Architecture of transformers visualized in \reffig{fig:model-arch}.
 
 \begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.6]{src/fig/imgs/transformer_arch.png}
-    \caption{The Transformer - model architecture.}
+ \centering
+ \includegraphics[scale=0.6]{src/fig/imgs/transformer_arch.png}
+ \caption{The Transformer - model architecture.}
     \label{fig:model-arch}
 \end{figure}
 
@@ -78,20 +88,20 @@ Their advantage lies in capturing contextual understanding, leading to richer te
 Furthermore, \ac{BERT} excels in transfer learning, readily adapting to various tasks (sentiment analysis, \ac{QA}) with minimal modifications.
 Additionally, efficiency and speed are benefits due to parallel processing and pre-training.
 
-Transformer models effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
+The transformer model's effectiveness is validated by state-of-the-art performance across \ac{NLP} benchmarks.
 Finally, \ac{BERT}'s robustness allows it to handle nuances in text without significant performance degradation.
 
 \section{Methods of text representations evaluation}
 
 \subsection{Analogy tests}
 
-Analogy tests, as demonstrated in the seminal Word2Vec paper \cite{mikolov2013efficient}, are a widely used method for assessing the quality of text representations, particularly word embeddings.
+Analogy tests, as demonstrated in the seminal Word2Vec paper \cite{mikolov2013efficient}, is a widely used method for assessing the quality of text representations, particularly word embeddings.
 These tests evaluate whether the semantic relationships between words are effectively captured and preserved within the vector space employed by the model.
 
 A typical analogy test question follows the format "A is to B as C is to D," where A, B, C, and D represent words.
 For instance, the question "man is to king as woman is to queen" probes the model's understanding of gender relations.
 If the word embeddings are of high quality, performing the vector operation vector(king) - vector(man) + vector(woman) should result in a vector that closely resembles vector(queen).
-This outcome indicates that the model has successfully learned the analogous relationship between "man" and "king" and "woman" and "queen."
+This outcome indicates that the model has successfully learned the analogous relationship between "man" and "king" and "woman" and "queen".
 
 \subsection{Confusion matrix}
 
@@ -99,7 +109,7 @@ Confusion matrices are a widely used tool for evaluating classification algorith
 A confusion matrix is a table that describes the performance of a classification model by comparing predicted and actual labels.
 
 \section{\acf{RAG}}
-\ac{RAG} \cite{lewis2021retrievalaugmented} \nocite{umarjamilai} is an advanced \ac{NLP} framework that combines the strengths of retrieval-based and generation-based models to produce high-quality, contextually relevant text based on provided document (web-page etc.), instruction and query (question). 
+\ac{RAG} \cite{lewis2021retrievalaugmented} \nocite{umarjamilai} is an advanced \ac{NLP} framework that combines the strengths of retrieval-based and generation-based models to produce high-quality, contextually relevant text based on the provided document (web-page, etc.), instruction and query (question). 
 
 \subsection{Architecture of \ac{RAG}}
 The \ac{RAG} algorithm leverages a two-stage approach for answer generation: retrieval and generation.
@@ -107,22 +117,22 @@ Both stages rely heavily on the chosen text representation technique.
 
 \begin{itemize}
   \item \textbf{Retrieval}:
-    In the initial phase, the algorithm extracts relevant information from the document and splits it into manageable chunks.
-    These chunks are then fed into text representation models, which convert them into a format suitable for efficient retrieval.
-    This process results in encoded representations of the information, which are then stored within a vector database.
-    During the retrieval phase, \ac{RAG} utilizes the same text representation model to encode the user's query (question).
-    Subsequently, it searches the vector database and identifies the top-$K$ most relevant passages based on their encoded representations.
+ In the initial phase, the algorithm extracts relevant information from the document and splits it into manageable chunks.
+ These chunks are then fed into text representation models, which convert them into a format suitable for efficient retrieval.
+ This process results in encoded representations of the information, which are then stored within a vector database.
+ During the retrieval phase, \ac{RAG} utilizes the same text representation model to encode the user's query (question).
+ Subsequently, it searches the vector database and identifies the top-$K$ most relevant passages based on their encoded representations.
   \item \textbf{Generation}:
-    The $K$ retrieved passages identified in the information retrieval phase serve as crucial contextual information for the \ac{LLM} within the \ac{RAG} system.
-    By providing this context alongside the user's question and any additional instructions, the \ac{LLM} is empowered to generate a comprehensive and informative answer.
+ The $K$ retrieved passages identified in the information retrieval phase serve as crucial contextual information for the \ac{LLM} within the \ac{RAG} system.
+ By providing this context alongside the user's question and any additional instructions, the \ac{LLM} is empowered to generate a comprehensive and informative answer.
 \end{itemize}
 
-Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}
+Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}.
 
 \begin{figure}[h]
-  \centering
+ \centering
   \input{src/fig/tikz/RAG_scheme.tex}
-  \caption{Retrieval-Augmented Generation architecture.}
+ \caption{Retrieval-Augmented Generation architecture.}
   \label{fig:RAG_scheme}
 \end{figure}
 
@@ -132,14 +142,14 @@ Two important aspects are:
 
 \begin{itemize}
     \item \textbf{Embedding Model Selection}:
-        Previous work \cite{joshi2024RAGemb} suggests that the choice of embedding model significantly impacts \ac{RAG} performance.
-        Different embedding models offer varying strengths in capturing semantic relationships within text data.
-        Selecting the most suitable model depends on the specific task and dataset.
+ Previous work \cite{joshi2024RAGemb} suggests that the choice of the embedding model significantly impacts \ac{RAG} performance.
+ Different embedding models offer varying strengths in capturing semantic relationships within text data.
+ Selecting the most suitable model depends on the specific task and dataset.
     \item \textbf{Document Chunking Size}:
-        Another factor influencing \ac{RAG} performance is the size of the document chunks used for retrieval \cite{theja2023RAGchunk}.
-        Splitting documents into smaller chunks can potentially improve retrieval efficiency.
-        However, excessively small chunks may lead to a loss of context and hinder the \ac{RAG} system's ability to generate coherent and relevant text.
-        Finding the optimal chunking size requires careful consideration of the task and available computational resources.    
+ Another factor influencing \ac{RAG} performance is the size of the document chunks used for retrieval \cite{theja2023RAGchunk}.
+ Splitting documents into smaller chunks can potentially improve retrieval efficiency.
+ However, excessively small chunks may lead to a loss of context and hinder the \ac{RAG} system's ability to generate coherent and relevant text.
+ Finding the optimal chunking size requires careful consideration of the task and available computational resources.    
 \end{itemize}
 
 
@@ -149,6 +159,6 @@ Two important aspects are:
 % \begin{itemize}
 %     \item Discuss traditional word embedding methods like FastText and their limitations.
 %     \item Explain the concept of transformer-based models like \ac{BERT} and their advantages for text representation.
-%     \item Review related work on \ac{RAG} algorithms and their dependence on effective text representations.Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
+%     \item Review related work on \ac{RAG} algorithms and their dependence on effective text representations. Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
 %     \item Briefly mention the UPV corpus set as the chosen evaluation benchmark.
 % \end{itemize}

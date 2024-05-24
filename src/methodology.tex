@@ -8,21 +8,21 @@ This work specifically targets the evaluation of word, sentence, and paragraph r
 This focus on Czech allows for a deeper understanding of how these methods perform in a language with specific characteristics, such as a rich inflectional morphology and the presence of diacritics.
 
 \subsection{Text data preparation}
-In certain foreign languages, a common issue arises when individuals incorrectly write words by omitting diacritics or altering letters, \reffig{fig:diacritics_diacriticless}.
+In certain languages, a common issue arises when individuals incorrectly write words by omitting diacritics or altering letters, as shown in \reffig{fig:diacritics_diacriticless}.
 
 \begin{figure}[h]
-  \centering
+ \centering
   \input{src/fig/tikz/diacritics_diacriticless.tex}
-  \caption{Usual changes in informal czech texts.}
+ \caption{Usual changes in informal Czech texts.}
   \label{fig:diacritics_diacriticless}
 \end{figure} 
 
 This problem is prevalent in social media, chatbots, and other informal written communications.
 As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless), because the meanings of words may be compromised:
 \begin{itemize}
-  \item byt (apartment) - být (to be)
-  \item rád (to be glad) - řad (row or a line) - řád (order, religious order)
-  \item krize (crisis) - kříže (crosses)
+  \item byt (apartment) - být (to be),
+  \item rád (to be glad) - řad (row or a line) - řád (order, religious order),
+  \item krize (crisis) - kříže (crosses).
 \end{itemize}
 A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
 
@@ -31,48 +31,50 @@ To ensure optimal evaluation, the diacritic text will be assessed using datasets
 
 As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating diacriticless versions of the datasets.
 
-\begin{lstlisting}[language=bash,basicstyle=\small\ttfamily, frame=single, caption={Script for removing diacritics using Unix utilities}, captionpos=b, label={lst:diacriticless.sh},backgroundcolor=\color{light-gray}] 
-  sed 's/.*/\L&/' "$1" | iconv -f utf-8 -t ascii//TRANSLIT > diacriticless/"$1"
+\begin{lstlisting}[language=bash,basicstyle=\small\ttfamily, frame=single, caption={Script for removing diacritics using Unix utilities.}, captionpos=b, label={lst:diacriticless.sh},backgroundcolor=\color{light-gray}] 
+ sed 's/.*/\L&/' "$1" | iconv -f utf-8 -t ascii//TRANSLIT > diacriticless/"$1"
 \end{lstlisting}
 
-\subsection{Evaluation  benchmark}
+\subsection{Evaluation benchmark}
 
 \subsubsection{UPV FAQ}
 
-Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}}.
+The dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}}.
 Each test within the UPV FAQ dataset follows a consistent structure, consisting of three key elements:
 \begin{itemize}
   \item \textbf{Question}:
-    This element specifies the question from the UPV website\footref{footnote_upv_website}.
+ This element specifies the question from the UPV website\footref{footnote_upv_website}.
   \item \textbf{Answer}:
-    This element provides the expected or correct response to the corresponding question.
+ This element provides the expected or correct response to the corresponding question.
   \item \textbf{Semantic Class}:
-    This element assigns the test item to a specific category based on its semantic meaning.
-    The details regarding the number of distinct semantic classes are presented in \reftab{table:UPV_FAQ_info}.
+ This element assigns the test item to a specific category based on its semantic meaning.
+ The details regarding the number of distinct semantic classes are presented in \reftab{table:UPV_FAQ_info}.
 \end{itemize}
 
 \input{src/tables/UPV_info.tex}
 
-This work will evaluate two key metrics using UPV FAQ dataset
+This work will evaluate two key metrics using the UPV FAQ dataset:
 \begin{itemize}
   \item \textbf{Question matching accuracy}:
-    This metric involves calculating the cosine similarity \refeq{eq:cosine_similarity} between all possible question pairs within a dataset.
-    A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
-    The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
+ This metric involves calculating the cosine similarity \refeq{eq:cosine_similarity} between all possible question pairs within a dataset.
+ A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
+ The overall question-matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
   \item \textbf{Answer matching accuracy}:
-    This metric assesses the system's ability to identify the correct answer for a given question.
-    The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
-    By evaluating the similarity \refeq{eq:cosine_similarity} between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
-    The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
+ This metric assesses the system's ability to identify the correct answer for a given question.
+ The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
+ By evaluating the similarity \refeq{eq:cosine_similarity} between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
+ The overall answer-matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
 \end{itemize}
 
 \begin{equation}
-  S_c(A,B) = {{A \cdot B} \over {\norm{A} \norm{B}}}, \quad \text{where $A$,$B$ are vectors.}
+ S_c(A,B) = {{A \cdot B} \over {\norm{A} \norm{B}}}, \quad \text{where $A$, $B$ are vectors.}
   \label{eq:cosine_similarity}
 \end{equation}
 
-Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}} evaluator by Adam Jirkovský based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
-while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator by Yauheni Zviazdou based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
+Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}}
+evaluator by Adam Jirkovský based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
+while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}
+evaluator by Yauheni Zviazdou based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
 
 
 \subsubsection{Analogies}
@@ -91,16 +93,16 @@ Providing a single, isolated word to a transformer model would not be sufficient
 
 \subsection{Baseline}
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
-This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
+This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that is advantageous for languages like Czech.
 While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context \cite{bojanowski2017enriching}.
 The FastText word embedding model will be trained using the fastText.cc library\footref{footnote:fasttex_lib}.
 
 \subsubsection{Training parameters}
 \begin{itemize}
-  \item Architecture: \ac{CBOW} 
-  \item Vector dimensionality: 300
-  \item Loss function: Negative sampling loss
-  \item Dictionary threshold (the frequency of the word to be included in the dictionary): 130
+  \item Architecture: \ac{CBOW},
+  \item Vector dimensionality: 300,
+  \item Loss function: Negative sampling loss,
+  \item Dictionary threshold (the frequency of the word to be included in the dictionary): 130.
 \end{itemize}
 
 \subsubsection{Training data}
@@ -109,18 +111,18 @@ FastText model is trained on a segment of a preprocessed Common Crawl repository
 Given the nature of this dataset, it is expected to include misspellings and text lacking diacritics.
 
 \begin{enumerate}
-  \item Eliminating duplicate entries
-  \item Filtering out lines containing fewer than 9 characters
-  \item Excluding Uniform Resource Locators (URLs)
-  \item Breaking lines into individual sentences
-  \item Converting all text to lowercase
-  \item Removing lines containing words exceeding 30 characters
-  \item Excluding Hypertext Markup Language (HTML) tags with less than 100 characters
-  \item Removing lines surpassing 500 characters
-  \item Omitting words longer than 21 characters
+  \item Eliminating duplicate entries,
+  \item Filtering out lines containing fewer than 9 characters,
+  \item Excluding Uniform Resource Locators (URLs),
+  \item Breaking lines into individual sentences,
+  \item Converting all text to lowercase,
+  \item Removing lines containing words exceeding 30 characters,
+  \item Excluding Hypertext Markup Language (HTML) tags with less than 100 characters,
+  \item Removing lines surpassing 500 characters,
+  \item Omitting words longer than 21 characters.
 \end{enumerate}
 
-Processed corpus contains 3.87 billion words.
+The processed corpus contains 3.87 billion words.
 
 \subsubsection{Model summary}
 
@@ -131,11 +133,11 @@ This discrepancy reflects the inherent reduction in word count due to the remova
 These vocabulary sizes directly influence the number of trainable parameters within each model.
 The number of parameters ($N$) can be calculated using the formula~\refeq{eq:cbow_parameters}.
 
-\begin{align} \label{eq:cbow_parameters}
-  & N = V_{\text{size}}d + d \\
-  \text{where} \quad & V_{\text{size}} \text{ is model vocabulary size}  \notag \\
-                      & d \quad \text{is chosen dimensionality of word embeddings} \notag
-\end{align}
+\begin{equation}
+ N = V_{size}d + d,
+  \label{eq:cbow_parameters}
+\end{equation}
+where $V_{size}$ is model vocabulary size and $d$ is chosen dimensionality of word embeddings.
   
 Applying this formula to the vocabulary sizes of our models:
 \begin{itemize}
@@ -146,21 +148,22 @@ Applying this formula to the vocabulary sizes of our models:
 \subsection{Chosen transformer models}
 To ensure a comprehensive evaluation, a curated selection of embedding models will be utilized.
 This selection encompasses three distinct categories:
-
 \begin{enumerate}
   \item \textbf{Existing Czech Embedding Models}:
-    This category incorporates established Czech embedding models developed within the Czech \ac{NLP} community.
-    Their inclusion allows for a focused analysis of how these models perform specifically for the Czech language.
+ This category incorporates established Czech embedding models developed within the Czech \ac{NLP} community.
+ Their inclusion allows for a focused analysis of how these models perform specifically for the Czech language.
   \item \textbf{Multilingual Models from the \ac{MTEB}}:
-    The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}.
-    This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
+ The evaluation will leverage highly regarded multilingual models readily available through the \ac{MTEB}.
+ This inclusion enables an assessment of how these models generalize to the Czech language, providing insights into their adaptability across languages.
   \item \textbf{Popular Monolingual Models from the \ac{MTEB} (rank is lower than 50)}:
-    In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}.
-    This allows for a comparative analysis of how these models, potentially trained on English or other high-resource languages.
+ In addition to multilingual models, this selection will also include well-regarded monolingual models (models trained on a single language) from the \ac{MTEB}.
+ This allows for a comparative analysis of how these models, are potentially trained in English or other high-resource languages.
 \end{enumerate}
 
-To ensure transparency, reproducibility, and foster community development, this study will exclusively evaluate open-source text embedding models.  Furthermore, to prioritize computational efficiency and applicability to our research setting, we will restrict our evaluation to models with a parameter size of less than 1 billion.
-In cases where a model suite offers both monolingual and multilingual versions, we will prioritize the multilingual version for evaluation. This choice aligns with our focus on tasks that may involve processing text data in multiple languages, including Czech.
+To ensure transparency, reproducibility, and foster community development, this study will exclusively evaluate open-source text embedding models.
+Furthermore, to prioritize computational efficiency and applicability to our research setting, we will restrict our evaluation to models with a parameter size of less than 1 billion.
+In cases where a model suite offers both monolingual and multilingual versions, we will prioritize the multilingual version for evaluation.
+This choice aligns with our focus on tasks that may involve processing text data in multiple languages, including Czech.
 
 For a comprehensive overview of the chosen models' architectural details, please refer to Appendix~\ref{chap:appendix_A}.
 This appendix provides a more in-depth examination of the specific configurations employed by each model.
@@ -174,9 +177,9 @@ The Czert model \cite{sido2021czert} is a set of Czech \ac{BERT}-like language r
 These models leverage the \ac{BERT} and A Lite \ac{BERT} (ALBERT) \cite{lan2020albert} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
 The training set includes a comprehensive corpus of Czech texts, such as Wikipedia\footnote{\label{footnote:wikipedia}Wikipedia is a free content online encyclopedia written and maintained by a community of volunteers: \url{https://en.wikipedia.org/}} articles, news, and other texts, accumulating to around 36GB of data.
 
-There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only Czert-B model.
+There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only the Czert-B model.
 Czert-B model is based on the traditional \ac{BERT} architecture (110M parameters).
-Model are pre-trained from scratch using \ac{MLM} and \ac{NSP} tasks. However, a slight modification is made to the \ac{NSP} task to adapt it better to the Czech language corpus structure.
+Models are pre-trained from scratch using \ac{MLM} and \ac{NSP} tasks. However, a slight modification is made to the \ac{NSP} task to adapt it better to the Czech language corpus structure.
 
 % Seznam
 \subsubsection{Seznam's models} \label{model:seznam}
@@ -185,19 +188,19 @@ These models were developed by the Seznam research group with a focus on efficie
 
 \begin{itemize}
   \item \textbf{RetroMAE-Small}:
-    This model leverages a \ac{BERT}-small architecture pre-trained with the \ac{RetroMAE} objective \cite{xiao2022retromae} on a custom Czech corpus.
-    The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
+ This model leverages a \ac{BERT}-small architecture pre-trained with the \ac{RetroMAE} objective \cite{xiao2022retromae} on a custom Czech corpus.
+ The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
   \item \textbf{Dist-MPNet-ParaCrawl} \& \textbf{Dist-MPNet-CzEng}:
-    These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
-    Distillation \cite{sanh2020distilbert} involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
-    The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{espla2019paracrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{kocmi2020announcing}.
+ These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
+ Distillation \cite{sanh2020distilbert} involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
+ The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{espla2019paracrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{kocmi2020announcing}.
   \item \textbf{SimCSE-RetroMAE-Small} \& \textbf{SimCSE-Dist-MPNet-ParaCrawl} \& \textbf{SimCSE-Dist-MPNet-CzEng}:
-    These models are based on the previously described RetroMAE-Small, Dist-MPNet-ParaCrawl, and Dist-MPNet-CzEng models respectively.
-    Each is further fine-tuned with the \ac{SimCSE} objective \cite{gao2022simcse}.
-    \ac{SimCSE} focuses on improving sentence embedding quality by encouraging models to generate similar representations for semantically equivalent sentences.
+ These models are based on the previously described RetroMAE-Small, Dist-MPNet-ParaCrawl, and Dist-MPNet-CzEng models respectively.
+ Each is further fine-tuned with the \ac{SimCSE} objective \cite{gao2022simcse}.
+ \ac{SimCSE} focuses on improving sentence embedding quality by encouraging models to generate similar representations for semantically equivalent sentences.
   \item \textbf{SimCSE-Small-E-Czech}:
-    This model builds upon the Czech ELECTRA model \cite{kocián2021siamese}.
-    It is fine-tuned with the \ac{SimCSE} \cite{gao2022simcse} objective to enhance the quality of its sentence embeddings.    
+ This model builds upon the Czech ELECTRA model \cite{kocián2021siamese}.
+ It is fine-tuned with the \ac{SimCSE} \cite{gao2022simcse} objective to enhance the quality of its sentence embeddings.    
 \end{itemize}
 
 The developed models are about eight times smaller and five times faster than conventional base-sized models, making them suitable for real-time applications where computational efficiency is critical.
@@ -217,7 +220,7 @@ This approach ensures that even languages with limited resources are adequately 
 \ac{mE5} models by Microsoft \cite{wang2024multilingual} are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{wang2024text}.
 These models are available in three variants — small, base, and large — catering to different computational efficiency and performance needs.
 The \ac{mE5} models are trained using a two-phase approach.
-The first phase involves weakly-supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia\footref{footnote:wikipedia}, mC4 \cite{xue2021mt5}, Multilingual CC News \cite{commoncrawl}, Reddit\footnote{\label{footnote:reddit}Reddit is a social media platform: \url{https://www.reddit.com/}}, etc.).
+The first phase involves weakly supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia\footref{footnote:wikipedia}, mC4 \cite{xue2021mt5}, Multilingual CC News \cite{commoncrawl}, Reddit\footnote{\label{footnote:reddit}Reddit is a social media platform: \url{https://www.reddit.com/}}, etc.).
 The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{bajaj2018ms}, Natural Questions \cite{kwiatkowski2019natural}, TriviaQA \cite{joshi2017triviaqa}, SQuAD \cite{rajpurkar2016squad}, etc.).
 
 % LaBSE
@@ -243,14 +246,14 @@ These models are specifically tuned for various tasks, providing researchers wit
 The following pre-trained models from SentenceTransformers will be evaluated in this study:
 \begin{itemize}
   \item \textbf{Distiluse-Base-Multilingual-Cased-v2}:
-    This model leverages knowledge distillation \cite{sanh2020distilbert}.
-    In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
-    Notably, this version supports sentence encoding for over 50 languages, including Czech.
+ This model leverages knowledge distillation \cite{sanh2020distilbert}.
+ In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
+ Notably, this version supports sentence encoding for over 50 languages, including Czech.
   \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
-    It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2}\footnote{\textit{sentence-transformers/paraphrase-MiniLM-L12-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
-    By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
+ It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2}\footnote{\textit{sentence-transformers/paraphrase-MiniLM-L12-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
+ By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
   \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2}\footnote{\textit{sentence-transformers/paraphrase-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
-    This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
+ This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
 
@@ -264,31 +267,31 @@ This model is designed to address the challenges posed by the saturation zones o
 
 The model is trained using a hybrid objective that combines cosine similarity \refeq{eq:cosine_similarity}, in-batch negatives, and angle differences in complex space.
 This approach helps overcome the limitations of traditional cosine similarity \refeq{eq:cosine_similarity} measures by ensuring better gradient flow during training.
-Training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
+The training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
 
 % Mxbai embed
 \subsubsection{Mxbai embed}
-This is study incorporates two models developed by MixedBread AI:
+This study incorporates two models developed by MixedBread AI:
 \begin{itemize}
   \item \textbf{Mxbai-Embed-Large-v1} \cite{emb2024mxbai}:
-    This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
-    As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
-    Notably, Mxbai-Embed-Large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
-    The success of this model can be attributed to its robust training methodology.
-    Mxbai-Embed-Large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
-    This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
-    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE \cite{li2024angleoptimized} loss function.
-    This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
+ This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
+ As of March 2024, it holds the leading position among publicly available models of its class within the \ac{MTEB}.
+ Notably, Mxbai-Embed-Large-v1 surpasses other models in tasks such as classification, clustering, and retrieval.
+ The success of this model can be attributed to its robust training methodology.
+ Mxbai-Embed-Large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
+ This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
+ Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE \cite{li2024angleoptimized} loss function.
+ This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data.
   \item \textbf{Mxbai-Embed-2D-Large-v1} \cite{emb2024mxbai2d}:
-    This model introduces a novel Espresso Sentence Embeddings (ESE) architecture \cite{li2024ese}, marking a significant advancement in the field of text embedding.
-    The ESE architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
-    This  flexibility enables users to tailor the model size and complexity based on their specific computational needs.
-    This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
-    The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
-    These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints.
-    Mxbai-Embed-2D-Large-v1 tackles this challenge by employing a novel training strategy.
-    This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets.
-    This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
+ This model introduces a novel Espresso Sentence Embeddings (ESE) architecture \cite{li2024ese}, marking a significant advancement in the field of text embedding.
+ The ESE architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
+ This flexibility enables users to tailor the model size and complexity based on their specific computational needs.
+ This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
+ The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
+ These fixed-size embeddings can be inefficient for tasks requiring rapid processing or limited memory footprints.
+ Mxbai-Embed-2D-Large-v1 tackles this challenge by employing a novel training strategy.
+ This strategy incorporates contrastive training on a diverse dataset and fine-tuning on high-quality triplets.
+ This approach allows the model to achieve competitive performance while offering significant reductions in resource consumption compared to traditional dense models.
 \end{itemize}
 
 % Nomic Embed
@@ -310,12 +313,12 @@ While there may be a slight reduction in performance, developers can choose a sm
 % GTE
 \subsubsection{\ac{GTE} and \ac{GTE}-v1.5} \label{model:gte}
 The \ac{GTE} model is a pivotal development in \ac{NLP}, utilizing a deep Transformer encoder based on a \ac{BERT}-like architecture for generating dense text embeddings.
-Initially, the \ac{GTE} model is unsupervisedly pre-trained on approximately 800 million text pairs from diverse web sources, enabling broad semantic coverage.
+Initially, the \ac{GTE} model is unsupervised pre-trained on approximately 800 million text pairs from diverse web sources, enabling broad semantic coverage.
 It then undergoes supervised fine-tuning with 3 million annotated text triples from varied datasets, including MS MARCO \cite{bajaj2018ms} and Natural Questions \cite{kwiatkowski2019natural}, applying contrastive learning to enhance text relevance detection and similarity assessments.
 This dual-stage training strategy equips the \ac{GTE} model to excel in complex \ac{NLP} tasks, demonstrating significant versatility and robust performance across multiple applications.
 
 The Alibaba Institute for Intelligent Computing released the \ac{GTE}-v1.5 transformer model, an upgrade to the \ac{GTE}-v1.0 model.
-Detailed information about the specific changes introduced in \ac{GTE}-v1.5 is not yet publicly available, 
+Detailed information about the specific changes introduced in \ac{GTE}-v1.5 is not yet publicly available.
 
 % BGE
 \subsubsection{\ac{BGE}-v1.5} \label{model:bge}
@@ -340,9 +343,9 @@ This study incorporates two distilled transformer models from TaylorAI for evalu
 
 \begin{itemize}
   \item \textbf{TaylorAI/BGE-micro-v2}\footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
-    This model is a 2-step distilled \cite{sanh2020distilbert} version of the small \ac{BGE}-v1.5 model
+ This model is a 2-step distilled \cite{sanh2020distilbert} version of the small \ac{BGE}-v1.5 model.
   \item \textbf{TaylorAI/GTE-tiny}\footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
-    This model is a distilled \cite{sanh2020distilbert} version of the small version of \ac{GTE} model
+ This model is a distilled \cite{sanh2020distilbert} version of the small version of \ac{GTE} model.
 \end{itemize}
 
 % ember-v1
@@ -359,7 +362,7 @@ Notably, the training process incorporates techniques inspired by both \ac{Retro
 
 % Snowflake-arctic-embed leverages a two-stage training pipeline
 % \begin{enumerate}
-%   \item Pretraining on large batches of query-document pairs with dynamically generated negative examplesusing dataset with 400M samples combining public data and proprietary web search data.
+%   \item Pretraining on large batches of query-document pairs with dynamically generated negative examples using a dataset with 400M samples combining public data and proprietary web search data.
 %   \item Fine-tuning the model on a smaller dataset (1M samples) consisting of query-positive document-negative document triplets to improve retrieval accuracy.
 % \end{enumerate}
 
@@ -371,22 +374,22 @@ To identify the most suitable text representation model for \ac{RAG} in technica
 
 \begin{itemize}
   \item \textbf{Text Chunk Size}:
-    The size of text chunks used by the \ac{RAG} algorithm (e.g., words, sentences, or paragraphs) can impact performance.
-    We will investigate the optimal chunk size for technical \ac{QA} tasks.
-    Here, we will balance the granularity of information retrieved by the model with computational efficiency.
-    Smaller chunks (words) might capture finer details but require more processing, while larger chunks (paragraphs) might be faster to process but might miss relevant details.  
+ The size of text chunks used by the \ac{RAG} algorithm (e.g., words, sentences, or paragraphs) can impact performance.
+ We will investigate the optimal chunk size for technical \ac{QA} tasks.
+ Here, we will balance the granularity of information retrieved by the model with computational efficiency.
+ Smaller chunks (words) might capture finer details but require more processing, while larger chunks (paragraphs) might be faster to process but might miss relevant details.  
   \item \textbf{Embedding Efficiency}:
-    Computational efficiency is crucial for real-world applications.
-    We will evaluate the processing time required for model to encode different chunk sizes.
+ Computational efficiency is crucial for real-world applications.
+ We will evaluate the processing time required for the model to encode different chunk sizes.
   \item \textbf{Factuality of Generated Answers}:
-    The primary objective is to generate answers that are factually accurate and consistent with the technical document.
+ The primary objective is to generate answers that are factually accurate and consistent with the technical document.
 \end{itemize}
 
 \subsection{Chunk size and $K$ parameter selection}
 This section explores the selection of chunk sizes and the corresponding $K$ parameter for evaluation using the \ac{RAG} model.
 The chunk size refers to the length of text passages (number of characters) that will be processed by the \ac{RAG} model during evaluation.
 The $K$ parameter, on the other hand, determines the number of retrieved passages that the \ac{RAG} model will consider when generating a response.
-Chosen parameters are shown at \reftab{table:RAG_settings}
+Chosen parameters are shown at \reftab{table:RAG_settings}.
 
 \input{src/tables/RAG_settings.tex}
 
@@ -398,7 +401,7 @@ The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footn
 Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
 
-For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as popular small model with good \ac{MTEB} rating.
+For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as a popular small model with a good \ac{MTEB} rating.
 
 For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{openai2023gpt35turbo}.
 The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}}.

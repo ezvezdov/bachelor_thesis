@@ -8,7 +8,7 @@ Table \ref{tab:evaluatinon} presents the evaluation results for the chosen text 
 \subsection{Analysis of results}
 \subsubsection{Czech models}
 Among the evaluated Czech models, SimCSE-RetroMAE-Small demonstrated the most promising performance.
-This model effectively handled both text with diacritics and diacriticless variants, outperforming other models within this category.
+This model effectively handled both texts with diacritics and diacriticless variants, outperforming other models within this category.
 Notably, the remaining Czech models achieved performance below the established baseline.
 
 The performance of Czert-B can potentially be attributed to the fact that it was not specifically fine-tuned for the task of generating text embeddings.
@@ -33,32 +33,32 @@ Utilizing alternative training objectives or supervised learning approaches tail
 
 \subsubsection{Monolingual models}
 
-While all monolingual models achieved performance near the established baseline, this is a noteworthy finding considering they were not specifically trained on the Czech language.
+While all monolingual models achieved performance near the established baseline, this is a noteworthy finding considering they were not specifically trained in the Czech language.
 This suggests that some level of semantic similarity can be captured between languages with inherent structural similarities, even without targeted training on the target language.
 However, it is important to acknowledge that languages possess distinct vocabularies, grammatical structures, and cultural nuances.
-Models trained solely on a language like English may struggle to fully grasp the intricacies of Czech text, potentially hindering their ability to achieve optimal performance in tasks involving semantic similarity assessment.
+Models trained solely in a language like English may struggle to fully grasp the intricacies of Czech text, potentially hindering their ability to achieve optimal performance in tasks involving semantic similarity assessment.
 
 In contrast, several monolingual models, particularly the Nomic Embed models, the small version of \ac{GTE}, and the large version of \ac{GTE}-v1.5, exhibited performance exceeding the baseline.
 This highlights the potential effectiveness of certain model architectures, even when not specifically trained on the target language.
 Further investigation into the specific characteristics of these models that contribute to their success in this context might provide valuable insights for future research.
 
 \begin{figure}[htbp]
-    \centering
+ \centering
 
-    \subfloat[Evaluatinon using diacritics tests.]{%
-        \centering
-        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacritics.pdf}
-        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacritics.pdf}
+ \subfloat[Evaluatinon using diacritics tests.]{%
+ \centering
+ \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacritics.pdf}
+ \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacritics.pdf}
         \label{fig:CM_diacritics}
-    }
+ }
 
-    \subfloat[Evaluatinon using diacriticless tests.]{%
-        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacriticless.pdf}
-        \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacriticless.pdf}
+ \subfloat[Evaluatinon using diacriticless tests.]{%
+ \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacriticless.pdf}
+ \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacriticless.pdf}
         \label{fig:CM_diacriticless}
-    }
+ }
 
-    \caption{Confusion matrices of \ac{mE5}\textsubscript{Large} evaluated using diacritics (a) and diacriticless (b) FAQ50 subsets of UPV FAQ dataset.}
+ \caption{Confusion matrices of \ac{mE5}\textsubscript{Large} evaluated using diacritics (a) and diacriticless (b) FAQ50 subsets of UPV FAQ dataset.}
     \label{fig:Confusion_matrices}
 \end{figure}
 
@@ -107,5 +107,5 @@ This suggests that providing the model with larger text segments during the embe
 %     \item Present the results of the evaluation for different text representations using analogy tests and confusion matrices.
 %     \item Discuss the findings regarding the effectiveness of each representation model for capturing semantic relationships in technical text.
 %     \item Analyze the results from the \ac{RAG} evaluation, highlighting the impact of different representations and text chunk sizes on answer generation quality and CPU efficiency.
-%     \item Identify the representation model that achieves a balance between factuality of answers and computational demands.
+%     \item Identify the representation model that achieves a balance between the factuality of answers and computational demands.
 % \end{itemize}

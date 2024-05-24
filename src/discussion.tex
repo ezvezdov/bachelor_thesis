@@ -7,7 +7,7 @@ This study explores the potential benefits of transformer-based models for text 
 Interestingly, the SimCSE-RetroMAE-Small transformer model achieves superior performance despite having significantly fewer parameters than FastText.
 This finding suggests that the inherent architecture of transformer models may be particularly adept at capturing semantic meaning within textual data.
 
-Furthermore, the study reveals that certain monolingual models, even those not specifically trained on the Czech language used for evaluation, achieve surprisingly positive results.
+Furthermore, the study reveals that certain monolingual models, even those not specifically trained in the Czech language used for evaluation, achieve surprisingly positive results.
 This suggests that some level of semantic similarity can be identified between languages with structural similarities, even without targeted training.
 However, it is important to acknowledge that these models might not reach optimal performance for tasks involving Czech text analysis.
 
@@ -24,7 +24,7 @@ While these models achieve promising results, a potential avenue for future rese
 Fine-tuning pre-trained models on a Czech-specific dataset tailored for semantic similarity tasks could potentially lead to further performance improvements.
 
 The current study utilizes an English dataset for \ac{RAG} evaluation.
-Optimal chunk size can vary between languages due to differences in average word length.
+The optimal chunk size can vary between languages due to differences in average word length.
 Therefore, a valuable future research direction involves creating a new dataset focused on technical \ac{QA} in Czech.
 Testing different chunk sizes within this new dataset would be crucial for identifying the optimal configuration for Czech technical \ac{QA} tasks.
 
