@@ -23,7 +23,7 @@ Compared to more recent and complex models, Word2Vec requires minimal hyperparam
 However, it is important to acknowledge that Word2Vec has limitations.
 These include its inability to capture \textbf{global information} within a document, its challenges in effectively handling \textbf{morphologically rich languages} (languages with many word variations), and its lack of awareness of the \textbf{broader context} beyond a limited window of surrounding words.
 
-\subsection{GloVe}
+\subsection{\acf{GloVe}}
 \ac{GloVe} \cite{pennington2014glove} leverages the co-occurrence statistics of words within a corpus to learn vector representations.
 This approach involves constructing a co-occurrence matrix, where each entry reflects the frequency of two words appearing together within a predefined window size.
 This matrix essentially captures the relative importance of various word pairings.
@@ -51,7 +51,7 @@ However, it's important to acknowledge that FastText also has limitations:
 \end{itemize}
 
 \section{Transformer-based models}
-Transformer models \cite{vaswani2023attention} \nocite{umarjamilai} underpin powerful NLP models like BERT.
+Transformer models \cite{vaswani2023attention} \nocite{umarjamilai} underpin powerful \ac{NLP} models like \ac{BERT}.
 A key advantage is their self-attention mechanism, which assigns importance to words based on context, not just position.
 This enables efficient parallel processing of entire sentences.
 Architecture of transformers visualized in \reffig{fig:model-arch}
@@ -63,7 +63,7 @@ Architecture of transformers visualized in \reffig{fig:model-arch}
     \label{fig:model-arch}
 \end{figure}
 
-BERT \cite{devlin2019bert} builds on transformers with pre-training on a massive text corpus.
+\ac{BERT} \cite{devlin2019bert} builds on transformers with pre-training on a massive text corpus.
 \ac{MLM} and \ac{NSP} further enhance \ac{BERT}'s capabilities, fostering deep contextual understanding and grasp of sentence relationships.
 \ac{MLM} injects a deeper understanding of context into \ac{BERT} by requiring it to predict masked words within a sentence.
 Through this process, \ac{BERT} learns the relationships between words and their meaning based on the surrounding context.
@@ -148,7 +148,7 @@ Two important aspects are:
 % Literature Review Structure
 % \begin{itemize}
 %     \item Discuss traditional word embedding methods like FastText and their limitations.
-%     \item Explain the concept of transformer-based models like BERT and their advantages for text representation.
-%     \item Review related work on RAG algorithms and their dependence on effective text representations.Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
+%     \item Explain the concept of transformer-based models like \ac{BERT} and their advantages for text representation.
+%     \item Review related work on \ac{RAG} algorithms and their dependence on effective text representations.Discuss existing research on evaluating text representations using analogy tests and confusion matrices.
 %     \item Briefly mention the UPV corpus set as the chosen evaluation benchmark.
 % \end{itemize}
