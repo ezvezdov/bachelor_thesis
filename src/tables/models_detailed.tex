@@ -1,52 +1,52 @@
 \begin{table*}[ht!]
-    \centering
-    \begin{tabular}{lcccccccc}
-      \toprule
-      \textbf{Model} & $L$ & $H_m$ & $H_{ff}$ & $A$ & $D$ & $T_{max}$ & $V$ & $N_p$ \\
-      \midrule
-      FastText\textsubscript{diacritics} & - & - & - & - & 300 & - & 800K & 240M \\
-      FastText\textsubscript{diacriticless} & - & - & - & - & 300 & - & 762K & 229M \\
-      \midrule
-      Czert-B & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 110M \\
-      RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      SimCSE-RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      SimCSE-Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      SimCSE-Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
-      SimCSE-Small-E-Czech & 12 & 256 & 1024 & 4 & 256 & 512 & 31K & 13M \\
-      mBERT & 12 & 768 & 3072 & 12 & 768 & 512 & 120K & 178M \\
-      mE5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
-      mE5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
-      mE5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
-      LaBSE & 12 & 768 & 3072 & 12 & 768 & 512 & 502K & 471M \\
-      XLM-R\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 279M \\
-      XLM-R\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
-      Distiluse-Base-Multilingual-Cased-v2 & 6 & 768 & 3072 & 12 & 512 & 512 & 120K & 135M \\
-      Paraphrase-Multilingual-MiniLM-L12-v2 & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
-      Paraphrase-Multilingual-MPNet-Base-v2 & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
-      UAE-Large-V1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      Mxbai-Embed-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      Mxbai-Embed-2D-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      Nomic-Embed-v1 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
-      Nomic-Embed-v1.5 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
-      Ember-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      GTE\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
-      GTE\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
-      GTE\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      GTE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
-      GTE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 8192 & 31K & 434M \\
-      BGE-v1.5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
-      BGE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
-      BGE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      GIST-Embedding-v0\textsubscript{Small} & 12 & 384 & 1536 & 12 & 512 & 512 & 31K & 33M \\
-      GIST-Embedding-v0\textsubscript{Base}  & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
-      GIST-Embedding-v0\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
-      TaylorAI/BGE-micro-v2 & 3 & 384 & 1536 & 12 & 512 & 512 & 31K & 17M \\
-      TaylorAI/GTE-tiny & 6 & 384 & 1536 & 12 & 384 & 512 & 31K & 23M \\
-      \bottomrule
-    \end{tabular}
-    \caption{Details on model sizes.}
-    \label{tab:parameters}
-  \end{table*}
+  \centering
+  \begin{tabular}{lcccccccc}
+    \toprule
+    \textbf{Model} & $L$ & $H_m$ & $H_{ff}$ & $A$ & $D$ & $T_{max}$ & $V$ & $N_p$ \\
+    \midrule
+    FastText\textsubscript{diacritics} & - & - & - & - & 300 & - & 800K & 240M \\
+    FastText\textsubscript{diacriticless} & - & - & - & - & 300 & - & 762K & 229M \\
+    \midrule
+    Czert-B & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 110M \\
+    RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    SimCSE-RetroMAE-Small & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    SimCSE-Dist-MPNet-ParaCrawl & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    SimCSE-Dist-MPNet-CzEng & 12 & 256 & 1024 & 4 & 256 & 512 & 58K & 24M \\
+    SimCSE-Small-E-Czech & 12 & 256 & 1024 & 4 & 256 & 512 & 31K & 13M \\
+    mBERT & 12 & 768 & 3072 & 12 & 768 & 512 & 120K & 178M \\
+    mE5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
+    mE5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
+    mE5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
+    LaBSE & 12 & 768 & 3072 & 12 & 768 & 512 & 502K & 471M \\
+    XLM-R\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 279M \\
+    XLM-R\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 514 & 250K & 560M \\
+    Distiluse-Base-Multilingual-Cased-v2 & 6 & 768 & 3072 & 12 & 512 & 512 & 120K & 135M \\
+    Paraphrase-Multilingual-MiniLM-L12-v2 & 12 & 384 & 1536 & 12 & 384 & 512 & 250K & 118M \\
+    Paraphrase-Multilingual-MPNet-Base-v2 & 12 & 768 & 3072 & 12 & 768 & 514 & 250K & 278M \\
+    UAE-Large-V1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    Mxbai-Embed-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    Mxbai-Embed-2D-Large-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    Nomic-Embed-v1 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+    Nomic-Embed-v1.5 & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+    Ember-v1 & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    GTE\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
+    GTE\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+    GTE\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    GTE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 8192 & 31K & 137M \\
+    GTE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 8192 & 31K & 434M \\
+    BGE-v1.5\textsubscript{Small} & 12 & 384 & 1536 & 12 & 384 & 512 & 31K & 33M \\
+    BGE-v1.5\textsubscript{Base} & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+    BGE-v1.5\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    GIST-Embedding-v0\textsubscript{Small} & 12 & 384 & 1536 & 12 & 512 & 512 & 31K & 33M \\
+    GIST-Embedding-v0\textsubscript{Base}  & 12 & 768 & 3072 & 12 & 768 & 512 & 31K & 109M \\
+    GIST-Embedding-v0\textsubscript{Large} & 24 & 1024 & 4096 & 16 & 1024 & 512 & 31K & 335M \\
+    TaylorAI/BGE-micro-v2 & 3 & 384 & 1536 & 12 & 512 & 512 & 31K & 17M \\
+    TaylorAI/GTE-tiny & 6 & 384 & 1536 & 12 & 384 & 512 & 31K & 23M \\
+    \bottomrule
+  \end{tabular}
+  \caption{Details on model sizes.}
+  \label{tab:parameters}
+\end{table*}
   
