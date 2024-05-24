@@ -39,26 +39,40 @@ As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating d
 
 \subsubsection{UPV FAQ}
 
-Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic website \footnote{UPV website: \url{https://upv.gov.cz/}}, organized into four distinct groups, as detailed in \reftab{table:UPV_FAQ_info}.
+Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}}.
+Each test within the UPV FAQ dataset follows a consistent structure, consisting of three key elements:
+\begin{itemize}
+  \item \textbf{Question}:
+    This element specifies the question from the UPV website\footref{footnote_upv_website}.
+  \item \textbf{Answer}:
+    This element provides the expected or correct response to the corresponding question.
+  \item \textbf{Semantic Class}:
+    This element assigns the test item to a specific category based on its semantic meaning.
+    The details regarding the number of distinct semantic classes are presented in \reftab{table:UPV_FAQ_info}.
+\end{itemize}
 
 \input{src/tables/UPV_info.tex}
 
 This work will evaluate two key metrics using UPV FAQ dataset
 \begin{itemize}
   \item \textbf{Question matching accuracy}:
-    This metric involves calculating the cosine similarity between all possible question pairs within a dataset.
+    This metric involves calculating the cosine similarity \refeq{eq:cosine_similarity} between all possible question pairs within a dataset.
     A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
     The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
   \item \textbf{Answer matching accuracy}:
     This metric assesses the system's ability to identify the correct answer for a given question.
     The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
-    By evaluating the similarity between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
+    By evaluating the similarity \refeq{eq:cosine_similarity} between the question and each answer embedding, the system classifies the question as corresponding to the answer with the highest similarity score.
     The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
 \end{itemize}
 
+\begin{equation}
+  S_c(A,B) = {{A \cdot B} \over {\norm{A} \norm{B}}}, \quad \text{where $A$,$B$ are vectors.}
+  \label{eq:cosine_similarity}
+\end{equation}
 
-
-Traditional models will be assessed using \textit{jirkoada/upv\_faq} \footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers} \footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
+Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}} evaluator based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
+while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator based on \textit{sentence-transformers} library \footnote{\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
 
 
 \subsubsection{Analogies}
@@ -83,7 +97,7 @@ These alternative methods, such as masked language modeling tasks, can provide a
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
 This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
 While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context.
-The FastText word embedding model will be trained using the fastText.cc library \footnote{fastText.cc library website: \url{https://fasttext.cc/}}
+The FastText word embedding model will be trained using the fastText.cc library\footref{footnote:fasttex_lib}.
 
 \subsubsection{Training parameters}
 \begin{itemize}
@@ -178,7 +192,7 @@ These models were developed by the Seznam research group with a focus on efficie
     This model leverages a \ac{BERT}-small architecture pre-trained with the \ac{RetroMAE} objective \cite{xiao2022retromae} on a custom Czech corpus.
     The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
   \item \textbf{Dist-MPNet-ParaCrawl} \& \textbf{Dist-MPNet-CzEng}:
-    These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2} \footnote{\label{hf_all-mpnet-base-v2} Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
+    These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
     Distillation involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
     The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{espla2019paracrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{kocmi2020announcing}.
   \item \textbf{SimCSE-RetroMAE-Small} \& \textbf{SimCSE-Dist-MPNet-ParaCrawl} \& \textbf{SimCSE-Dist-MPNet-CzEng}:
@@ -239,9 +253,9 @@ The following pre-trained models from SentenceTransformers will be evaluated in 
     In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
     Notably, this version supports sentence encoding for over 50 languages, including Czech.
   \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
-    It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2} \footnote{Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
+    It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2}\footnote{\textit{sentence-transformers/paraphrase-MiniLM-L12-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
     By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
-  \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2} \footnote{ Model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
+  \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2}\footnote{\textit{sentence-transformers/paraphrase-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
     This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
@@ -330,9 +344,9 @@ This selection ensures we investigate the most promising fine-tuning approaches 
 This study incorporates two distilled transformer models from TaylorAI for evaluation:
 
 \begin{itemize}
-  \item \textbf{TaylorAI/BGE-micro-v2} \footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
+  \item \textbf{TaylorAI/BGE-micro-v2}\footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
     This model is a 2-step distilled version of the small \ac{BGE}-v1.5 model
-  \item \textbf{TaylorAI/GTE-tiny} \footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
+  \item \textbf{TaylorAI/GTE-tiny}\footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
     This model is a distilled version of the small version of \ac{GTE} model
 \end{itemize}
 
@@ -387,7 +401,7 @@ Chosen parameters are shown at \reftab{table:RAG_settings}
 \subsection{\ac{RAG} pipeline}
 
 This section describes the evaluation methodology employed for the \ac{RAG} model.
-The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator} \footnote {\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool.
+The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footnote {\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool.
 
 Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
@@ -395,7 +409,7 @@ The test set comprises two components: a technical manual and a set of 200 quest
 For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as popular small model with good \ac{MTEB} rating.
 
 For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{brown2020language}.
-The quality of the answers will be controlled and verified using GPT-4o \footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}}.
+The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}}.
 
 
 
