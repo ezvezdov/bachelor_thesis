@@ -35,6 +35,26 @@ Utilizing alternative training objectives or supervised learning approaches tail
 \input{src/tables/evaluation.tex}
 \FloatBarrier
 
+\begin{figure}[htbp]
+    \centering
+   
+    \subfloat[Evaluatinon using diacritics tests.]{%
+    \centering
+    \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacritics.pdf}
+    \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacritics.pdf}
+           \label{fig:CM_diacritics}
+    }
+   
+    \subfloat[Evaluatinon using diacriticless tests.]{%
+    \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacriticless.pdf}
+    \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacriticless.pdf}
+           \label{fig:CM_diacriticless}
+    }
+   
+    \caption{Confusion matrices of \ac{mE5}\textsubscript{Large} evaluated using diacritics (a) and diacriticless (b) FAQ50 subsets of UPV FAQ dataset.}
+       \label{fig:Confusion_matrices}
+\end{figure}
+
 \subsubsection{Monolingual models}
 
 While all monolingual models achieved performance near the established baseline, this is a noteworthy finding considering they were not specifically trained in the Czech language.
@@ -45,26 +65,6 @@ Models trained solely in a language like English may struggle to fully grasp the
 In contrast, several monolingual models, particularly the Nomic Embed models, the small version of \ac{GTE}, and the large version of \ac{GTE}-v1.5, exhibited performance exceeding the baseline.
 This highlights the potential effectiveness of certain model architectures, even when not specifically trained on the target language.
 Further investigation into the specific characteristics of these models that contribute to their success in this context might provide valuable insights for future research.
-
-\begin{figure}[htbp]
- \centering
-
- \subfloat[Evaluatinon using diacritics tests.]{%
- \centering
- \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacritics.pdf}
- \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacritics.pdf}
-        \label{fig:CM_diacritics}
- }
-
- \subfloat[Evaluatinon using diacriticless tests.]{%
- \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_QMA_FAQ50_diacriticless.pdf}
- \includegraphics[width=0.54\textwidth,valign=t]{src/fig/pdfs/CM_AMA_FAQ50_diacriticless.pdf}
-        \label{fig:CM_diacriticless}
- }
-
- \caption{Confusion matrices of \ac{mE5}\textsubscript{Large} evaluated using diacritics (a) and diacriticless (b) FAQ50 subsets of UPV FAQ dataset.}
-    \label{fig:Confusion_matrices}
-\end{figure}
 
 
 
@@ -97,7 +97,7 @@ Conversely, smaller chunk sizes might result in a higher number of text segments
 Results of the \ac{RAG} evaluation are presented in \reftab{tab:RAG_evaluation}.
 \input{src/tables/RAG_evaluation.tex}
 
-Our analysis of the results in \reftab{tab:RAG_evaluation} (or similar table title) reveals a positive correlation between chunk size and model accuracy.
+Our analysis of the results in \reftab{tab:RAG_evaluation} reveals a positive correlation between chunk size and model accuracy.
 The model achieves its highest accuracy when processing chunks of 4096 characters.
 This suggests that providing the model with larger text segments during the embedding process might contribute to improved performance in capturing semantic relationships within the text.
 
