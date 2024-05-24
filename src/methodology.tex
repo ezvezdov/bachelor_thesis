@@ -41,6 +41,8 @@ As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating d
 
 Dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic website \footnote{UPV website: \url{https://upv.gov.cz/}}, organized into four distinct groups, as detailed in \reftab{table:UPV_FAQ_info}.
 
+\input{src/tables/UPV_info.tex}
+
 This work will evaluate two key metrics using UPV FAQ dataset
 \begin{itemize}
   \item \textbf{Question matching accuracy}:
@@ -54,7 +56,7 @@ This work will evaluate two key metrics using UPV FAQ dataset
     The overall answer matching accuracy is then calculated as the proportion of questions for which the system correctly identifies the corresponding answer.  
 \end{itemize}
 
-\input{src/tables/UPV_ntests.tex}
+
 
 Traditional models will be assessed using \textit{jirkoada/upv\_faq} \footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}}, while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers} \footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}.
 
