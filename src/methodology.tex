@@ -72,7 +72,7 @@ This work will evaluate two key metrics using UPV FAQ dataset
 \end{equation}
 
 Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}} evaluator based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
-while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator based on \textit{sentence-transformers} library \footnote{\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
+while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
 
 
 \subsubsection{Analogies}
@@ -89,14 +89,10 @@ They generate word embeddings dynamically, considering the specific context in w
 This context-dependent nature of transformer embeddings renders traditional analogy tests inapplicable.
 Providing a single, isolated word to a transformer model would not be sufficient for it to generate a high-quality embedding that effectively captures all potential word contexts.
 
-In light of these limitations, analogy-based evaluations are not well-suited for assessing the performance of transformer models.
-Therefore, we opted to prioritize alternative evaluation methods that are more compatible with the context-aware embedding generation process employed by transformers.
-These alternative methods, such as masked language modeling tasks, can provide a more accurate assessment of a transformer model's ability to capture semantic relationships within text.
-
 \subsection{Baseline}
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
 This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that has been shown to be advantageous for languages like Czech.
-While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context.
+While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context \cite{bojanowski2017enriching}.
 The FastText word embedding model will be trained using the fastText.cc library\footref{footnote:fasttex_lib}.
 
 \subsubsection{Training parameters}
@@ -115,7 +111,7 @@ Given the nature of this dataset, it is expected to include misspellings and tex
 \begin{enumerate}
   \item Eliminating duplicate entries
   \item Filtering out lines containing fewer than 9 characters
-  \item Excluding URLs
+  \item Excluding Uniform Resource Locators (URLs)
   \item Breaking lines into individual sentences
   \item Converting all text to lowercase
   \item Removing lines containing words exceeding 30 characters
@@ -176,7 +172,7 @@ This appendix provides a more in-depth examination of the specific configuration
 
 The Czert model \cite{sido2021czert} is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
 These models leverage the \ac{BERT} and A Lite \ac{BERT} (ALBERT) \cite{lan2020albert} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
-The training set includes a comprehensive corpus of Czech texts, such as Wikipedia articles, news, and other texts, accumulating to around 36GB of data.
+The training set includes a comprehensive corpus of Czech texts, such as Wikipedia\footnote{\label{footnote:wikipedia}Wikipedia is a free content online encyclopedia written and maintained by a community of volunteers: \url{https://en.wikipedia.org/}} articles, news, and other texts, accumulating to around 36GB of data.
 
 There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only Czert-B model.
 Czert-B model is based on the traditional \ac{BERT} architecture (110M parameters).
@@ -193,7 +189,7 @@ These models were developed by the Seznam research group with a focus on efficie
     The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
   \item \textbf{Dist-MPNet-ParaCrawl} \& \textbf{Dist-MPNet-CzEng}:
     These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
-    Distillation involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
+    Distillation \cite{sanh2020distilbert} involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
     The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{espla2019paracrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{kocmi2020announcing}.
   \item \textbf{SimCSE-RetroMAE-Small} \& \textbf{SimCSE-Dist-MPNet-ParaCrawl} \& \textbf{SimCSE-Dist-MPNet-CzEng}:
     These models are based on the previously described RetroMAE-Small, Dist-MPNet-ParaCrawl, and Dist-MPNet-CzEng models respectively.
@@ -205,8 +201,6 @@ These models were developed by the Seznam research group with a focus on efficie
 \end{itemize}
 
 The developed models are about eight times smaller and five times faster than conventional base-sized models, making them suitable for real-time applications where computational efficiency is critical.
-The models are trained using techniques like pre-training, knowledge distillation, and unsupervised contrastive fine-tuning to adapt to the limited availability of labeled Czech data.
-
 
 % Multilingual models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,8 +208,8 @@ The models are trained using techniques like pre-training, knowledge distillatio
 \subsubsection{\ac{mBERT}} \label{model:mbert}
 \ac{mBERT} \cite{devlin2019bert} leverages the same transformer-based architecture as the original \ac{BERT} model but boasts an increased number of parameters (178M) to enhance its capabilities.
 A key distinction of \ac{mBERT} lies in its ability to understand and process text data across multiple languages.
-To achieve this multilingual proficiency, \ac{mBERT} is trained on a massive dataset sourced from Wikipedia entries in 104 different languages.
-This corpus is meticulously constructed to ensure balanced representation, meaning each language is included regardless of the size or depth of its corresponding Wikipedia.
+To achieve this multilingual proficiency, \ac{mBERT} is trained on a massive dataset sourced from Wikipedia\footref{footnote:wikipedia} entries in 104 different languages.
+This corpus is meticulously constructed to ensure balanced representation, meaning each language is included regardless of the size or depth of its corresponding Wikipedia\footref{footnote:wikipedia}.
 This approach ensures that even languages with limited resources are adequately represented within the training data, fostering better performance for these languages.
 
 % mE5
@@ -223,13 +217,13 @@ This approach ensures that even languages with limited resources are adequately 
 \ac{mE5} models by Microsoft \cite{wang2024multilingual} are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{wang2024text}.
 These models are available in three variants — small, base, and large — catering to different computational efficiency and performance needs.
 The \ac{mE5} models are trained using a two-phase approach.
-The first phase involves weakly-supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia, mC4, Multilingual CC News, Reddit, etc.).
-The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{bajaj2018ms}, Natural Questions (NQ) \cite{kwiatkowski2019natural}, TriviaQA \cite{joshi2017triviaqa}, SQuAD \cite{rajpurkar2016squad}, etc.).
+The first phase involves weakly-supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia\footref{footnote:wikipedia}, mC4 \cite{xue2021mt5}, Multilingual CC News \cite{commoncrawl}, Reddit\footnote{\label{footnote:reddit}Reddit is a social media platform: \url{https://www.reddit.com/}}, etc.).
+The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{bajaj2018ms}, Natural Questions \cite{kwiatkowski2019natural}, TriviaQA \cite{joshi2017triviaqa}, SQuAD \cite{rajpurkar2016squad}, etc.).
 
 % LaBSE
 \subsubsection{\ac{LaBSE}} \label{model:labse}
 \ac{LaBSE} model \cite{feng2022languageagnostic}, developed by Google, is a state-of-the-art model for generating sentence embeddings that are effective across 109 languages.
-It leverages the transformer architecture and is trained on both monolingual (from sources like CommonCrawl \cite{commoncrawl} and Wikipedia) and bilingual data (mined from web pages).
+It leverages the transformer architecture and is trained on both monolingual (from sources like CommonCrawl \cite{commoncrawl} and Wikipedia\footref{footnote:wikipedia}) and bilingual data (mined from web pages).
 \ac{LaBSE} utilizes a dual-encoder structure with \ac{BERT}-based encoding modules.
 This setup enables the efficient processing of text pairs in multiple languages.
 
@@ -243,13 +237,13 @@ This dataset is significantly larger than the ones used by its predecessors, off
 % SentenceTransformers
 \subsubsection{SentenceTransformers models} \label{model:st-multilingual}
 
-This work leverages SentenceTransformers \cite{reimers2019sentencebert}, a Python framework offering a comprehensive collection of pre-trained models designed for state-of-the-art sentence, text, and image embeddings.
+This work leverages SentenceTransformers \cite{reimers2019sentencebert}, a Python framework\footref{footnote:SentenceTransformers} offering a comprehensive collection of pre-trained models designed for state-of-the-art sentence, text, and image embeddings.
 These models are specifically tuned for various tasks, providing researchers with a powerful starting point for their investigations.
 
 The following pre-trained models from SentenceTransformers will be evaluated in this study:
 \begin{itemize}
   \item \textbf{Distiluse-Base-Multilingual-Cased-v2}:
-    This model leverages knowledge distillation, a technique for creating a smaller and faster model by capturing the knowledge from a larger, pre-trained model.
+    This model leverages knowledge distillation \cite{sanh2020distilbert}.
     In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
     Notably, this version supports sentence encoding for over 50 languages, including Czech.
   \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
@@ -265,16 +259,16 @@ The following pre-trained models from SentenceTransformers will be evaluated in 
 
 % UAE-Large-V1
 \subsubsection{UAE-Large-V1} \label{model-uae-large-v1}
-The UAE-Large-V1 model \cite{li2024angleoptimized} focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach (AnglE) that works by dividing text embeddings into real and imaginary components in a complex space.
-This model is designed to address the challenges posed by the saturation zones of the cosine function, which can impede learning by causing vanishing gradients.
+The UAE-Large-V1 model \cite{li2024angleoptimized} focuses on enhancing short and long \ac{STS} tasks through a novel angle-optimized text embedding approach (AnglE) \cite{li2024angleoptimized} that works by dividing text embeddings into real and imaginary components in a complex space.
+This model is designed to address the challenges posed by the saturation zones of the cosine function \refeq{eq:cosine_similarity}, which can impede learning by causing vanishing gradients.
 
-The model is trained using a hybrid objective that combines cosine similarity, in-batch negatives, and angle differences in complex space.
-This approach helps overcome the limitations of traditional cosine similarity measures by ensuring better gradient flow during training.
+The model is trained using a hybrid objective that combines cosine similarity \refeq{eq:cosine_similarity}, in-batch negatives, and angle differences in complex space.
+This approach helps overcome the limitations of traditional cosine similarity \refeq{eq:cosine_similarity} measures by ensuring better gradient flow during training.
 Training dataset includes around 21K samples and is specifically designed to evaluate \ac{STS} performance on long texts, which are common in real-world applications.
 
 % Mxbai embed
 \subsubsection{Mxbai embed}
-This is study incorporates two models developed by MixedBread AI, mxbai-embed-large-v1 and mxbai-embed-2d-large-v1. 
+This is study incorporates two models developed by MixedBread AI:
 \begin{itemize}
   \item \textbf{Mxbai-Embed-Large-v1} \cite{emb2024mxbai}:
     This model stands out as a high-performance English embedding model specifically designed for \ac{RAG} systems.
@@ -283,11 +277,11 @@ This is study incorporates two models developed by MixedBread AI, mxbai-embed-la
     The success of this model can be attributed to its robust training methodology.
     Mxbai-Embed-Large-v1 is trained on a massive dataset exceeding 700 million text pairs using a contrastive learning approach.
     This approach focuses on maximizing the similarity between semantically similar texts while contrasting dissimilar ones.
-    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE loss function.
+    Furthermore, the model undergoes fine-tuning with 30 million high-quality triplets leveraging the AnglE \cite{li2024angleoptimized} loss function.
     This fine-tuning step further refines the model's ability to distinguish semantic relationships within text data
   \item \textbf{Mxbai-Embed-2D-Large-v1} \cite{emb2024mxbai2d}:
-    This model introduces a novel 2D-Matryoshka architecture \cite{li20242d}, marking a significant advancement in the field of text embedding.
-    The 2D-Matryoshka architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
+    This model introduces a novel Espresso Sentence Embeddings (ESE) architecture \cite{li2024ese}, marking a significant advancement in the field of text embedding.
+    The ESE architecture offers a key advantage over traditional approaches: it allows for both dimensionality reduction of embeddings and chunking of model layers.
     This  flexibility enables users to tailor the model size and complexity based on their specific computational needs.
     This allows for a crucial trade-off between computational efficiency and accuracy in resource-constrained environments.
     The model was designed to address the limitations of traditional dense embedding models, which produce fixed-size embeddings.
@@ -301,7 +295,7 @@ This is study incorporates two models developed by MixedBread AI, mxbai-embed-la
 \subsubsection{Nomic-Embed-v1 and Nomic-Embed-v1.5} \label{model:nomic-embed}
 The Nomic model \cite{nussbaum2024nomic}, focuses on generating high-quality embeddings for long-context text in a reproducible manner.
 It leverages a modified \ac{BERT} architecture specifically optimized for handling sequences of up to 8192 tokens.
-This optimization includes innovative techniques like rotary positional embeddings and SwiGLU activations, which enhance the model's capacity to process longer texts effectively.
+This optimization includes innovative techniques like rotary positional embeddings \cite{su2023roformer} and SwiGLU activations \cite{shazeer2020glu}, which enhance the model's capacity to process longer texts effectively.
 The training process for Nomic Embed employs a two-stage approach.
 The first stage involves unsupervised contrastive pre-training on large-scale datasets.
 This pre-training equips the model with a strong foundation for capturing semantic relationships within text data.
@@ -317,10 +311,11 @@ While there may be a slight reduction in performance, developers can choose a sm
 \subsubsection{\ac{GTE} and \ac{GTE}-v1.5} \label{model:gte}
 The \ac{GTE} model is a pivotal development in \ac{NLP}, utilizing a deep Transformer encoder based on a \ac{BERT}-like architecture for generating dense text embeddings.
 Initially, the \ac{GTE} model is unsupervisedly pre-trained on approximately 800 million text pairs from diverse web sources, enabling broad semantic coverage.
-It then undergoes supervised fine-tuning with 3 million annotated text triples from varied datasets, including MS MARCO and Natural Questions, applying contrastive learning to enhance text relevance detection and similarity assessments.
+It then undergoes supervised fine-tuning with 3 million annotated text triples from varied datasets, including MS MARCO \cite{bajaj2018ms} and Natural Questions \cite{kwiatkowski2019natural}, applying contrastive learning to enhance text relevance detection and similarity assessments.
 This dual-stage training strategy equips the \ac{GTE} model to excel in complex \ac{NLP} tasks, demonstrating significant versatility and robust performance across multiple applications.
 
-There is also updated version \ac{GTE}-v1.5.
+The Alibaba Institute for Intelligent Computing released the \ac{GTE}-v1.5 transformer model, an upgrade to the \ac{GTE}-v1.0 model.
+Detailed information about the specific changes introduced in \ac{GTE}-v1.5 is not yet publicly available, 
 
 % BGE
 \subsubsection{\ac{BGE}-v1.5} \label{model:bge}
@@ -330,7 +325,7 @@ This training regimen equips \ac{BGE} models to handle a wide range of text embe
 
 % GIST-Embedding-v0
 \subsubsection{GIST-Embedding-v0}
-This study incorporates the GIST-Embedding-v0 suite of models, developed using the "Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning" (GIST) technique \cite{solatorio2024gistembed}.
+This study incorporates the GIST-Embedding-v0 suite of models, developed using the Guided In-sample Selection of Training Negatives for Text Embedding Fine-tuning (GIST) technique \cite{solatorio2024gistembed}.
 These models leverage pre-trained models as a foundation and are then fine-tuned on specific datasets.
 
 The fine-tuning process for GIST-Embedding-v0 utilizes the Multitask Embeddings Data with Instructions (MEDI) datasets \cite{su2023embedder}, which are further enhanced by the inclusion of mined triplets derived from the \ac{MTEB} Classification training dataset.
