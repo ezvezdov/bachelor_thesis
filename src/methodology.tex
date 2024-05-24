@@ -58,7 +58,7 @@ This work will evaluate two key metrics using the UPV FAQ dataset:
   \item \textbf{Question matching accuracy}:
  This metric involves calculating the cosine similarity \refeq{eq:cosine_similarity} between all possible question pairs within a dataset.
  A question is considered successfully matched if its second-highest cosine similarity score corresponds to another question belonging to the same class (i.e., the question with the highest similarity is likely the same question itself). 
- The overall question-matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
+ The overall question matching accuracy is then computed as the ratio of successfully matched questions to the total number of question pairs evaluated.  
   \item \textbf{Answer matching accuracy}:
  This metric assesses the system's ability to identify the correct answer for a given question.
  The system accomplishes this by directly comparing the question with pre-generated answer embeddings.
