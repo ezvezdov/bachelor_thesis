@@ -39,7 +39,7 @@ As detailed in \reflst{lst:diacriticless.sh}, this script is used for creating d
 
 \subsubsection{UPV FAQ}
 
-The dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}}.
+The dataset is comprised of frequently asked questions (FAQs) and their answers from the Industrial Property Office of the Czech Republic (UPV) website\footnote{\label{footnote_upv_website}UPV website: \url{https://upv.gov.cz/}.}.
 Each test within the UPV FAQ dataset follows a consistent structure, consisting of three key elements:
 \begin{itemize}
   \item \textbf{Question}:
@@ -71,10 +71,10 @@ This work will evaluate two key metrics using the UPV FAQ dataset:
   \label{eq:cosine_similarity}
 \end{equation}
 
-Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}}
-evaluator by Adam Jirkovský based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
-while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}}
-evaluator by Yauheni Zviazdou based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
+Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}.}
+evaluator by Adam Jirkovský based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}.} library,
+while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}.}
+evaluator by Yauheni Zviazdou based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}.} \cite{reimers2019sentencebert}.
 
 
 \subsubsection{Analogies}
@@ -175,7 +175,7 @@ This appendix provides a more in-depth examination of the specific configuration
 
 The Czert model \cite{sido2021czert} is a set of Czech \ac{BERT}-like language representation models developed specifically to enhance performance in processing the Czech language.
 These models leverage the \ac{BERT} and A Lite \ac{BERT} (ALBERT) \cite{lan2020albert} architectures and are designed to outperform multilingual models by training exclusively on Czech data.
-The training set includes a comprehensive corpus of Czech texts, such as Wikipedia\footnote{\label{footnote:wikipedia}Wikipedia is a free content online encyclopedia written and maintained by a community of volunteers: \url{https://en.wikipedia.org/}} articles, news, and other texts, accumulating to around 36GB of data.
+The training set includes a comprehensive corpus of Czech texts, such as Wikipedia\footnote{\label{footnote:wikipedia}Wikipedia is a free content online encyclopedia written and maintained by a community of volunteers: \url{https://en.wikipedia.org/}.} articles, news, and other texts, accumulating to around 36GB of data.
 
 There are 2 variants of the Czert model, Czert-A and Czert-B. Unfortunately Czert-A model is not available, so we will test only the Czert-B model.
 Czert-B model is based on the traditional \ac{BERT} architecture (110M parameters).
@@ -191,7 +191,7 @@ These models were developed by the Seznam research group with a focus on efficie
  This model leverages a \ac{BERT}-small architecture pre-trained with the \ac{RetroMAE} objective \cite{xiao2022retromae} on a custom Czech corpus.
  The \ac{RetroMAE} objective focuses on enhancing the model's ability to learn from \ac{MLM} tasks.
   \item \textbf{Dist-MPNet-ParaCrawl} \& \textbf{Dist-MPNet-CzEng}:
- These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}} using a knowledge distillation approach.
+ These models are distilled versions of the \textit{sentence-transformers/all-mpnet-base-v2}\footnote{\label{hf_all-mpnet-base-v2}\textit{sentence-transformers/all-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/all-mpnet-base-v2}.} using a knowledge distillation approach.
  Distillation \cite{sanh2020distilbert} involves training a smaller model (\ac{BERT}-small in this case) to mimic the performance of a larger, pre-trained model (\textit{sentence-transformers/all-mpnet-base-v2} \footref{hf_all-mpnet-base-v2}).
  The two distilled models differ in their training data: Dist-MPNet-ParaCrawl utilizes the parallel cs-en dataset from ParaCrawl \cite{espla2019paracrawl}, while Dist-MPNet-CzEng leverages the parallel cs-en dataset CzEng \cite{kocmi2020announcing}.
   \item \textbf{SimCSE-RetroMAE-Small} \& \textbf{SimCSE-Dist-MPNet-ParaCrawl} \& \textbf{SimCSE-Dist-MPNet-CzEng}:
@@ -220,7 +220,7 @@ This approach ensures that even languages with limited resources are adequately 
 \ac{mE5} models by Microsoft \cite{wang2024multilingual} are advanced text embedding models designed to operate across multiple languages based on English-only E5 models \cite{wang2024text}.
 These models are available in three variants — small, base, and large — catering to different computational efficiency and performance needs.
 The \ac{mE5} models are trained using a two-phase approach.
-The first phase involves weakly supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia\footref{footnote:wikipedia}, mC4 \cite{xue2021mt5}, Multilingual CC News \cite{commoncrawl}, Reddit\footnote{\label{footnote:reddit}Reddit is a social media platform: \url{https://www.reddit.com/}}, etc.).
+The first phase involves weakly supervised contrastive pre-training on about 1 billion text pairs sourced from diverse multilingual corpora (Wikipedia\footref{footnote:wikipedia}, mC4 \cite{xue2021mt5}, Multilingual CC News \cite{commoncrawl}, Reddit\footnote{\label{footnote:reddit}Reddit is a social media platform: \url{https://www.reddit.com/}.}, etc.).
 The second phase is supervised fine-tuning on approximately 1.6 million data points from high-quality labeled datasets (MS MARCO \cite{bajaj2018ms}, Natural Questions \cite{kwiatkowski2019natural}, TriviaQA \cite{joshi2017triviaqa}, SQuAD \cite{rajpurkar2016squad}, etc.).
 
 % LaBSE
@@ -250,9 +250,9 @@ The following pre-trained models from SentenceTransformers will be evaluated in 
  In this case, it is a distilled version of the multilingual Universal Sentence Encoder \cite{yang2019multilingual}.
  Notably, this version supports sentence encoding for over 50 languages, including Czech.
   \item \textbf{Paraphrase-Multilingual-MiniLM-L12-v2}: This pre-trained model focuses on paraphrase identification.
- It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2}\footnote{\textit{sentence-transformers/paraphrase-MiniLM-L12-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}} model, trained on parallel datasets encompassing over 50 languages, including Czech.
+ It is a multilingual version of the \textit{sentence-transformers/paraphrase-MiniLM-L12-v2}\footnote{\textit{sentence-transformers/paraphrase-MiniLM-L12-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L12-v2}.} model, trained on parallel datasets encompassing over 50 languages, including Czech.
  By learning paraphrase relationships, this model can potentially capture semantic similarities between sentences.
-  \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2}\footnote{\textit{sentence-transformers/paraphrase-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}} model, trained on parallel data for over 50 languages, including Czech.
+  \item \textbf{Paraphrase-Multilingual-MPNet-Base-v2}: Similar to the previous model, this is a multilingual version of the \textit{sentence-transformers/paraphrase-mpnet-base-v2}\footnote{\textit{sentence-transformers/paraphrase-mpnet-base-v2} model on the huggingface website: \url{https://huggingface.co/sentence-transformers/paraphrase-mpnet-base-v2}.} model, trained on parallel data for over 50 languages, including Czech.
  This model is also designed for paraphrase identification, potentially aiding in tasks that require an understanding of semantic equivalence across sentences.
 \end{itemize}
 
@@ -342,9 +342,9 @@ This selection ensures we investigate the most promising fine-tuning approaches 
 This study incorporates two distilled transformer models from TaylorAI for evaluation:
 
 \begin{itemize}
-  \item \textbf{TaylorAI/BGE-micro-v2}\footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}}:
+  \item \textbf{TaylorAI/BGE-micro-v2}\footnote{TaylorAI/bge-micro-v2 model on the huggingface website: \url{https://huggingface.co/TaylorAI/bge-micro-v2}.}:
  This model is a 2-step distilled \cite{sanh2020distilbert} version of the small \ac{BGE}-v1.5 model.
-  \item \textbf{TaylorAI/GTE-tiny}\footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}}:
+  \item \textbf{TaylorAI/GTE-tiny}\footnote{TaylorAI/gte-tiny model on the huggingface website: \url{https://huggingface.co/TaylorAI/gte-tiny}.}:
  This model is a distilled \cite{sanh2020distilbert} version of the small version of \ac{GTE} model.
 \end{itemize}
 
@@ -396,7 +396,7 @@ Chosen parameters are shown at \reftab{table:RAG_settings}.
 \subsection{\ac{RAG} pipeline}
 
 This section describes the evaluation methodology employed for the \ac{RAG} model.
-The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footnote{\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool by Adam Jirkovský based on the LangChain\footnote{LangChain Python library: \url{https://python.langchain.com/}} Python library.
+The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footnote{\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}.} tool by Adam Jirkovský based on the LangChain\footnote{LangChain Python library: \url{https://python.langchain.com/}.} Python library.
 
 Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
@@ -404,7 +404,7 @@ The test set comprises two components: a technical manual and a set of 200 quest
 For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as a popular small model with a good \ac{MTEB} rating.
 
 For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{openai2023gpt35turbo}.
-The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}}.
+The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}.}.
 
 
 \subsection{Experiment hardware}
