@@ -43,21 +43,21 @@ Consequently, FastText offers advantages in two key areas:
 
 \begin{itemize}
     \item \textbf{Rare Word Embeddings}:
-        Unlike Word2Vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words.
-        By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
+ Unlike Word2Vec, which struggles with words appearing infrequently in the training data, FastText can construct meaningful representations for rare words.
+ By leveraging known subwords, FastText can represent unseen words, making it particularly valuable for working with large and diverse datasets.    
     \item \textbf{Handling Morphologically Rich Languages}:
-        Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for Word2Vec.
-        FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms.
-        This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate \ac{NLP} tasks.
+ Languages with complex morphology, where words are formed through prefixes and suffixes, often pose challenges for Word2Vec.
+ FastText overcomes this limitation by capturing the shared subwords between derived words and their root forms.
+ This allows FastText to represent the inherent relationships between words in these languages, leading to more accurate \ac{NLP} tasks.
 \end{itemize}
 However, it's important to acknowledge that FastText also has limitations:
 \begin{itemize}
     \item \textbf{Context Insensitivity}:
-        Similar to Word2Vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence.
-        This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
+ Similar to Word2Vec, FastText embeddings do not inherently capture the order or context in which words appear within a sentence.
+ This can be a drawback for tasks like sentiment analysis or machine translation, where word order and context are crucial for accurate interpretation.
     \item \textbf{Limited Long-Range Dependency Capture}:
-        While subwords allow FastText to capture local context, they might not effectively capture long-range dependencies within sentences.
-        This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
+ While subwords allow FastText to capture local context, they might not effectively capture long-range dependencies within sentences.
+ This can be a disadvantage for tasks requiring analysis of complex sentence structures, where understanding the relationships between words across larger distances is important.    
 \end{itemize}
 
 \section{Transformer-based models}
@@ -127,7 +127,7 @@ Both stages rely heavily on the chosen text representation technique.
  By providing this context alongside the user's question and any additional instructions, the \ac{LLM} is empowered to generate a comprehensive and informative answer.
 \end{itemize}
 
-Architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}.
+The architecture of the \ac{RAG} algorithm is shown on the \reffig{fig:RAG_scheme}.
 
 \begin{figure}[h]
  \centering

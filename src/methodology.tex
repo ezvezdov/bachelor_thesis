@@ -95,7 +95,7 @@ Providing a single, isolated word to a transformer model would not be sufficient
 Due to the inherent morphological richness of the Czech language, this study adopts \textbf{FastText} as the baseline word embedding method.
 This decision is motivated by FastText's ability to effectively capture morphological variations within words, a characteristic that is advantageous for languages like Czech.
 While other techniques like Word2Vec and \ac{GloVe} have been explored for word embedding generation, they have demonstrated lower performance in this context \cite{bojanowski2017enriching}.
-The FastText word embedding model will be trained using the fastText.cc library\footref{footnote:fasttex_lib}.
+The FastText word embedding model will be trained using fastText.cc library\footref{footnote:fasttex_lib}.
 
 \subsubsection{Training parameters}
 \begin{itemize}
@@ -349,7 +349,7 @@ This study incorporates two distilled transformer models from TaylorAI for evalu
  This model is a distilled \cite{sanh2020distilbert} version of the small version of \ac{GTE} model.
 \end{itemize}
 
-% ember-v1
+% Ember-v1
 \subsubsection{Ember-v1}
 This study leverages the Ember-v1 model, developed by LLMRails.
 Ember-v1 is a text embedding model trained on a comprehensive dataset of text pairs encompassing a wide range of domains such as finance, science, medicine, law, and beyond.
@@ -404,8 +404,8 @@ The test set comprises two components: a technical manual and a set of 200 quest
 
 For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as a popular small model with a good \ac{MTEB} rating.
 
-For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo\footnote{Information about GPT-3.5-turbo on OpenAI website: \url{https://platform.openai.com/docs/models/gpt-3-5}.}.
-The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}.}.
+For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo\footnote{\label{footnote:gpt-3.5-turbo}Information about GPT-3.5-turbo on OpenAI website: \url{https://platform.openai.com/docs/models/gpt-3-5}.}.
+The quality of the answers will be controlled and verified using GPT-4o\footnote{\label{footnote:gpt-4o}Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}.}.
 
 
 \subsection{Experiment hardware}
