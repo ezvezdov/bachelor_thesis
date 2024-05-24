@@ -9,9 +9,6 @@ This focus on Czech allows for a deeper understanding of how these methods perfo
 
 \subsection{Text Data Preparation}
 In certain foreign languages, a common issue arises when individuals incorrectly write words by omitting diacritics or altering letters, \reffig{fig:diacritics_diacriticless}.
-This problem is prevalent in social media, chatbots, and other informal written communications.
-As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless).
-A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
 
 \begin{figure}[h]
   \centering
@@ -19,6 +16,15 @@ A potential solution involves adapting data representation to accommodate both f
   \caption{Usual changes in informal czech texts.}
   \label{fig:diacritics_diacriticless}
 \end{figure} 
+
+This problem is prevalent in social media, chatbots, and other informal written communications.
+As a result, embedding models face challenges in comprehending text without diacritics (hereinafter diacriticless), because the meanings of words may be compromised:
+\begin{itemize}
+  \item byt (apartment) - být (to be)
+  \item rád (to be glad) - řad (row or a line) - řád (order, religious order)
+  \item krize (crisis) - kříže (crosses)
+\end{itemize}
+A potential solution involves adapting data representation to accommodate both formal and informal styles of writing.
 
 This study will employ two distinct text representations: text with diacritics and text without diacritics.
 To ensure optimal evaluation, the diacritic text will be assessed using datasets that preserve these diacritics, while the diacriticless text will be evaluated using datasets that lack diacritics.
