@@ -71,8 +71,8 @@ This work will evaluate two key metrics using UPV FAQ dataset
   \label{eq:cosine_similarity}
 \end{equation}
 
-Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}} evaluator based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
-while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
+Traditional models will be assessed using \textit{jirkoada/upv\_faq}\footnote{\textit{jirkoada/upv\_faq evaluator} on github: \url{https://github.com/jirkoada/upv_faq}} evaluator by Adam Jirkovský based on \textit{fastText}\footnote{\label{footnote:fasttex_lib}fastText.cc library website: \url{https://fasttext.cc/}} library,
+while transformer models will be evaluated using \textit{ezvezdov/upv\_faq\_transformers}\footnote{\textit{ezvezdov/upv\_faq\_transformers} evaluator on github: \url{https://github.com/ezvezdov/upv_faq_transformers}} evaluator by Yauheni Zviazdou based on \textit{sentence-transformers} library \footnote{\label{footnote:SentenceTransformers}\textit{sentence-transformer} library: \url{https://sbert.net/}} \cite{reimers2019sentencebert}.
 
 
 \subsubsection{Analogies}
@@ -370,25 +370,22 @@ Notably, the training process incorporates techniques inspired by both \ac{Retro
 To identify the most suitable text representation model for \ac{RAG} in technical \ac{QA}, we propose a comprehensive evaluation approach that considers the following key factors:
 
 \begin{itemize}
-  \item \textbf{Embedding Efficiency}:
-    Computational efficiency is crucial for real-world applications.
-    We will evaluate the processing time required for different representation models, considering factors like embedding dimensionality and model complexity.
-    This ensures the chosen model can handle real-time \ac{QA} tasks within reasonable processing time constraints.
   \item \textbf{Text Chunk Size}:
     The size of text chunks used by the \ac{RAG} algorithm (e.g., words, sentences, or paragraphs) can impact performance.
     We will investigate the optimal chunk size for technical \ac{QA} tasks.
     Here, we will balance the granularity of information retrieved by the model with computational efficiency.
     Smaller chunks (words) might capture finer details but require more processing, while larger chunks (paragraphs) might be faster to process but might miss relevant details.  
+  \item \textbf{Embedding Efficiency}:
+    Computational efficiency is crucial for real-world applications.
+    We will evaluate the processing time required for model to encode different chunk sizes.
   \item \textbf{Factuality of Generated Answers}:
     The primary objective is to generate answers that are factually accurate and consistent with the technical document.
-    We will evaluate the models based on metrics that assess the factual correctness and coherence of the generated answers in response to technical questions.
-    This ensures the generated answers are reliable and trustworthy for the user.
 \end{itemize}
 
-\subsection{Chunk size and K parameter selection}
-This section explores the selection of chunk sizes and the corresponding K parameter for evaluation using the \ac{RAG} model.
+\subsection{Chunk size and $K$ parameter selection}
+This section explores the selection of chunk sizes and the corresponding $K$ parameter for evaluation using the \ac{RAG} model.
 The chunk size refers to the length of text passages (number of characters) that will be processed by the \ac{RAG} model during evaluation.
-The K parameter, on the other hand, determines the number of retrieved passages that the \ac{RAG} model will consider when generating a response.
+The $K$ parameter, on the other hand, determines the number of retrieved passages that the \ac{RAG} model will consider when generating a response.
 Chosen parameters are shown at \reftab{table:RAG_settings}
 
 \input{src/tables/RAG_settings.tex}
@@ -396,16 +393,15 @@ Chosen parameters are shown at \reftab{table:RAG_settings}
 \subsection{\ac{RAG} pipeline}
 
 This section describes the evaluation methodology employed for the \ac{RAG} model.
-The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footnote {\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool.
+The evaluation will be conducted using the \textit{jirkoada/qa\_evaluator}\footnote{\textit{jirkoada/qa\_evaluator} on github: \url{https://github.com/jirkoada/qa_evaluator}} tool by Adam Jirkovský based on the LangChain\footnote{LangChain Python library: \url{https://python.langchain.com/}} Python library.
 
 Due to limitations in the availability of Czech language testing data, we opted to utilize a private technical English data corpus for this evaluation.
 The test set comprises two components: a technical manual and a set of 200 questions designed to assess document information retrieval capabilities.
 
 For the embedding generation stage within \ac{RAG}, we will leverage the GTE\textsubscript{Small} model as popular small model with good \ac{MTEB} rating.
 
-For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{brown2020language}.
+For the \ac{LLM} component of \ac{RAG}, we will utilize GPT-3.5-turbo \cite{openai2023gpt35turbo}.
 The quality of the answers will be controlled and verified using GPT-4o\footnote{Information about GPT-4o on OpenAI website: \url{https://openai.com/index/hello-gpt-4o/}}.
-
 
 
 \subsection{Experiment hardware}
