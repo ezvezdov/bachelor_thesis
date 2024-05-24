@@ -107,9 +107,10 @@ The FastText word embedding model will be trained using the fastText.cc library\
 
 \subsubsection{Training data}
 
-FastText model is trained on a segment of a preprocessed Common Crawl repository \cite{commoncrawl}, which encompasses raw data from web pages, as well as metadata and text extractions.
+FastText model is trained on a segment of a preprocessed by Tommaso Gargiani Common Crawl repository \cite{commoncrawl}, which encompasses raw data from web pages, as well as metadata and text extractions.
 Given the nature of this dataset, it is expected to include misspellings and text lacking diacritics.
 
+The data preprocessing steps are as follows:
 \begin{enumerate}
   \item Eliminating duplicate entries,
   \item Filtering out lines containing fewer than 9 characters,
