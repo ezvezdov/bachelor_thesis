@@ -170,4 +170,12 @@
 
 \input{src/appendix_A.tex}
 
+%% --------------------------------------------------------------
+%% |                Empty page for print version                |
+%% --------------------------------------------------------------
+\ifdefined\printversion
+    \afterpage{\null \thispagestyle{empty} \addtocounter{page}{-1} \newpage}
+    \afterpage{\null \thispagestyle{empty} \addtocounter{page}{-1} \newpage}
+\fi
+
 \end{document}
