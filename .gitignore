@@ -2,4 +2,4 @@
 build/*
 
 # Exclude main.pdf from being ignored
-!build/main.pdf
+# !build/main.pdf
