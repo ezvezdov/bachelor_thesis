@@ -1,4 +1,11 @@
-# My Bachelor Thesis
+My Bachelor's Thesis on theme
+# From FastText to Transformer Models, and their Application in Retrieval-Augmented Generation
+
+**Abstract**
+ 
+This thesis examines the evolution of text representation methods, starting from traditional techniques like FastText and advancing to sophisticated transformer-based models such as Bidirectional Encoder Representations from Transformers (BERT). The study evaluates these representations through analogy tests and confusion matrix analysis, utilizing the UPV corpus set for comprehensive assessment.
+
+In the latter part of the research, the focus shifts to optimizing text representations for Retrieval-Augmented Generation (RAG) algorithms. The investigation aims to identify the most effective embeddings and determine the optimal text chunk size for Question Answering (QA) tasks, particularly within the realm of generating natural language answers from technical manuals. A thorough evaluation is conducted to recommend an optimal representation model that strikes a balance between factual accuracy and computational efficiency.
 
 ## Linux dependencies for building LaTeX
 
