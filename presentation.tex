@@ -43,6 +43,16 @@
 \usepackage{array,booktabs}
 \usepackage[dua, nolist]{acronym}
 
+%% | -------------------------- tikz -------------------------- |
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes,shapes.geometric,shapes.multipart,fit,patterns,fadings}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
 
 %====================================================
 %========== DEFINITION OF AUTHORS ETC...=============
@@ -87,9 +97,27 @@
   \frametitle{Word embedding methods}
 \end{frame}
 
-% RAG
+% Retrieval-Augmented Generation (RAG)
 \begin{frame}
-  \frametitle{RAG}
+  \frametitle{Retrieval-Augmented Generation (RAG)}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.75\textwidth}
+      \begin{figure}[h]
+        \includegraphics[scale=0.6]{src/fig/pdfs/tikz/RAG_scheme.pdf}
+        \caption{Architecture of the RAG algorithm.}
+       \end{figure}
+    \end{column}
+
+      \begin{column}{0.75\textwidth}
+        Factors:  
+        \begin{enumerate}
+          \item Embedding \\model
+          \item Chunk size
+        \end{enumerate}
+    \end{column}
+  \end{columns}
+  
+  
 \end{frame}
 
 % Methodology
