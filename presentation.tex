@@ -41,6 +41,7 @@
 \usepackage{epstopdf}
 \usepackage{changepage}
 \usepackage{array,booktabs}
+\usepackage[dua, nolist]{acronym}
 
 
 %====================================================
@@ -56,31 +57,60 @@
 %====================================================
 \begin{document}
 
+
+% Title slide
 \begin{frame}
   \titlepage
   \begin{center}
     \includegraphics[height=1.3cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}
   \end{center}
+  \input{src/abbreviations.tex}
 \end{frame}
 
-
+% Add CTU logo to the all slides excluding title
 \logo{\includegraphics[height=1cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}}
 
 
-
+% Text representation
 \begin{frame}
-  \frametitle{Slide}
-\begin{itemize}
-  \item Text
-  \item \textbf{Text}
-    \item \textcolor{cvut_navy}{Text}
-    \item \textcolor{cvut_navy}{\textbf{Text}}
-\end{itemize}
-Text text text text text text text text text text text text text text text text text text text text text text text text.
-
+  \frametitle{Text representation}
 \end{frame}
 
 
+% Word embedding methods
+\begin{frame}
+  \frametitle{Word embedding methods}
+\end{frame}
+
+% Methods of text representations evaluation
+\begin{frame}
+  \frametitle{Word embedding methods}
+\end{frame}
+
+% RAG
+\begin{frame}
+  \frametitle{RAG}
+\end{frame}
+
+% Methodology
+\begin{frame}
+  \frametitle{Methodology}
+\end{frame}
+
+% Balanced models
+\begin{frame}
+  \frametitle{Balanced models}
+\end{frame}
+
+% Optimizing RAG
+\begin{frame}
+  \frametitle{Optimizing RAG}
+\end{frame}
+
+% Thanks
+\begin{frame}
+  \frametitle{Thanks}
+\end{frame}
 
 \begin{frame}
   \frametitle{Next slide}
