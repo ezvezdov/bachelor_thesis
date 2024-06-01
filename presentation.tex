@@ -41,14 +41,6 @@
 \usepackage{changepage}
 \usepackage{array,booktabs}
 
-% definice makra pro české uvozovky:
-\def\bq{\mbox{\kern.1ex\protect\raisebox{-1.3ex}[0pt][0pt]{''}\kern-.1ex}}
-\def\eq{\mbox{\kern-.1ex``\kern.1ex}}
-\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax }%
-\ifundefined{uv}%
-        \gdef\uv#1{\bq #1\eq}
-\fi
-% konec .... použití makra pro psaní český uvozovek: \uv{text uvnitř uvozovek}
 
 %====================================================
 %========== DEFINITION OF AUTHORS ETC...=============
@@ -89,7 +81,6 @@
 \end{itemize}
 Text text text text text text text text text text text text text text text text text text text text text text text text.
 
-\uv{České uvozovky}
 \end{frame}
 
 
