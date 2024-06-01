@@ -1,0 +1,132 @@
+%===============================================================
+% Template using official colors of Czech Technical University.
+% They are defined by new graphical manual - 2017.
+% Specially designed for Laboratory of Structure of Biomolecules
+% Share and modify as you like. Keep the name of the author.
+% It is forbidden to use the template commercially.
+% Author: Martin Malý.
+% Published: 23.9.2017.
+%===============================================================
+
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+
+\definecolor{cvut_navy}{HTML}{0065BD}
+\definecolor{cvut_blue}{HTML}{6AADE4}
+\definecolor{cvut_gray}{HTML}{156570}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=cvut_blue}
+\setbeamercolor*{palette primary}{bg=cvut_navy,fg=gray!20!white}
+\setbeamercolor*{palette secondary}{bg=cvut_blue,fg=white}
+\setbeamercolor*{palette tertiary}{parent=palette primary}
+\setbeamercolor*{palette quaternary}{fg=green,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=cvut_navy,bg=gray!15!white}
+
+
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{frametitle}{parent=palette primary}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\usepackage{eqnarray,amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern} % pro pismo tucne a zaroven kurziva
+\usepackage{bm} % pro pismo tucne a zaroven kurziva
+\usepackage{epstopdf}
+\usepackage{changepage}
+\usepackage{array,booktabs}
+
+% definice makra pro české uvozovky:
+\def\bq{\mbox{\kern.1ex\protect\raisebox{-1.3ex}[0pt][0pt]{''}\kern-.1ex}}
+\def\eq{\mbox{\kern-.1ex``\kern.1ex}}
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax }%
+\ifundefined{uv}%
+        \gdef\uv#1{\bq #1\eq}
+\fi
+% konec .... použití makra pro psaní český uvozovek: \uv{text uvnitř uvozovek}
+
+%====================================================
+%========== DEFINITION OF AUTHORS ETC...=============
+%====================================================
+\author[Jan Novák]{Jan Novák$^{1,2}$, Petr Černý$^{2}$}
+\institute[affiliation]{$^{1}$ Institute \\  address \\
+\vspace{2mm}$^{2}$ Another institute \\  address}
+\title[Title]{Long title}
+\subtitle{Subtitle}
+\date[Event]{Our event\\30.2.2017}
+
+%====================================================
+%========== BEGINNING OF DOCUMENT ===================
+%====================================================
+\begin{document}
+
+\begin{frame}
+	\titlepage
+	\begin{center}
+  		\includegraphics[height=1.3cm]{files/symbol_cvut_plna_samostatna_verze.pdf}
+		\includegraphics[height=1.4cm]{files/FJFI_logo_indigo.pdf}
+		\includegraphics[height=1.3cm]{files/logo-lsb-cz.pdf}
+		\includegraphics[height=1.3cm]{files/IBT.png}
+		\includegraphics[height=1.3cm]{files/biocev-logo-CMYK-horizontal.pdf}
+	\end{center}
+\end{frame}
+
+
+\logo{\includegraphics[height=1cm]{files/symbol_cvut_plna_samostatna_verze.pdf}}
+
+
+
+\begin{frame}
+	\frametitle{Slide}
+\begin{itemize}
+	\item Text
+	\item \textbf{Text}
+    \item \textcolor{cvut_navy}{Text}
+    \item \textcolor{cvut_navy}{\textbf{Text}}
+\end{itemize}
+Text text text text text text text text text text text text text text text text text text text text text text text text.
+
+\uv{České uvozovky}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Next slide}
+	\begin{columns}[onlytextwidth]
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Text
+				\item \textbf{Text}
+    			\item \textcolor{cvut_navy}{Text}
+			    \item \textcolor{cvut_navy}{\textbf{Text}}
+			\end{itemize}
+		\end{column}
+
+ 	 	\begin{column}{0.5\textwidth}
+			 \begin{enumerate}
+				\item Text
+				\item \textbf{Text}
+    			\item \textcolor{cvut_navy}{Text}
+			    \item \textcolor{cvut_navy}{\textbf{Text}}
+			\end{enumerate}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\end{document}
+% =============================================================
+% =========================== END =============================
+% =============================================================
+
