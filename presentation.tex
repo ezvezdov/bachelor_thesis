@@ -60,6 +60,9 @@
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 
+% Change color of Figure and Table labels.
+\usepackage[labelfont={color=cvut_navy}]{caption}
+
 
 %====================================================
 %========== DEFINITION OF AUTHORS ETC...=============
@@ -171,14 +174,14 @@
   \frametitle{Methodology}
   \begin{columns}[onlytextwidth,T]
     \begin{column}{0.4\textwidth}
-      \textcolor{cvut_navy}{\textbf{Text formatting}}
+      \textcolor{cvut_navy}{\textbf{Corpus information}}
       \begin{itemize}
-        \item Diacritics
-        \item Diacriticless
+        \item Czech language
+        \item Diacritics, diacriticless
       \end{itemize}
       \textcolor{cvut_navy}{\textbf{Baseline}}
       \begin{itemize}
-        \item FastText (diacritics, diacrticless)
+        \item FastText
         \item Architecture: CBOW
         \item Dimensionality: 300
       \end{itemize}
@@ -190,6 +193,7 @@
       \begin{itemize}
         \item 15 groups
         \item 37 models
+        \item 13M - 560M parameters
       \end{itemize}
     \end{column}
     \begin{column}{0.75\textwidth}
@@ -218,7 +222,7 @@
 
 % Optimizing RAG
 \begin{frame}
-  \frametitle{Optimizing RAG}
+  \frametitle{Results: RAG optimization}
 \end{frame}
 
 % Thanks
