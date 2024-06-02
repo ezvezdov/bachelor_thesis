@@ -200,7 +200,7 @@
       \textcolor{cvut_navy}{\textbf{RAG Components}}
       \begin{itemize}
         \item Embedding model: GTE\textsubscript{Small}
-        \item Chunks: 256, 512, 1024, 2048, 4096
+        \item Chunks: 256, 512, 1024, 2048, 4096 char.
         \item Same context size
         \item Answers generation: GPT-3.5-turbo
         \item Answers quality measurement: GPT-4o
@@ -237,11 +237,18 @@
 % Optimizing RAG
 \begin{frame}
   \frametitle{Results: RAG optimization}
+  \input{src/tables/RAG_evaluation.tex}
 \end{frame}
 
-% Thanks
+% Summary
 \begin{frame}
-  \frametitle{Thanks}
+  \frametitle{Summary}
+  \begin{itemize}
+    \item Best models: SimCSE-RetroMAE-Small, GTE\textsubscript{Small}, all mE5 verions.
+    \item Best model overall: mE5\textsubscript{Large}.
+    \item Best chunk size: 4096 symbols.
+  \end{itemize}
+  \textcolor{cvut_navy}{\textbf{Thank you for your attention!}}
 \end{frame}
 
 \end{document}
