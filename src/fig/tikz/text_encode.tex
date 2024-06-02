@@ -1,0 +1,19 @@
+\begin{tikzpicture}[
+    longnode/.style={rectangle, draw=black, thick, align=left, minimum height=1.7em, minimum width=14em},
+    highnode/.style={longnode, minimum height=6em},
+    line width=1pt, black
+    ]
+    
+    %Nodes
+    \node[highnode, align=center] (text) []                              {Word embedding is a technique\\ \vdots \\numeric representations of text.};
+    \node[longnode, align=center] (emb2) [right=of text]                 {0.29 0.78 0.12 ... 0.95 0.65 0.16};
+    \node[longnode, align=center] (emb3) [below=of emb2,yshift=+2.221em] {0.95 0.69 0.78 ... 0.46 0.13 0.72};
+    \node[longnode, align=center] (emb1) [above=of emb2,yshift=-2.221em] {0.47 0.97 0.03 ... 0.12 0.67 0.62};
+
+    % Text labels (outside nodes)
+    \node[below=of text, yshift=+2.221em]     {Document};
+    \node[below=of emb3, yshift=+2.221em]     {Embeddings};
+
+    %Lines
+    \draw[->] (text.east) -- (emb2.west);
+\end{tikzpicture}
