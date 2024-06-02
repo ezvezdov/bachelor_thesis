@@ -1,0 +1,23 @@
+\begin{tikzpicture}[line width=1pt, black]
+    %Nodes
+    \begin{scope}[every node/.style={rectangle, draw=black, thick, align=left, minimum width=10em}]
+    \node (Word2Vec)     []                  {Word2Vec};
+    \node (GloVe)        [below=of Word2Vec] {GloVe};
+    \node (FastText)     [below=of GloVe]    {FastText};
+    \node (Transformers) [below=of FastText] {Transformers};
+    \end{scope}
+
+    \node (traditional) [rectangle, draw=black, text depth = 12em, anchor=north, minimum width=11em, yshift=+4em]{\textbf{Traditional}};
+
+
+    % Text labels (outside nodes)
+    \node[right=of Word2Vec.east,xshift=-2.em]     {2013};
+    \node[right=of GloVe.east,xshift=-2.em]        {2014};
+    \node[right=of FastText.east,xshift=-2.em]     {2016};
+    \node[right=of Transformers.east,xshift=-2.em] {2017};
+
+    %Lines
+    \draw[->] (Word2Vec.south) -- (GloVe.north);
+    \draw[->] (GloVe.south)    -- (FastText.north);
+    \draw[->] (FastText.south) -- (Transformers.north);
+\end{tikzpicture}
