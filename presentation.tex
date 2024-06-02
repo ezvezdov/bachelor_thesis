@@ -217,7 +217,21 @@
 
 % Balanced models
 \begin{frame}
-  \frametitle{Balanced models}
+  \frametitle{Results: Balanced models}
+  \textcolor{cvut_navy}{\textbf{Results analysis}}
+  \begin{itemize}
+    \item Models with supervised training has best performances.
+    \item English-only models has good performances, even without training on Czech.
+    \item Task-specified fine-tuning enhance performances.
+  \end{itemize}
+  \begin{table}
+    \centering
+    \includegraphics[scale=0.8]{src/fig/pdfs/tables/balanced.pdf}
+    \caption{\textcolor{cvut_navy}{\textbf{Balanced models.}}
+    Where QMA\textsubscript{d} (QMA\textsubscript{dl}) are Question Matching Accuracy for the diacritics (diacriticless) model.
+    AMA\textsubscript{d} (AMA\textsubscript{d}) are Answer Matching Accuracy for the diacritics (diacriticless) model.
+    \#params is total number of parameters.}
+  \end{table}
 \end{frame}
 
 % Optimizing RAG
