@@ -31,6 +31,13 @@
 
 \setbeamertemplate{navigation symbols}{}
 
+% Change itemize and enumerate style.
+\setbeamertemplate{itemize item}{%
+  \textcolor{cvut_navy}{\raisebox{.45ex}{\rule{.8ex}{.8ex}}}
+}
+\setbeamertemplate{enumerate item}{%
+  \textcolor{cvut_navy}{\arabic{enumi}.}
+}
 
 \usepackage{eqnarray,amsmath}
 \usepackage{amsfonts}
@@ -60,7 +67,7 @@
 \author[Yauheni Zviazdou]{Yauheni Zviazdou}
 \institute[CTU FEE]{Czech Technical University in Prague \\ Faculty of Electrical Engineering \\ Department of Cybernetics \\}
 \title[Text representation models. RAG.]{From FastText to Transformer Models, and their Application in Retrieval-Augmented Generation}
-\date[Bachelor's thesis presentation]{Bachelor's thesis presentation\\dd.mm.yyyy}
+\date[Bachelor's thesis presentation]{Bachelor's thesis presentation\\Supervisor: Ing. Jan Šedivý, CSc.}
 
 %====================================================
 %========== BEGINNING OF DOCUMENT ===================
@@ -72,7 +79,7 @@
 \begin{frame}
   \titlepage
   \begin{center}
-    \includegraphics[height=1.3cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}
+    \includegraphics[height=2cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}
   \end{center}
   \input{src/abbreviations.tex}
 \end{frame}
@@ -80,6 +87,28 @@
 % Add CTU logo to the all slides excluding title
 \logo{\includegraphics[height=1cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}}
 
+
+% Motivation
+\begin{frame}
+  \frametitle{Motivation}
+
+\end{frame}
+
+% Work objectives
+\begin{frame}
+  \frametitle{Work objectives}
+  \textcolor{cvut_navy}{Task 1.} Compare text representation for QA\footnote{Question Answering}:
+  \begin{itemize}
+    \item Review text representation methods.
+    \item Compare traditional and transformer-based methods.
+  \end{itemize}
+  \textcolor{cvut_navy}{Task 2.} RAG\footnote{Retrieval-Augmented Generation} Optimization
+  \begin{itemize}
+    \item Choose optimal models for RAG.
+    \item Choose optimal chunk size and number of context chunks.
+  \end{itemize}
+
+\end{frame}
 
 % Text representation
 \begin{frame}
@@ -100,7 +129,7 @@
 % Retrieval-Augmented Generation (RAG)
 \begin{frame}
   \frametitle{Retrieval-Augmented Generation (RAG)}
-  \begin{columns}[onlytextwidth]
+  \begin{columns}[onlytextwidth,T]
     \begin{column}{0.75\textwidth}
       \begin{figure}[h]
         \includegraphics[scale=0.6]{src/fig/pdfs/tikz/RAG_scheme.pdf}
