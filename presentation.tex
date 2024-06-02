@@ -91,7 +91,13 @@
 % Motivation
 \begin{frame}
   \frametitle{Motivation}
-
+  \begin{itemize}
+    \item There are chatbots, that uses RAG algorithm for QA.
+    \item Quality of answer depends of provided context from technical documents.
+    \item Quality of context depends of text representation method.
+  \end{itemize}
+  
+  
 \end{frame}
 
 % Work objectives
@@ -111,20 +117,30 @@
   \input{src/fig/tikz/text_encode.tex}
 \end{frame}
 
-% Text representation
-\begin{frame}
-  \frametitle{Text representation}
-\end{frame}
-
-
-% Word embedding methods
-\begin{frame}
-  \frametitle{Word embedding methods}
-\end{frame}
-
-% Methods of text representations evaluation
-\begin{frame}
-  \frametitle{Word embedding methods}
+% Text representation methods
+\begin{frame}[t]
+  \frametitle{Text representation methods}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \input{src/fig/tikz/evolution_text_representaion_v2.tex}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textcolor{cvut_navy}{\textbf{FastText}}
+      \begin{itemize}
+      \item Best traditional method
+      \item Uses Machine Learning
+      \item Pretrained embeddings, not depends on provided context
+      \item Don't capture global information during training (e.g. word order)
+      \end{itemize}
+      \textcolor{cvut_navy}{\textbf{Transformer models}}
+      \begin{itemize}
+      \item Use Neural Network with multi-head self-attention mechanism.
+      \item Generate embedding depending on provided context.
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % Retrieval-Augmented Generation (RAG)
