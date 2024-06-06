@@ -154,29 +154,6 @@
   \end{columns}
 \end{frame}
 
-% Retrieval-Augmented Generation (RAG)
-\begin{frame}
-  \frametitle{Retrieval-Augmented Generation (RAG)}
-  \begin{columns}[onlytextwidth,T]
-    \begin{column}{0.75\textwidth}
-      \begin{figure}[h]
-        \includegraphics[scale=0.6]{src/fig/pdfs/tikz/RAG_scheme.pdf}
-        \caption{Architecture of the RAG algorithm.}
-       \end{figure}
-    \end{column}
-
-      \begin{column}{0.75\textwidth}
-        \textcolor{cvut_navy}{\textbf{Factors}}
-        \begin{enumerate}
-          \item Embedding \\model
-          \item Chunk size
-        \end{enumerate}
-    \end{column}
-  \end{columns}
-  
-  
-\end{frame}
-
 % Methodology
 \begin{frame}
   \frametitle{Methodology}
@@ -237,6 +214,27 @@
     \includegraphics[scale=0.8]{src/fig/pdfs/tables/balanced.pdf}
     \caption{Balanced models compared to baseline.}
   \end{table}
+\end{frame}
+
+% Retrieval-Augmented Generation (RAG)
+\begin{frame}
+  \frametitle{Retrieval-Augmented Generation (RAG)}
+  \begin{columns}[onlytextwidth,T]
+    \begin{column}{0.75\textwidth}
+      \begin{figure}[h]
+        \includegraphics[scale=0.6]{src/fig/pdfs/tikz/RAG_scheme.pdf}
+        \caption{Architecture of the RAG algorithm.}
+       \end{figure}
+    \end{column}
+
+    \begin{column}{0.75\textwidth}
+      \textcolor{cvut_navy}{\textbf{Factors}}
+      \begin{enumerate}
+        \item Embedding \\model
+        \item Chunk size
+      \end{enumerate}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % Optimizing RAG
