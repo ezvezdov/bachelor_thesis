@@ -230,7 +230,19 @@
 % Optimizing RAG
 \begin{frame}
   \frametitle{Results: RAG optimization}
-  \input{src/tables/RAG_evaluation.tex}
+  \textcolor{cvut_navy}{\textbf{RAG Components}}
+  \begin{itemize}
+    \item Embedding model: GTE\textsubscript{Small}
+    \item Chunks: 256, 512, 1024, 2048, 4096 char.
+    \item Almost same context size (3072 - 4096 symbols)
+    \item Answers generation: GPT-3.5-turbo
+    \item Answers quality measurement: GPT-4o
+  \end{itemize}
+  
+  \begin{table}
+    \input{src/tables/RAG_evaluation_presentation.tex}
+    \caption{RAG evaluation.}
+  \end{table}
 \end{frame}
 
 % Summary
