@@ -59,6 +59,14 @@
 \pgfdeclarelayer{background}
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
+\tikzset{
+    use page relative coordinates/.style={
+        shift={(current page.south west)},
+        x={(current page.south east)},
+        y={(current page.north west)}
+    },
+}
+
 
 % Change color of Figure and Table labels.
 \usepackage[labelfont={color=cvut_navy}]{caption}
@@ -101,13 +109,31 @@
       \begin{itemize}
         \item LLM chatbots integrate external documents, enhancing context-aware responses.        
         \item Answer quality depends on technical document context.        
-        \item Context quality depends on text representation.        
+        \item Context quality depends on text representation.
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \includegraphics[scale=0.15]{src/fig/imgs/RAG_example.png}
     \end{column}
   \end{columns}
+
+  % Adding cross and check marks.
+  % https://tex.stackexchange.com/questions/42619/xmark-that-complements-the-ams-checkmark
+  \newcommand{\tikzxmark}{%
+  \tikz[scale=0.02] {
+      \draw[line width=1.2,line cap=round] (0,0) to [bend left=6] (1,1);
+      \draw[line width=1.2,line cap=round] (0.2,0.95) to [bend right=3] (0.8,0.05);
+  }}
+  \newcommand{\tikzcmark}{%
+  \tikz[scale=0.02] {
+      \draw[line width=1.2,line cap=round] (0.25,0) to [bend left=10] (1,1);
+      \draw[line width=1.3,line cap=round] (0,0.35) to [bend right=1] (0.23,0);
+  }}
+  \begin{tikzpicture}[remember picture, overlay,use page relative coordinates]
+    \node at (0.90,0.63) {\tikzxmark};
+    \node at (0.90,0.27) {\tikzcmark};
+      
+  \end{tikzpicture}
 \end{frame}
 
 
