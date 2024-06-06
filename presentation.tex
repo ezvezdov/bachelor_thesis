@@ -157,7 +157,7 @@
 % Methodology
 \begin{frame}
   \frametitle{Methodology}
-  \begin{columns}[onlytextwidth,T]
+  \begin{columns}[onlytextwidth]
     \begin{column}{0.4\textwidth}
       \textcolor{cvut_navy}{\textbf{Corpus information}}
       \begin{itemize}
@@ -172,7 +172,7 @@
       \end{itemize}
       \textcolor{cvut_navy}{\textbf{Benchmark}}
       \begin{itemize}
-        \item UPV
+        \item UPV FAQ
       \end{itemize}
       \textcolor{cvut_navy}{\textbf{Chosen models}}
       \begin{itemize}
@@ -181,23 +181,13 @@
         \item 13M - 560M parameters
       \end{itemize}
     \end{column}
-    \begin{column}{0.75\textwidth}
-      \textcolor{cvut_navy}{\textbf{RAG Components}}
-      \begin{itemize}
-        \item Embedding model: GTE\textsubscript{Small}
-        \item Chunks: 256, 512, 1024, 2048, 4096 char.
-        \item Same context size
-        \item Answers generation: GPT-3.5-turbo
-        \item Answers quality measurement: GPT-4o
-      \end{itemize}
+    \begin{column}{0.6\textwidth}
       \begin{figure}
-        \raggedright
-        \includegraphics[scale=0.6]{src/fig/pdfs/tikz/diacritics_diacriticless.pdf}
+        \includegraphics[scale=0.75]{src/fig/pdfs/tikz/diacritics_diacriticless.pdf}
+        \caption{Creation of diacriticless corpus.}
       \end{figure}     
     \end{column}
   \end{columns}
-    
-  
 \end{frame}
 
 % Balanced models
