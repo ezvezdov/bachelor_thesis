@@ -63,12 +63,16 @@
 % Change color of Figure and Table labels.
 \usepackage[labelfont={color=cvut_navy}]{caption}
 
+% Define logo condition
+\newif\ifplacelogo
+\logo{\ifplacelogo\includegraphics[height=1cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}\fi}
+
 
 %====================================================
 %========== DEFINITION OF AUTHORS ETC...=============
 %====================================================
 \author[Yauheni Zviazdou]{Yauheni Zviazdou}
-\institute[CTU FEE]{Czech Technical University in Prague \\ Faculty of Electrical Engineering \\ Department of Cybernetics \\}
+\institute[]{Czech Technical University in Prague \\ Faculty of Electrical Engineering \\ Department of Cybernetics \\}
 \title[Text representation models. RAG.]{From FastText to Transformer Models, and their Application in Retrieval-Augmented Generation}
 \date[Bachelor's thesis presentation]{Bachelor's thesis presentation\\Supervisor: Ing. Jan Šedivý, CSc.}
 
@@ -87,11 +91,9 @@
   \input{src/abbreviations.tex}
 \end{frame}
 
-% Add CTU logo to the all slides excluding title
-\logo{\includegraphics[height=1cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}}
-
 
 % Motivation
+\placelogotrue
 \begin{frame}
   \frametitle{Motivation}
   \begin{columns}
@@ -106,10 +108,8 @@
       \includegraphics[scale=0.15]{src/fig/imgs/RAG_example.png}
     \end{column}
   \end{columns}
-  
-  
-  
 \end{frame}
+
 
 % Work objectives
 \begin{frame}
@@ -127,6 +127,7 @@
   \bigskip
   \input{src/fig/tikz/text_encode.tex}
 \end{frame}
+
 
 % Text representation methods
 \begin{frame}[t]
@@ -153,6 +154,7 @@
     \end{column}
   \end{columns}
 \end{frame}
+
 
 % Methodology
 \begin{frame}
@@ -190,6 +192,7 @@
   \end{columns}
 \end{frame}
 
+
 % Balanced models
 \begin{frame}
   \frametitle{Results: Balanced models}
@@ -205,6 +208,7 @@
     \caption{Balanced models compared to baseline.}
   \end{table}
 \end{frame}
+
 
 % Retrieval-Augmented Generation (RAG)
 \begin{frame}
@@ -227,6 +231,7 @@
   \end{columns}
 \end{frame}
 
+
 % Optimizing RAG
 \begin{frame}
   \frametitle{Results: RAG optimization}
@@ -245,20 +250,34 @@
   \end{table}
 \end{frame}
 
+
 % Summary
+\placelogofalse 
 \begin{frame}
   \frametitle{Summary}
+  \textcolor{cvut_navy}{\textbf{Summary}}
   \begin{itemize}
     \item Best models: SimCSE-RetroMAE-Small, GTE\textsubscript{Small}, all mE5 verions.
     \item Best model overall: mE5\textsubscript{Large}.
     \item Best chunk size: 4096 symbols.
   \end{itemize}
-  \textcolor{cvut_navy}{\textbf{Thank you for your attention!}}
+  \vspace{10px}
+  \begin{center}
+    \huge \textcolor{cvut_navy}{\textbf{Thank you for your attention!}}  
+  \end{center}
+  \vspace{10px}
+  \begin{center}
+    \includegraphics[height=2cm]{src/fig/pdfs/ctu_logo_blue_filled.pdf}
+  \end{center}
 \end{frame}
 
+% Questions
+\placelogotrue
 \begin{frame}
   \frametitle{Questions}
-  Opponent: Ing. Luboš Král, Ph.D.
+  \textcolor{cvut_navy}{\textbf{Opponent}}: Ing. Luboš Král, Ph.D.
+
+  \vspace{20px}
 
   \textcolor{cvut_navy}{\textbf{Question 1.}} What is the main use of RAG systems?
   \begin{itemize}
