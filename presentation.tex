@@ -107,8 +107,8 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-        \item LLM chatbots integrate external documents, enhancing context-aware responses.        
-        \item Answer quality depends on technical document context.        
+        \item LLM chatbots integrate external documents, enhancing context-aware responses.
+        \item Answer quality depends on the context provided by the technical document.
         \item Context quality depends on text representation.
       \end{itemize}
     \end{column}
@@ -140,7 +140,7 @@
 % Work objectives
 \begin{frame}
   \frametitle{Work objectives}
-  \textcolor{cvut_navy}{\textbf{Task 1.}} Compare text representation for QA:
+  \textcolor{cvut_navy}{\textbf{Task 1.}} Compare text representation for QA
   \begin{itemize}
     \item Review text representation methods.
     \item Compare traditional and transformer-based methods.
@@ -164,18 +164,20 @@
         \input{src/fig/tikz/evolution_text_representaion_v2.tex}
       \end{figure}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.55\textwidth}
       \textcolor{cvut_navy}{\textbf{FastText}}
       \begin{itemize}
-      \item Best traditional method
-      \item Uses Machine Learning
-      \item Pretrained embeddings, not depends on provided context
-      \item Don't capture global information during training (e.g. word order)
+        \item Neural Network with few layers.      
+        \item Pre-trained embeddings
+        \item Independent of context.
+        \item Limited word order understanding.        
       \end{itemize}
       \textcolor{cvut_navy}{\textbf{Transformer models}}
       \begin{itemize}
-      \item Use Neural Network with multi-head self-attention mechanism.
-      \item Generate embedding depending on provided context.
+        \item Deep Neural Network with self-attention mechanism.
+        \item Real-time embeddings generation.
+        \item Contextual embeddings.        
+        \item Captures word relationships.
       \end{itemize}
     \end{column}
   \end{columns}
@@ -224,9 +226,9 @@
   \frametitle{Results: Balanced models}
   \textcolor{cvut_navy}{\textbf{Results analysis}}
   \begin{itemize}
-    \item Models with supervised training has best performances.
-    \item English-only models has good performances, even without training on Czech.
-    \item Task-specified fine-tuning enhance performances.
+    \item Supervised learning enhance model performance.
+    \item English models work well for Czech too.    
+    \item Task-specified fine-tuning boosts performance. 
   \end{itemize}
   \begin{table}
     \centering
@@ -243,11 +245,12 @@
     \begin{column}{0.75\textwidth}
       \begin{figure}[h]
         \includegraphics[scale=0.6]{src/fig/pdfs/tikz/RAG_scheme.pdf}
-        \caption{Architecture of the RAG algorithm.}
+        \caption{RAG architecture.}
        \end{figure}
     \end{column}
 
     \begin{column}{0.75\textwidth}
+      \vspace{10px}
       \textcolor{cvut_navy}{\textbf{Factors}}
       \begin{enumerate}
         \item Embedding \\model
@@ -263,11 +266,11 @@
   \frametitle{Results: RAG optimization}
   \textcolor{cvut_navy}{\textbf{RAG Components}}
   \begin{itemize}
-    \item Embedding model: GTE\textsubscript{Small}
-    \item Chunks: 256, 512, 1024, 2048, 4096 char.
-    \item Almost same context size (3072 - 4096 symbols)
-    \item Answers generation: GPT-3.5-turbo
-    \item Answers quality measurement: GPT-4o
+    \item Embedding model: GTE\textsubscript{Small}.
+    \item Chunks: 256, 512, 1024, 2048, 4096 symbols.
+    \item Almost same context size (3072 - 4096 symbols).
+    \item Answers generation: GPT-3.5-turbo.
+    \item Answers quality measurement: GPT-4o.
   \end{itemize}
   
   \begin{table}
