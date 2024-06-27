@@ -8,7 +8,7 @@ This thesis examines the evolution of text representation methods, starting from
 In the latter part of the research, the focus shifts to optimizing text representations for Retrieval-Augmented Generation (RAG) algorithms. The investigation aims to identify the most effective embeddings and determine the optimal text chunk size for Question Answering (QA) tasks, particularly within the realm of generating natural language answers from technical manuals. A thorough evaluation is conducted to recommend an optimal representation model that strikes a balance between factual accuracy and computational efficiency.
 
 ## ČVUT DSpace
-You can also check this specific thesis on [ČVUT DSpace](https://dspace.cvut.cz/handle/10467/115109).
+You can also check this thesis on [ČVUT DSpace](https://dspace.cvut.cz/handle/10467/115109).
 
 ## Linux dependencies for building LaTeX
 
